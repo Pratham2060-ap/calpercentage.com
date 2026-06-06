@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const tools = [
+  {
+    num: "01",
+    href: "/percentage-calculator",
+    title: "Percentage Calculator",
+    desc: "Solve any percentage problem three ways — find P% of V, find what % X is of Y, or find the base.",
+    formula: "P ÷ 100 × V",
+  },
+  {
+    num: "02",
+    href: "/percentage-of-number",
+    title: "What % is X of Y?",
+    desc: "Enter two numbers and instantly find what percentage the first is of the second. Includes a visual bar.",
+    formula: "(X ÷ Y) × 100",
+  },
+  {
+    num: "03",
+    href: "/percentage-increase",
+    title: "Percentage Increase / Decrease",
+    desc: "Find the percentage change between two values, or calculate a new value after any % increase or decrease.",
+    formula: "((B − A) ÷ A) × 100",
+  },
+  {
+    num: "04",
+    href: "/discount-calculator",
+    title: "Discount Calculator",
+    desc: "Find the sale price after a discount. Supports single discounts, stacked discounts, and reverse lookups.",
+    formula: "Price × (1 − D%)",
+  },
+  {
+    num: "05",
+    href: "/tip-calculator",
+    title: "Tip Calculator",
+    desc: "Calculate the tip and total for any bill. Includes 15/18/20/25% presets, tax handling, and bill splitting.",
+    formula: "Bill × Tip%",
+  },
+];
+---
+
+<Layout
+  title="Home"
+  description="Five free, fast percentage calculators — percentage calculator, discount calculator, tip calculator, and more. Instant results as you type."
+>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden" style="background-color:var(--color-canvas-soft);">
+    <div class="absolute inset-0 mesh-gradient pointer-events-none" aria-hidden="true"></div>
+
+    <div class="relative max-w-4xl mx-auto px-5 py-24 sm:py-32 text-center">
+      <div class="badge mb-8">
+        <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:var(--color-accent);"></span>
+        5 calculators · No ads · Instant results
+      </div>
+
+      <h1 class="text-5xl sm:text-6xl font-semibold text-ink mb-5" style="letter-spacing:-0.06em; line-height:1;">
+        Percentage calculators<br/>that just work.
+      </h1>
+
+      <p class="text-lg text-secondary leading-7 mb-10 max-w-sm mx-auto">
+        Clean, ad-free tools for every percentage problem. Results update as you type — no submit button.
+      </p>
+
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/percentage-calculator" class="btn-primary">Try the calculator</a>
+        <a href="#tools" class="btn-secondary">See all 5 tools</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div style="background:var(--color-canvas-soft); padding:0 1.25rem;">
+    <div class="max-w-6xl mx-auto" style="border-top:1px solid var(--color-line);"></div>
+  </div>
+
+  <!-- Tool cards -->
+  <section id="tools" class="max-w-6xl mx-auto px-5 py-20">
+    <div class="mb-12">
+      <p class="form-label mb-2">All calculators</p>
+      <h2 class="text-3xl font-semibold text-ink" style="letter-spacing:-0.04em;">Five tools, every percentage problem.</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {tools.map(t => (
+        <a
+          href={t.href}
+          class="card group no-underline flex flex-col transition-all duration-150 hover:shadow-[0_0_0_1.5px_var(--color-ink),0px_2px_2px_rgba(0,0,0,0.04),0px_4px_8px_rgba(0,0,0,0.04)]"
+        >
+          <p class="form-label mb-3">{t.num}</p>
+          <h3 class="text-lg font-semibold text-ink mb-1.5" style="letter-spacing:-0.02em;">{t.title}</h3>
+          <p class="text-sm text-secondary leading-5 flex-1">{t.desc}</p>
+
+          <div class="mt-5 flex items-center justify-between">
+            <code class="text-xs font-mono text-muted bg-canvas-soft-2 px-2 py-1 rounded-[4px]">{t.formula}</code>
+            <span class="text-sm text-accent font-medium group-hover:underline">Open →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Why section -->
+  <section style="background:var(--color-ink); color:var(--color-canvas);">
+    <div class="max-w-6xl mx-auto px-5 py-20">
+      <p class="form-label mb-3" style="color:rgba(255,255,255,0.4);">Why calpercentage.com</p>
+      <h2 class="text-3xl font-semibold mb-12" style="letter-spacing:-0.04em;">Better than the alternatives.</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { icon: "⚡", title: "Real-time results", body: "No submit button. Every keystroke updates the result instantly." },
+          { icon: "🔗", title: "Shareable URLs", body: "Every calculation encodes into the URL — copy the link and share it." },
+          { icon: "📋", title: "One-click copy", body: "Copy any result to your clipboard with a single click." },
+          { icon: "🧮", title: "Smarter calculators", body: "Stacked discounts, bill splitting, tax-aware tipping — features the competition skips." },
+          { icon: "📱", title: "Mobile-first", body: "Designed for phones. No clutter, no sidebars, no ads taking up half the screen." },
+          { icon: "🎯", title: "Formulas explained", body: "Every calculator shows the formula it uses so you understand the math, not just the answer." },
+        ].map(f => (
+          <div class="flex gap-3">
+            <span class="text-xl mt-0.5">{f.icon}</span>
+            <div>
+              <h3 class="text-sm font-semibold mb-1">{f.title}</h3>
+              <p class="text-sm leading-5" style="color:rgba(255,255,255,0.55);">{f.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,417 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const related = [
+  { href: "/percentage-calculator", label: "Percentage Calculator" },
+  { href: "/percentage-of-number",  label: "Percentage of Number" },
+  { href: "/percentage-increase",   label: "Percentage Change" },
+  { href: "/discount-calculator",   label: "Discount" },
+];
+---
+
+<Layout
+  title="Tip Calculator"
+  description="Calculate the tip and total for any bill. Choose from 15%, 18%, 20%, 25% presets or enter a custom tip. Split between any number of people."
+>
+
+  <!-- Page header -->
+  <section class="relative overflow-hidden" style="background:var(--color-canvas-soft);">
+    <div class="absolute inset-0 mesh-gradient pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-6xl mx-auto px-5 pt-12 pb-14">
+      <nav class="flex items-center gap-2 text-xs text-muted mb-6 font-mono">
+        <a href="/" class="hover:text-ink no-underline transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-ink">Tip Calculator</span>
+      </nav>
+      <p class="form-label mb-2">Calculator</p>
+      <h1 class="text-4xl sm:text-5xl font-semibold text-ink" style="letter-spacing:-0.05em; line-height:1.05;">Tip Calculator</h1>
+      <p class="mt-3 text-base text-secondary max-w-lg leading-6">
+        Calculate the tip, total, and per-person amount. Quick presets for 15%, 18%, 20%, and 25%.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section class="max-w-6xl mx-auto px-5 py-12">
+    <div class="max-w-2xl">
+      <div class="card-lg flex flex-col gap-5">
+
+        <!-- Currency selector -->
+        <div>
+          <label class="form-label" for="t-currency">Currency</label>
+          <div class="relative">
+            <select id="t-currency" class="form-input text-base" style="height:3rem; appearance:none; padding-right:2.5rem; cursor:pointer;">
+              <option value="USD">USD — US Dollar ($)</option>
+              <option value="EUR">EUR — Euro (€)</option>
+              <option value="GBP">GBP — British Pound (£)</option>
+              <option value="INR">INR — Indian Rupee (₹)</option>
+              <option value="JPY">JPY — Japanese Yen (¥)</option>
+              <option value="AUD">AUD — Australian Dollar (A$)</option>
+              <option value="CAD">CAD — Canadian Dollar (C$)</option>
+              <option value="CHF">CHF — Swiss Franc (Fr)</option>
+              <option value="CNY">CNY — Chinese Yuan (¥)</option>
+              <option value="SGD">SGD — Singapore Dollar (S$)</option>
+              <option value="AED">AED — UAE Dirham</option>
+              <option value="MXN">MXN — Mexican Peso (MX$)</option>
+              <option value="BRL">BRL — Brazilian Real (R$)</option>
+            </select>
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Bill amount -->
+        <div>
+          <label class="form-label" for="t-bill">Bill amount</label>
+          <div class="relative">
+            <span id="t-curr-symbol" class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted font-mono">$</span>
+            <input id="t-bill" type="number" class="form-input text-base" style="padding-left:1.75rem; height:3rem;" placeholder="0.00" min="0" step="0.01" />
+          </div>
+        </div>
+
+        <!-- Tip presets + custom -->
+        <div>
+          <label class="form-label" for="t-pct">Tip percentage</label>
+          <div class="flex gap-2 mb-2 flex-wrap">
+            {[15, 18, 20, 25].map(p => (
+              <button
+                class="btn-sm preset-btn"
+                data-pct={p}
+                onclick={`setPreset(${p})`}
+              >
+                {p}%
+              </button>
+            ))}
+            <button class="btn-sm" onclick="focusCustom()">Custom</button>
+          </div>
+          <div class="relative">
+            <input id="t-pct" type="number" class="form-input" style="padding-right:1.75rem;" placeholder="20" min="0" max="100" value="20" />
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted font-mono pointer-events-none">%</span>
+          </div>
+        </div>
+
+        <!-- Number of people -->
+        <div>
+          <label class="form-label" for="t-people">Number of people</label>
+          <div class="flex items-center gap-3">
+            <button onclick="changePeople(-1)" class="btn-sm" style="width:2rem; height:2rem; flex-shrink:0; display:flex; align-items:center; justify-content:center; padding:0;">−</button>
+            <input id="t-people" type="number" class="form-input text-center" placeholder="1" min="1" max="100" value="1" style="width:5rem;" />
+            <button onclick="changePeople(1)" class="btn-sm" style="width:2rem; height:2rem; flex-shrink:0; display:flex; align-items:center; justify-content:center; padding:0;">+</button>
+            <span class="text-sm text-secondary">people</span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Results grid -->
+        <div class="grid grid-cols-2 gap-3">
+          <div class="rounded-[8px] p-3" style="background:var(--color-canvas-soft-2);">
+            <p class="form-label mb-1">Tip amount</p>
+            <p id="t-tip" class="text-2xl font-semibold text-ink empty" style="letter-spacing:-0.04em;">—</p>
+          </div>
+          <div class="rounded-[8px] p-3" style="background:var(--color-canvas-soft-2);">
+            <p class="form-label mb-1">Total (incl. tip)</p>
+            <p id="t-total" class="text-2xl font-semibold text-ink empty" style="letter-spacing:-0.04em;">—</p>
+          </div>
+          <div class="rounded-[8px] p-3" style="background:var(--color-ink); color:white;">
+            <p class="mb-1" style="font-family:var(--font-mono); font-size:0.6875rem; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.5);">Tip per person</p>
+            <p id="t-tip-pp" class="text-2xl font-semibold" style="letter-spacing:-0.04em; color:white;">—</p>
+          </div>
+          <div class="rounded-[8px] p-3" style="background:var(--color-ink); color:white;">
+            <p class="mb-1" style="font-family:var(--font-mono); font-size:0.6875rem; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.5);">Total per person</p>
+            <p id="t-total-pp" class="text-2xl font-semibold" style="letter-spacing:-0.04em; color:white;">—</p>
+          </div>
+        </div>
+
+        <!-- Copy all -->
+        <button id="copy-all-btn" class="btn-secondary w-full justify-center" style="height:2.5rem;">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <span id="copy-all-label">Copy summary</span>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Tipping guide (rendered by JS based on selected currency) -->
+  <section class="max-w-6xl mx-auto px-5 pb-16">
+    <div class="card-lg max-w-2xl">
+      <p id="guide-title" class="form-label mb-4">Standard tipping guide</p>
+      <div id="guide-rows" style="border-top:1px solid var(--color-line);"></div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="max-w-6xl mx-auto px-5 pb-16">
+    <div class="card-lg max-w-2xl">
+      <p class="form-label mb-3">How it works</p>
+      <h2 class="text-xl font-semibold text-ink mb-4" style="letter-spacing:-0.03em;">Tip calculation formula.</h2>
+      <code class="block text-sm font-mono text-ink bg-canvas-soft-2 px-4 py-3 rounded-[6px] mb-4">
+        tip = bill × (tip% ÷ 100)<br/>
+        total = bill + tip<br/>
+        per person = total ÷ people
+      </code>
+      <p id="formula-example" class="text-sm text-secondary leading-6"></p>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="max-w-6xl mx-auto px-5 pb-20">
+    <p class="form-label mb-4">Related calculators</p>
+    <div class="flex flex-wrap gap-2">
+      {related.map(r => (
+        <a href={r.href} class="btn-secondary" style="height:2.25rem; font-size:0.8125rem;">{r.label} →</a>
+      ))}
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  type Currency = { code: string; symbol: string; locale: string; decimals: number; region: string };
+  type GuideItem = [string, string];
+  type Guide = { title: string; items: GuideItem[] };
+
+  const CURRENCIES: Record<string, Currency> = {
+    USD: { code: "USD", symbol: "$",    locale: "en-US", decimals: 2, region: "us" },
+    EUR: { code: "EUR", symbol: "€",    locale: "en-IE", decimals: 2, region: "eu" },
+    GBP: { code: "GBP", symbol: "£",    locale: "en-GB", decimals: 2, region: "uk" },
+    INR: { code: "INR", symbol: "₹",    locale: "en-IN", decimals: 2, region: "in" },
+    JPY: { code: "JPY", symbol: "¥",    locale: "ja-JP", decimals: 0, region: "jp" },
+    AUD: { code: "AUD", symbol: "A$",   locale: "en-AU", decimals: 2, region: "us" },
+    CAD: { code: "CAD", symbol: "C$",   locale: "en-CA", decimals: 2, region: "us" },
+    CHF: { code: "CHF", symbol: "Fr",   locale: "de-CH", decimals: 2, region: "eu" },
+    CNY: { code: "CNY", symbol: "¥",    locale: "zh-CN", decimals: 2, region: "jp" },
+    SGD: { code: "SGD", symbol: "S$",   locale: "en-SG", decimals: 2, region: "us" },
+    AED: { code: "AED", symbol: "AED",  locale: "en-AE", decimals: 2, region: "ae" },
+    MXN: { code: "MXN", symbol: "MX$",  locale: "es-MX", decimals: 2, region: "us" },
+    BRL: { code: "BRL", symbol: "R$",   locale: "pt-BR", decimals: 2, region: "eu" },
+  };
+
+  // {sym} is replaced with the selected currency symbol at render time
+  const TIPPING_GUIDES: Record<string, Guide> = {
+    us: {
+      title: "Standard tipping guide",
+      items: [
+        ["Restaurant — casual",   "15–18%"],
+        ["Restaurant — nice",     "18–20%"],
+        ["Restaurant — upscale",  "20–25%"],
+        ["Takeout / delivery",    "10–15%"],
+        ["Coffee shop / bar",     "10–15%"],
+        ["Taxi / rideshare",      "15–20%"],
+        ["Hotel housekeeping",    "{sym}2–5 / night"],
+        ["Hair / beauty",         "15–20%"],
+        ["Food delivery",         "15–20%"],
+        ["Tour guide",            "10–20%"],
+      ],
+    },
+    uk: {
+      title: "Standard UK tipping guide",
+      items: [
+        ["Restaurant",            "10–15%"],
+        ["Pub / bar",             "0–10%"],
+        ["Café / coffee shop",    "0–10%"],
+        ["Taxi",                  "10–15%"],
+        ["Hotel housekeeping",    "{sym}1–2 / night"],
+        ["Hair / beauty",         "10–15%"],
+        ["Food delivery",         "10–15%"],
+        ["Tour guide",            "10–15%"],
+      ],
+    },
+    eu: {
+      title: "Standard European tipping guide",
+      items: [
+        ["Restaurant",            "5–10%"],
+        ["Café / bar",            "0–5%"],
+        ["Taxi",                  "5–10%"],
+        ["Hotel housekeeping",    "{sym}1–2 / night"],
+        ["Hair / beauty",         "5–10%"],
+        ["Food delivery",         "5–10%"],
+        ["Tour guide",            "5–10%"],
+      ],
+    },
+    in: {
+      title: "Standard India tipping guide",
+      items: [
+        ["Restaurant (upscale)",  "10%"],
+        ["Restaurant (casual)",   "5–10%"],
+        ["Takeout / delivery",    "5–10%"],
+        ["Hotel housekeeping",    "{sym}20–50 / night"],
+        ["Taxi / auto-rickshaw",  "0–10%"],
+        ["Hair / beauty",         "10%"],
+        ["Tour guide",            "10–15%"],
+      ],
+    },
+    jp: {
+      title: "Tipping guide — Japan & China",
+      items: [
+        ["Restaurant",            "Not customary"],
+        ["Bar / café",            "Not customary"],
+        ["Taxi",                  "Not customary"],
+        ["Hotel",                 "Not customary"],
+        ["Tour guide",            "Not customary"],
+      ],
+    },
+    ae: {
+      title: "Standard UAE tipping guide",
+      items: [
+        ["Restaurant",            "10–15%"],
+        ["Café / bar",            "5–10%"],
+        ["Taxi",                  "0–10%"],
+        ["Hotel housekeeping",    "{sym}10–20 / night"],
+        ["Hair / beauty",         "10–15%"],
+        ["Food delivery",         "10–15%"],
+        ["Tour guide",            "10–15%"],
+      ],
+    },
+  };
+
+  let curr = CURRENCIES["USD"];
+
+  function fmtMoney(n: number | null): string {
+    if (n === null || !isFinite(n)) return "—";
+    const formatted = n.toLocaleString(curr.locale, {
+      minimumFractionDigits: curr.decimals,
+      maximumFractionDigits: curr.decimals,
+    });
+    return curr.symbol + formatted;
+  }
+
+  function set(id: string, text: string) {
+    const el = document.getElementById(id)!;
+    el.textContent = text;
+    el.classList.toggle("empty", text === "—");
+  }
+
+  function val(id: string): number | null {
+    const v = parseFloat((document.getElementById(id) as HTMLInputElement)?.value ?? "");
+    return isNaN(v) ? null : v;
+  }
+
+  let activePreset: number | null = 20;
+
+  function calculate() {
+    const bill = val("t-bill");
+    const tipPct = val("t-pct");
+    const people = Math.max(1, val("t-people") ?? 1);
+
+    if (bill !== null && tipPct !== null && bill >= 0 && tipPct >= 0) {
+      const tip = bill * tipPct / 100;
+      const total = bill + tip;
+      set("t-tip", fmtMoney(tip));
+      set("t-total", fmtMoney(total));
+      set("t-tip-pp", fmtMoney(tip / people));
+      set("t-total-pp", fmtMoney(total / people));
+    } else {
+      ["t-tip","t-total","t-tip-pp","t-total-pp"].forEach(id => set(id, "—"));
+    }
+  }
+
+  function renderGuide() {
+    const guide = TIPPING_GUIDES[curr.region];
+    document.getElementById("guide-title")!.textContent = guide.title;
+    document.getElementById("guide-rows")!.innerHTML = guide.items
+      .map(([service, range]) => {
+        const displayRange = range.replace("{sym}", curr.symbol);
+        return `<div class="flex items-center justify-between py-3" style="border-bottom:1px solid var(--color-line);">
+          <span class="text-sm text-secondary">${service}</span>
+          <span class="text-sm font-semibold text-ink font-mono">${displayRange}</span>
+        </div>`;
+      })
+      .join("");
+  }
+
+  function updateFormulaExample() {
+    const bill = 85;
+    const tipAmt = bill * 0.20;
+    const total = bill + tipAmt;
+    const pp = total / 3;
+    document.getElementById("formula-example")!.innerHTML =
+      `<strong class="text-ink font-medium">Example:</strong> ${fmtMoney(bill)} bill, 20% tip, 3 people<br/>` +
+      `Tip = ${fmtMoney(bill)} × 0.20 = ${fmtMoney(tipAmt)}<br/>` +
+      `Total = ${fmtMoney(bill)} + ${fmtMoney(tipAmt)} = ${fmtMoney(total)}<br/>` +
+      `Per person = ${fmtMoney(total)} ÷ 3 = <strong class="text-ink font-medium">${fmtMoney(pp)}</strong>`;
+  }
+
+  function updateCurrencySymbol() {
+    const symbolEl = document.getElementById("t-curr-symbol")!;
+    const billInput = document.getElementById("t-bill") as HTMLInputElement;
+    symbolEl.textContent = curr.symbol;
+    // Widen left padding for longer symbols (A$, MX$, AED, etc.)
+    const len = curr.symbol.length;
+    billInput.style.paddingLeft = len <= 1 ? "1.75rem" : len <= 2 ? "2.25rem" : "3rem";
+  }
+
+  function onCurrencyChange() {
+    const code = (document.getElementById("t-currency") as HTMLSelectElement).value;
+    curr = CURRENCIES[code];
+    updateCurrencySymbol();
+    renderGuide();
+    updateFormulaExample();
+    calculate();
+  }
+
+  (window as any).setPreset = function(pct: number) {
+    (document.getElementById("t-pct") as HTMLInputElement).value = String(pct);
+    activePreset = pct;
+    document.querySelectorAll<HTMLElement>(".preset-btn").forEach(btn => {
+      btn.classList.toggle("active", Number(btn.dataset.pct) === pct);
+    });
+    calculate();
+  };
+
+  (window as any).focusCustom = function() {
+    const input = document.getElementById("t-pct") as HTMLInputElement;
+    input.focus(); input.select();
+    activePreset = null;
+    document.querySelectorAll<HTMLElement>(".preset-btn").forEach(btn => btn.classList.remove("active"));
+  };
+
+  (window as any).changePeople = function(delta: number) {
+    const el = document.getElementById("t-people") as HTMLInputElement;
+    const curVal = parseInt(el.value) || 1;
+    el.value = String(Math.max(1, curVal + delta));
+    calculate();
+  };
+
+  document.getElementById("t-currency")?.addEventListener("change", onCurrencyChange);
+  document.getElementById("t-bill")?.addEventListener("input", calculate);
+  document.getElementById("t-pct")?.addEventListener("input", () => {
+    activePreset = null;
+    document.querySelectorAll<HTMLElement>(".preset-btn").forEach(btn => btn.classList.remove("active"));
+    calculate();
+  });
+  document.getElementById("t-people")?.addEventListener("input", calculate);
+
+  // Highlight the default 20% preset
+  document.querySelectorAll<HTMLElement>(".preset-btn").forEach(btn => {
+    if (Number(btn.dataset.pct) === 20) btn.classList.add("active");
+  });
+
+  // Copy summary
+  document.getElementById("copy-all-btn")?.addEventListener("click", async () => {
+    const bill   = (document.getElementById("t-bill") as HTMLInputElement).value;
+    const pct    = (document.getElementById("t-pct") as HTMLInputElement).value;
+    const people = (document.getElementById("t-people") as HTMLInputElement).value;
+    const tip    = document.getElementById("t-tip")?.textContent;
+    const total  = document.getElementById("t-total")?.textContent;
+    const pp     = document.getElementById("t-total-pp")?.textContent;
+
+    if (!tip || tip === "—") return;
+
+    const text = `Bill: ${curr.symbol}${bill} | Tip: ${pct}% = ${tip} | Total: ${total} | Per person (${people}): ${pp}`;
+    try { await navigator.clipboard.writeText(text); } catch { /* ignore */ }
+
+    const label = document.getElementById("copy-all-label")!;
+    label.textContent = "Copied!";
+    setTimeout(() => { label.textContent = "Copy summary"; }, 2000);
+  });
+
+  // Initialize
+  renderGuide();
+  updateFormulaExample();
+  calculate();
+</script>

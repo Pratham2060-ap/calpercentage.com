@@ -1,0 +1,393 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const related = [
+  { href: "/percentage-calculator", label: "Percentage Calculator" },
+  { href: "/percentage-of-number",  label: "Percentage of Number" },
+  { href: "/percentage-increase",   label: "Percentage Change" },
+  { href: "/tip-calculator",        label: "Tip" },
+];
+---
+
+<Layout
+  title="Discount Calculator"
+  description="Calculate the sale price and savings for any discount. Supports single discounts, stacked/multiple discounts, and reverse lookup."
+>
+
+  <!-- Page header -->
+  <section class="relative overflow-hidden" style="background:var(--color-canvas-soft);">
+    <div class="absolute inset-0 mesh-gradient pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-6xl mx-auto px-5 pt-12 pb-14">
+      <nav class="flex items-center gap-2 text-xs text-muted mb-6 font-mono">
+        <a href="/" class="hover:text-ink no-underline transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-ink">Discount Calculator</span>
+      </nav>
+      <p class="form-label mb-2">Calculator</p>
+      <h1 class="text-4xl sm:text-5xl font-semibold text-ink" style="letter-spacing:-0.05em; line-height:1.05;">Discount Calculator</h1>
+      <p class="mt-3 text-base text-secondary max-w-lg leading-6">
+        Find the sale price, savings amount, and effective discount. Includes stacked discount support.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculators -->
+  <section class="max-w-6xl mx-auto px-5 py-12">
+
+    <!-- Currency selector -->
+    <div class="flex items-center gap-3 mb-6">
+      <label class="form-label mb-0 shrink-0" for="currency-select">Currency</label>
+      <select id="currency-select" class="form-input" style="width:auto; min-width:220px; padding-top:0.4rem; padding-bottom:0.4rem;">
+        <option value="USD">USD – US Dollar ($)</option>
+        <option value="EUR">EUR – Euro (€)</option>
+        <option value="GBP">GBP – British Pound (£)</option>
+        <option value="INR">INR – Indian Rupee (₹)</option>
+        <option value="JPY">JPY – Japanese Yen (¥)</option>
+        <option value="CAD">CAD – Canadian Dollar (CA$)</option>
+        <option value="AUD">AUD – Australian Dollar (A$)</option>
+      </select>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-3xl">
+
+      <!-- Basic discount -->
+      <div class="card-lg flex flex-col gap-4">
+        <div>
+          <p class="form-label mb-0.5">Standard</p>
+          <h2 class="text-lg font-semibold text-ink" style="letter-spacing:-0.02em;">Single discount</h2>
+        </div>
+        <div class="divider"></div>
+
+        <div class="flex flex-col gap-3">
+          <div>
+            <label class="form-label" for="d-price">Original price</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-muted font-mono currency-symbol">$</span>
+              <input id="d-price" type="number" class="form-input" style="padding-left:1.75rem;" placeholder="e.g. 120" min="0" />
+            </div>
+          </div>
+          <div>
+            <label class="form-label" for="d-pct">Discount (%)</label>
+            <div class="relative">
+              <input id="d-pct" type="number" class="form-input" style="padding-right:1.75rem;" placeholder="e.g. 25" min="0" max="100" />
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted font-mono pointer-events-none">%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="space-y-2 mt-auto">
+          <div class="result-box">
+            <div>
+              <p class="form-label mb-1">Sale price</p>
+              <p id="d-sale" class="result-value empty">—</p>
+            </div>
+            <button class="btn-sm" onclick="copyResult('d-sale', this)">
+              <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <div class="flex gap-2">
+            <div class="flex-1 rounded-[6px] px-3 py-2" style="background:var(--color-canvas-soft-2);">
+              <p class="form-label mb-0.5">You save</p>
+              <p id="d-save" class="text-base font-semibold text-ink" style="letter-spacing:-0.02em;">—</p>
+            </div>
+            <div class="flex-1 rounded-[6px] px-3 py-2" style="background:var(--color-canvas-soft-2);">
+              <p class="form-label mb-0.5">Savings %</p>
+              <p id="d-savepct" class="text-base font-semibold text-ink" style="letter-spacing:-0.02em;">—</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-muted font-mono">Formula: Price × (1 − D ÷ 100)</p>
+      </div>
+
+      <!-- Stacked discount -->
+      <div class="card-lg flex flex-col gap-4">
+        <div>
+          <p class="form-label mb-0.5">Advanced</p>
+          <h2 class="text-lg font-semibold text-ink" style="letter-spacing:-0.02em;">Stacked discounts</h2>
+          <p class="text-xs text-secondary mt-1">Apply multiple sequential discounts</p>
+        </div>
+        <div class="divider"></div>
+
+        <div class="flex flex-col gap-3">
+          <div>
+            <label class="form-label" for="s-price">Original price</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-muted font-mono currency-symbol">$</span>
+              <input id="s-price" type="number" class="form-input" style="padding-left:1.75rem;" placeholder="e.g. 200" min="0" />
+            </div>
+          </div>
+          <div>
+            <label class="form-label">Discounts (each applied to the remaining price)</label>
+            <div class="flex flex-col gap-2" id="discount-rows">
+              <div class="flex gap-2 items-center">
+                <div class="relative flex-1">
+                  <input type="number" class="form-input disc-row" style="padding-right:1.75rem;" placeholder="e.g. 20" min="0" max="100" />
+                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted font-mono pointer-events-none">%</span>
+                </div>
+              </div>
+              <div class="flex gap-2 items-center">
+                <div class="relative flex-1">
+                  <input type="number" class="form-input disc-row" style="padding-right:1.75rem;" placeholder="e.g. 10" min="0" max="100" />
+                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted font-mono pointer-events-none">%</span>
+                </div>
+              </div>
+            </div>
+            <button id="add-discount" class="btn-sm mt-2">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 1v8M1 5h8"/>
+              </svg>
+              Add discount
+            </button>
+          </div>
+        </div>
+
+        <!-- Stacked results -->
+        <div class="space-y-2 mt-auto">
+          <div class="result-box">
+            <div>
+              <p class="form-label mb-1">Final price</p>
+              <p id="s-final" class="result-value empty">—</p>
+            </div>
+            <button class="btn-sm" onclick="copyResult('s-final', this)">
+              <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <div class="flex gap-2">
+            <div class="flex-1 rounded-[6px] px-3 py-2" style="background:var(--color-canvas-soft-2);">
+              <p class="form-label mb-0.5">Total saved</p>
+              <p id="s-saved" class="text-base font-semibold text-ink" style="letter-spacing:-0.02em;">—</p>
+            </div>
+            <div class="flex-1 rounded-[6px] px-3 py-2" style="background:var(--color-canvas-soft-2);">
+              <p class="form-label mb-0.5">Effective %</p>
+              <p id="s-eff" class="text-base font-semibold text-ink" style="letter-spacing:-0.02em;">—</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-muted font-mono">Note: discounts are applied sequentially</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Reverse lookup -->
+  <section class="max-w-6xl mx-auto px-5 pb-12">
+    <div class="card-lg max-w-3xl">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <p class="form-label mb-0.5">Reverse</p>
+          <h2 class="text-lg font-semibold text-ink" style="letter-spacing:-0.02em;">Find original price</h2>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+        <div>
+          <label class="form-label" for="r-sale">Sale price</label>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-muted font-mono currency-symbol">$</span>
+            <input id="r-sale" type="number" class="form-input" style="padding-left:1.75rem;" placeholder="e.g. 90" min="0" />
+          </div>
+        </div>
+        <div>
+          <label class="form-label" for="r-pct">Discount was (%)</label>
+          <div class="relative">
+            <input id="r-pct" type="number" class="form-input" style="padding-right:1.75rem;" placeholder="e.g. 25" min="0" max="99" />
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted font-mono pointer-events-none">%</span>
+          </div>
+        </div>
+      </div>
+      <div class="result-box mt-4">
+        <div>
+          <p class="form-label mb-1">Original price</p>
+          <p id="r-orig" class="result-value empty">—</p>
+        </div>
+        <button class="btn-sm" onclick="copyResult('r-orig', this)">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <span>Copy</span>
+        </button>
+      </div>
+      <p class="text-xs text-muted font-mono mt-3">Formula: Sale ÷ (1 − D ÷ 100)</p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="max-w-6xl mx-auto px-5 pb-16">
+    <div class="card-lg max-w-3xl">
+      <p class="form-label mb-3">How it works</p>
+      <h2 class="text-xl font-semibold text-ink mb-6" style="letter-spacing:-0.03em;">Discount formulas explained.</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <h3 class="text-sm font-semibold text-ink mb-2">Single discount</h3>
+          <pre id="formula-single" class="text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-2 whitespace-pre-wrap">$120 at 25% off
+= $120 × 0.75 = $90</pre>
+          <p class="text-sm text-secondary leading-5">Multiply the original by 1 minus the discount as a decimal.</p>
+        </div>
+        <div>
+          <h3 class="text-sm font-semibold text-ink mb-2">Stacked discounts</h3>
+          <pre id="formula-stacked" class="text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-2 whitespace-pre-wrap">$200 at 20% then 10%
+$200 → $160 → $144</pre>
+          <p class="text-sm text-secondary leading-5">Apply each discount sequentially. Note: 20% + 10% ≠ 30% — stacked discounts compound.</p>
+        </div>
+        <div>
+          <h3 class="text-sm font-semibold text-ink mb-2">Reverse lookup</h3>
+          <pre id="formula-reverse" class="text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-2 whitespace-pre-wrap">Sale $90, was 25% off
+$90 ÷ 0.75 = $120</pre>
+          <p class="text-sm text-secondary leading-5">Divide the sale price by (1 minus the discount decimal) to find the original.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="max-w-6xl mx-auto px-5 pb-20">
+    <p class="form-label mb-4">Related calculators</p>
+    <div class="flex flex-wrap gap-2">
+      {related.map(r => (
+        <a href={r.href} class="btn-secondary" style="height:2.25rem; font-size:0.8125rem;">{r.label} →</a>
+      ))}
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  const CURRENCIES: Record<string, { symbol: string; locale: string; decimals: number }> = {
+    USD: { symbol: '$',   locale: 'en-US', decimals: 2 },
+    EUR: { symbol: '€',   locale: 'de-DE', decimals: 2 },
+    GBP: { symbol: '£',   locale: 'en-GB', decimals: 2 },
+    INR: { symbol: '₹',   locale: 'en-IN', decimals: 2 },
+    JPY: { symbol: '¥',   locale: 'ja-JP', decimals: 0 },
+    CAD: { symbol: 'CA$', locale: 'en-CA', decimals: 2 },
+    AUD: { symbol: 'A$',  locale: 'en-AU', decimals: 2 },
+  };
+
+  const FORMULA_TEMPLATES: Record<string, (s: string) => string> = {
+    'formula-single':  s => `${s}120 at 25% off\n= ${s}120 × 0.75 = ${s}90`,
+    'formula-stacked': s => `${s}200 at 20% then 10%\n${s}200 → ${s}160 → ${s}144`,
+    'formula-reverse': s => `Sale ${s}90, was 25% off\n${s}90 ÷ 0.75 = ${s}120`,
+  };
+
+  let currentCurrency = CURRENCIES['USD'];
+
+  function fmtMoney(n: number | null): string {
+    if (n === null || !isFinite(n)) return "—";
+    const { symbol, locale, decimals } = currentCurrency;
+    return symbol + n.toLocaleString(locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  }
+  function fmtPct(n: number | null): string {
+    if (n === null || !isFinite(n)) return "—";
+    return parseFloat(n.toFixed(4)).toLocaleString('en-US', { maximumFractionDigits: 4 }) + "%";
+  }
+  function val(id: string): number | null {
+    const v = parseFloat((document.getElementById(id) as HTMLInputElement)?.value ?? "");
+    return isNaN(v) ? null : v;
+  }
+  function set(id: string, text: string) {
+    const el = document.getElementById(id)!;
+    el.textContent = text;
+    el.classList.toggle("empty", text === "—");
+  }
+
+  function updateCurrencyDisplay() {
+    const { symbol } = currentCurrency;
+    document.querySelectorAll<HTMLElement>('.currency-symbol').forEach(el => {
+      el.textContent = symbol;
+    });
+    Object.entries(FORMULA_TEMPLATES).forEach(([id, fn]) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = fn(symbol);
+    });
+  }
+
+  function calcBasic() {
+    const price = val("d-price"), pct = val("d-pct");
+    if (price !== null && pct !== null && price >= 0 && pct >= 0) {
+      const savings = price * pct / 100;
+      const sale = price - savings;
+      set("d-sale", fmtMoney(sale));
+      set("d-save", fmtMoney(savings));
+      set("d-savepct", fmtPct(pct));
+    } else {
+      ["d-sale","d-save","d-savepct"].forEach(id => set(id, "—"));
+    }
+  }
+
+  function calcStacked() {
+    const price = val("s-price");
+    const rows = Array.from(document.querySelectorAll<HTMLInputElement>(".disc-row"));
+    const discounts = rows.map(r => parseFloat(r.value)).filter(v => !isNaN(v) && v >= 0);
+
+    if (price !== null && price > 0 && discounts.length > 0) {
+      let curr = price;
+      for (const d of discounts) curr = curr * (1 - d / 100);
+      const saved = price - curr;
+      const eff = (saved / price) * 100;
+      set("s-final", fmtMoney(curr));
+      set("s-saved", fmtMoney(saved));
+      set("s-eff", fmtPct(eff));
+    } else {
+      ["s-final","s-saved","s-eff"].forEach(id => set(id, "—"));
+    }
+  }
+
+  function calcReverse() {
+    const sale = val("r-sale"), pct = val("r-pct");
+    if (sale !== null && pct !== null && pct < 100) {
+      const orig = sale / (1 - pct / 100);
+      set("r-orig", fmtMoney(orig));
+    } else {
+      set("r-orig", "—");
+    }
+  }
+
+  document.getElementById("currency-select")?.addEventListener("change", (e) => {
+    const code = (e.target as HTMLSelectElement).value;
+    currentCurrency = CURRENCIES[code] ?? CURRENCIES['USD'];
+    updateCurrencyDisplay();
+    calcBasic();
+    calcStacked();
+    calcReverse();
+  });
+
+  ["d-price","d-pct"].forEach(id => document.getElementById(id)?.addEventListener("input", calcBasic));
+  document.getElementById("s-price")?.addEventListener("input", calcStacked);
+  ["r-sale","r-pct"].forEach(id => document.getElementById(id)?.addEventListener("input", calcReverse));
+
+  document.addEventListener("input", (e) => {
+    if ((e.target as HTMLElement).classList.contains("disc-row")) calcStacked();
+  });
+
+  document.getElementById("add-discount")?.addEventListener("click", () => {
+    const container = document.getElementById("discount-rows")!;
+    const div = document.createElement("div");
+    div.className = "flex gap-2 items-center";
+    div.innerHTML = `
+      <div class="relative flex-1">
+        <input type="number" class="form-input disc-row" style="padding-right:1.75rem;" placeholder="e.g. 5" min="0" max="100" />
+        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted font-mono pointer-events-none">%</span>
+      </div>
+      <button type="button" class="btn-sm text-danger border-danger-soft" onclick="this.parentElement?.remove(); calcStacked_();" style="border-color:var(--color-danger-soft); color:var(--color-danger);">✕</button>
+    `;
+    container.appendChild(div);
+  });
+
+  (window as any).calcStacked_ = calcStacked;
+
+  (window as any).copyResult = async function(id: string, btn: HTMLElement) {
+    const text = document.getElementById(id)?.textContent ?? "";
+    if (text === "—") return;
+    try { await navigator.clipboard.writeText(text); } catch { /* ignore */ }
+    const span = btn.querySelector("span");
+    if (span) { span.textContent = "Copied!"; setTimeout(() => { span.textContent = "Copy"; }, 2000); }
+  };
+</script>

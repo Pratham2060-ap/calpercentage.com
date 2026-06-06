@@ -1,0 +1,259 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const related = [
+  { href: "/percentage-calculator", label: "Percentage Calculator" },
+  { href: "/percentage-of-number",  label: "Percentage of Number" },
+  { href: "/discount-calculator",   label: "Discount" },
+  { href: "/tip-calculator",        label: "Tip" },
+];
+---
+
+<Layout
+  title="Percentage Increase / Decrease Calculator"
+  description="Calculate the percentage change between two numbers, or find the new value after any percentage increase or decrease. Real-time results."
+>
+
+  <!-- Page header -->
+  <section class="relative overflow-hidden" style="background:var(--color-canvas-soft);">
+    <div class="absolute inset-0 mesh-gradient pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-6xl mx-auto px-5 pt-12 pb-14">
+      <nav class="flex items-center gap-2 text-xs text-muted mb-6 font-mono">
+        <a href="/" class="hover:text-ink no-underline transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-ink">Percentage Increase / Decrease</span>
+      </nav>
+      <p class="form-label mb-2">Calculator</p>
+      <h1 class="text-4xl sm:text-5xl font-semibold text-ink" style="letter-spacing:-0.05em; line-height:1.05;">Percentage Increase Calculator</h1>
+      <p class="mt-3 text-base text-secondary max-w-lg leading-6">
+        Find the percentage change between two values, or calculate a new value after a percent increase or decrease.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculators -->
+  <section class="max-w-6xl mx-auto px-5 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-3xl">
+
+      <!-- Mode A: Find % change from A to B -->
+      <div class="card-lg flex flex-col gap-4">
+        <div>
+          <p class="form-label mb-0.5">Mode A</p>
+          <h2 class="text-lg font-semibold text-ink" style="letter-spacing:-0.02em;">Find % change</h2>
+          <p class="text-sm text-secondary mt-1">From value A to value B</p>
+        </div>
+        <div class="divider"></div>
+        <div class="flex flex-col gap-3">
+          <div>
+            <label class="form-label" for="a-from">Original value (A)</label>
+            <input id="a-from" type="number" class="form-input" placeholder="e.g. 80" />
+          </div>
+          <div>
+            <label class="form-label" for="a-to">New value (B)</label>
+            <input id="a-to" type="number" class="form-input" placeholder="e.g. 100" />
+          </div>
+        </div>
+        <div id="a-result-box" class="result-box mt-auto">
+          <div class="flex-1 min-w-0">
+            <p class="form-label mb-1">% Change</p>
+            <p id="a-result" class="result-value empty">—</p>
+          </div>
+          <div class="flex flex-col gap-1 items-end flex-shrink-0">
+            <span id="a-direction" class="text-xs font-mono px-2 py-0.5 rounded-full hidden"></span>
+            <button class="btn-sm" onclick="copyResult('a-result', this)">
+              <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+        <p class="text-xs text-muted font-mono">Formula: ((B − A) ÷ |A|) × 100</p>
+      </div>
+
+      <!-- Mode B: Find new value from original + % -->
+      <div class="card-lg flex flex-col gap-4">
+        <div>
+          <p class="form-label mb-0.5">Mode B</p>
+          <h2 class="text-lg font-semibold text-ink" style="letter-spacing:-0.02em;">Find new value</h2>
+          <p class="text-sm text-secondary mt-1">After a % increase or decrease</p>
+        </div>
+        <div class="divider"></div>
+        <div class="flex flex-col gap-3">
+          <div>
+            <label class="form-label" for="b-orig">Original value</label>
+            <input id="b-orig" type="number" class="form-input" placeholder="e.g. 200" />
+          </div>
+          <div>
+            <label class="form-label" for="b-pct">Percentage change (%)</label>
+            <div class="relative">
+              <input id="b-pct" type="number" class="form-input" placeholder="e.g. −15 or +25" />
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted font-mono pointer-events-none">%</span>
+            </div>
+            <p class="text-xs text-muted mt-1">Use negative for decrease (e.g. −15)</p>
+          </div>
+        </div>
+        <div class="result-box mt-auto">
+          <div>
+            <p class="form-label mb-1">New value</p>
+            <p id="b-result" class="result-value empty">—</p>
+          </div>
+          <button class="btn-sm" onclick="copyResult('b-result', this)">
+            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span>Copy</span>
+          </button>
+        </div>
+        <p class="text-xs text-muted font-mono">Formula: A × (1 + P ÷ 100)</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="max-w-6xl mx-auto px-5 pb-16">
+    <div class="card-lg max-w-3xl">
+      <p class="form-label mb-3">How it works</p>
+      <h2 class="text-xl font-semibold text-ink mb-6" style="letter-spacing:-0.03em;">The percentage change formulas.</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {[
+          {
+            title: "Finding % change",
+            code: "((100 − 80) ÷ 80) × 100 = +25%",
+            body: "Subtract the original from the new value, divide by the absolute original, and multiply by 100. A positive result means increase; negative means decrease.",
+          },
+          {
+            title: "Finding new value",
+            code: "200 × (1 + (−15 ÷ 100)) = 170",
+            body: "Multiply the original by 1 plus the percentage as a decimal. For a decrease, use a negative percentage. 200 with −15% = 200 × 0.85 = 170.",
+          },
+        ].map(f => (
+          <div>
+            <h3 class="text-sm font-semibold text-ink mb-2">{f.title}</h3>
+            <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-2">{f.code}</code>
+            <p class="text-sm text-secondary leading-5">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick reference table -->
+  <section class="max-w-6xl mx-auto px-5 pb-16">
+    <div class="card-lg max-w-3xl">
+      <p class="form-label mb-4">Quick reference</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <th class="text-left py-2 pr-4 form-label">Original</th>
+              <th class="text-left py-2 pr-4 form-label">Change</th>
+              <th class="text-left py-2 pr-4 form-label">New Value</th>
+              <th class="text-left py-2 form-label">% Change</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              [100, "+10%", 110, "+10%"],
+              [100, "+25%", 125, "+25%"],
+              [100, "+50%", 150, "+50%"],
+              [100, "+100%", 200, "+100%"],
+              [100, "−10%", 90, "−10%"],
+              [100, "−25%", 75, "−25%"],
+              [200, "+15%", 230, "+15%"],
+              [80, "→ 100", 100, "+25%"],
+            ].map(([orig, change, newv, pct]) => (
+              <tr style="border-bottom:1px solid var(--color-line);">
+                <td class="py-2.5 pr-4 text-secondary font-mono">{orig}</td>
+                <td class="py-2.5 pr-4 text-secondary font-mono">{change}</td>
+                <td class="py-2.5 pr-4 font-semibold text-ink">{newv}</td>
+                <td class={`py-2.5 font-semibold font-mono ${String(pct).startsWith('+') ? 'text-success' : 'text-danger'}`}>{pct}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="max-w-6xl mx-auto px-5 pb-20">
+    <p class="form-label mb-4">Related calculators</p>
+    <div class="flex flex-wrap gap-2">
+      {related.map(r => (
+        <a href={r.href} class="btn-secondary" style="height:2.25rem; font-size:0.8125rem;">{r.label} →</a>
+      ))}
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  function fmt(n: number, suffix = ""): string {
+    if (!isFinite(n) || isNaN(n)) return "—";
+    const abs = Math.abs(n);
+    const dp = abs >= 100 ? 2 : abs >= 1 ? 4 : 6;
+    return parseFloat(n.toFixed(dp)).toLocaleString('en-US', { maximumFractionDigits: dp }) + suffix;
+  }
+
+  function val(id: string): number | null {
+    const v = parseFloat((document.getElementById(id) as HTMLInputElement)?.value ?? "");
+    return isNaN(v) ? null : v;
+  }
+
+  function setResult(id: string, n: number | null, suffix = "") {
+    const el = document.getElementById(id)!;
+    if (n === null || !isFinite(n)) {
+      el.textContent = "—"; el.classList.add("empty");
+    } else {
+      el.textContent = fmt(n, suffix); el.classList.remove("empty");
+    }
+  }
+
+  function calcA() {
+    const from = val("a-from"), to = val("a-to");
+    const dir = document.getElementById("a-direction")!;
+    if (from !== null && to !== null && from !== 0) {
+      const pct = ((to - from) / Math.abs(from)) * 100;
+      setResult("a-result", pct, "%");
+      dir.classList.remove("hidden");
+      if (pct > 0) {
+        dir.textContent = "↑ increase";
+        dir.style.cssText = "background:var(--color-success-soft); color:var(--color-success);";
+      } else if (pct < 0) {
+        dir.textContent = "↓ decrease";
+        dir.style.cssText = "background:var(--color-danger-soft); color:var(--color-danger);";
+      } else {
+        dir.textContent = "= no change";
+        dir.style.cssText = "background:var(--color-canvas-soft-2); color:var(--color-muted);";
+      }
+    } else {
+      setResult("a-result", null);
+      dir.classList.add("hidden");
+    }
+  }
+
+  function calcB() {
+    const orig = val("b-orig"), pct = val("b-pct");
+    setResult("b-result", orig !== null && pct !== null ? orig * (1 + pct / 100) : null);
+  }
+
+  ["a-from","a-to"].forEach(id => document.getElementById(id)?.addEventListener("input", calcA));
+  ["b-orig","b-pct"].forEach(id => document.getElementById(id)?.addEventListener("input", calcB));
+
+  const sp = new URLSearchParams(location.search);
+  [["a-from","af"],["a-to","at"],["b-orig","bo"],["b-pct","bp"]].forEach(([id, p]) => {
+    const v = sp.get(p);
+    if (v) (document.getElementById(id) as HTMLInputElement).value = v;
+  });
+  calcA(); calcB();
+
+  (window as any).copyResult = async function(id: string, btn: HTMLElement) {
+    const text = document.getElementById(id)?.textContent ?? "";
+    if (text === "—") return;
+    try { await navigator.clipboard.writeText(text); } catch { /* ignore */ }
+    const span = btn.querySelector("span");
+    if (span) { span.textContent = "Copied!"; setTimeout(() => { span.textContent = "Copy"; }, 2000); }
+  };
+</script>

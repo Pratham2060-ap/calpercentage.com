@@ -1,0 +1,205 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const related = [
+  { href: "/percentage-calculator", label: "Percentage Calculator" },
+  { href: "/percentage-increase",   label: "Percentage Change" },
+  { href: "/discount-calculator",   label: "Discount" },
+  { href: "/tip-calculator",        label: "Tip" },
+];
+---
+
+<Layout
+  title="What Percent is X of Y"
+  description="Find what percent one number is of another. Enter X and Y and instantly see what percentage X is of Y, with a visual bar and formula."
+>
+
+  <!-- Page header -->
+  <section class="relative overflow-hidden" style="background:var(--color-canvas-soft);">
+    <div class="absolute inset-0 mesh-gradient pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-6xl mx-auto px-5 pt-12 pb-14">
+      <nav class="flex items-center gap-2 text-xs text-muted mb-6 font-mono">
+        <a href="/" class="hover:text-ink no-underline transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-ink">Percentage of Number</span>
+      </nav>
+      <p class="form-label mb-2">Calculator</p>
+      <h1 class="text-4xl sm:text-5xl font-semibold text-ink" style="letter-spacing:-0.05em; line-height:1.05;">What % is X of Y?</h1>
+      <p class="mt-3 text-base text-secondary max-w-lg leading-6">
+        Enter any two numbers. Instantly find what percentage the first number is of the second.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section class="max-w-6xl mx-auto px-5 py-12">
+    <div class="max-w-2xl">
+      <div class="card-lg flex flex-col gap-5">
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="form-label" for="xval">X (the part)</label>
+            <input id="xval" type="number" class="form-input" placeholder="e.g. 30" />
+          </div>
+          <div>
+            <label class="form-label" for="yval">Y (the whole)</label>
+            <input id="yval" type="number" class="form-input" placeholder="e.g. 150" />
+          </div>
+        </div>
+
+        <!-- Visual bar -->
+        <div>
+          <div class="flex justify-between text-xs text-muted font-mono mb-1.5">
+            <span>0%</span>
+            <span id="bar-label">—</span>
+            <span>100%</span>
+          </div>
+          <div class="h-2 rounded-full overflow-hidden" style="background:var(--color-canvas-soft-2);">
+            <div
+              id="bar-fill"
+              class="h-full rounded-full transition-all duration-300"
+              style="width:0%; background:var(--color-ink);"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="result-box">
+          <div>
+            <p class="form-label mb-1">X is __ % of Y</p>
+            <p id="result" class="result-value empty">—</p>
+          </div>
+          <button class="btn-sm" onclick="copyResult('result', this)">
+            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span>Copy</span>
+          </button>
+        </div>
+
+        <!-- Worked example -->
+        <div id="example" class="hidden text-sm text-secondary leading-5 font-mono" style="background:var(--color-canvas-soft-2); border-radius:6px; padding:0.75rem 1rem;">
+        </div>
+
+        <p class="text-xs text-muted font-mono">Formula: (X ÷ Y) × 100</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="max-w-6xl mx-auto px-5 pb-16">
+    <div class="card-lg max-w-2xl">
+      <p class="form-label mb-3">How it works</p>
+      <h2 class="text-xl font-semibold text-ink mb-4" style="letter-spacing:-0.03em;">Finding a percentage.</h2>
+      <p class="text-sm text-secondary leading-6 mb-4">
+        To find what percent X is of Y, divide X by Y and multiply by 100.
+      </p>
+      <code class="block text-sm font-mono text-ink bg-canvas-soft-2 px-4 py-3 rounded-[6px] mb-4">
+        percentage = (X ÷ Y) × 100
+      </code>
+      <p class="text-sm text-secondary leading-6">
+        <strong class="text-ink font-medium">Example:</strong> 30 is what percent of 150?<br/>
+        (30 ÷ 150) × 100 = 0.2 × 100 = <strong class="text-ink font-medium">20%</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- Common examples -->
+  <section class="max-w-6xl mx-auto px-5 pb-16">
+    <div class="card-lg max-w-2xl">
+      <p class="form-label mb-4">Common examples</p>
+      <div class="space-y-0" style="border-top:1px solid var(--color-line);">
+        {[
+          ["1 of 4",   "25%"],
+          ["1 of 3",   "33.33%"],
+          ["1 of 2",   "50%"],
+          ["3 of 4",   "75%"],
+          ["1 of 10",  "10%"],
+          ["1 of 5",   "20%"],
+          ["7 of 10",  "70%"],
+          ["1 of 100", "1%"],
+        ].map(([expr, pct]) => (
+          <div class="flex items-center justify-between py-3" style="border-bottom:1px solid var(--color-line);">
+            <span class="text-sm text-secondary font-mono">{expr}</span>
+            <span class="text-sm font-semibold text-ink">{pct}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="max-w-6xl mx-auto px-5 pb-20">
+    <p class="form-label mb-4">Related calculators</p>
+    <div class="flex flex-wrap gap-2">
+      {related.map(r => (
+        <a href={r.href} class="btn-secondary" style="height:2.25rem; font-size:0.8125rem;">{r.label} →</a>
+      ))}
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  function fmt(n: number | null): string | null {
+    if (n === null || !isFinite(n) || isNaN(n)) return null;
+    if (n === 0) return "0%";
+    const dp = Math.abs(n) >= 10 ? 2 : 4;
+    return parseFloat(n.toFixed(dp)).toLocaleString('en-US', { maximumFractionDigits: dp }) + "%";
+  }
+
+  function calculate() {
+    const xRaw = (document.getElementById("xval") as HTMLInputElement).value;
+    const yRaw = (document.getElementById("yval") as HTMLInputElement).value;
+    const x = parseFloat(xRaw);
+    const y = parseFloat(yRaw);
+    const result = document.getElementById("result")!;
+    const bar = document.getElementById("bar-fill")!;
+    const barLabel = document.getElementById("bar-label")!;
+    const example = document.getElementById("example")!;
+
+    if (!isNaN(x) && !isNaN(y) && y !== 0) {
+      const pct = (x / y) * 100;
+      const f = fmt(pct)!;
+      result.textContent = f;
+      result.classList.remove("empty");
+      barLabel.textContent = f;
+
+      const clampedWidth = Math.min(Math.max(pct, 0), 100);
+      bar.style.width = clampedWidth + "%";
+      bar.style.background = pct > 100
+        ? "var(--color-danger)"
+        : pct > 75
+          ? "#10b981"
+          : "var(--color-ink)";
+
+      example.classList.remove("hidden");
+      const dp = Math.abs(pct) >= 10 ? 4 : 6;
+      example.textContent = `(${x} ÷ ${y}) × 100 = ${parseFloat(pct.toFixed(dp))}%`;
+    } else {
+      result.textContent = "—";
+      result.classList.add("empty");
+      bar.style.width = "0%";
+      barLabel.textContent = "—";
+      example.classList.add("hidden");
+    }
+  }
+
+  document.getElementById("xval")?.addEventListener("input", calculate);
+  document.getElementById("yval")?.addEventListener("input", calculate);
+
+  // URL params
+  const sp = new URLSearchParams(location.search);
+  const xp = sp.get("x"), yp = sp.get("y");
+  if (xp) (document.getElementById("xval") as HTMLInputElement).value = xp;
+  if (yp) (document.getElementById("yval") as HTMLInputElement).value = yp;
+  calculate();
+
+  (window as any).copyResult = async function(id: string, btn: HTMLElement) {
+    const text = document.getElementById(id)?.textContent ?? "";
+    if (text === "—") return;
+    try { await navigator.clipboard.writeText(text); } catch { /* ignore */ }
+    const span = btn.querySelector("span");
+    if (span) { span.textContent = "Copied!"; setTimeout(() => { span.textContent = "Copy"; }, 2000); }
+  };
+</script>
