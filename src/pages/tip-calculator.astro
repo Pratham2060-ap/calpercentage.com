@@ -17,14 +17,14 @@ const related = [
   <!-- Page header -->
   <section class="relative overflow-hidden" style="background:var(--color-canvas-soft);">
     <div class="absolute inset-0 mesh-gradient pointer-events-none" aria-hidden="true"></div>
-    <div class="relative max-w-6xl mx-auto px-5 pt-12 pb-14">
-      <nav class="flex items-center gap-2 text-xs text-muted mb-6 font-mono">
+    <div class="relative max-w-6xl mx-auto px-5 pt-8 sm:pt-12 pb-10 sm:pb-14">
+      <nav class="flex items-center gap-2 text-xs text-muted mb-5 font-mono">
         <a href="/" class="hover:text-ink no-underline transition-colors">Home</a>
         <span>/</span>
         <span class="text-ink">Tip Calculator</span>
       </nav>
       <p class="form-label mb-2">Calculator</p>
-      <h1 class="text-4xl sm:text-5xl font-semibold text-ink" style="letter-spacing:-0.05em; line-height:1.05;">Tip Calculator</h1>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-ink" style="letter-spacing:-0.05em; line-height:1.05;">Tip Calculator</h1>
       <p class="mt-3 text-base text-secondary max-w-lg leading-6">
         Calculate the tip, total, and per-person amount. Quick presets for 15%, 18%, 20%, and 25%.
       </p>
@@ -32,9 +32,9 @@ const related = [
   </section>
 
   <!-- Calculator -->
-  <section class="max-w-6xl mx-auto px-5 py-12">
+  <section class="max-w-6xl mx-auto px-5 py-8 sm:py-12">
     <div class="max-w-2xl">
-      <div class="card-lg flex flex-col gap-5">
+      <div class="card-lg flex flex-col gap-4 sm:gap-5">
 
         <!-- Currency selector -->
         <div>
@@ -108,19 +108,19 @@ const related = [
         <div class="grid grid-cols-2 gap-3">
           <div class="rounded-[8px] p-3" style="background:var(--color-canvas-soft-2);">
             <p class="form-label mb-1">Tip amount</p>
-            <p id="t-tip" class="text-2xl font-semibold text-ink empty" style="letter-spacing:-0.04em;">—</p>
+            <p id="t-tip" class="text-xl sm:text-2xl font-semibold text-ink empty" style="letter-spacing:-0.04em; word-break:break-all;">—</p>
           </div>
           <div class="rounded-[8px] p-3" style="background:var(--color-canvas-soft-2);">
             <p class="form-label mb-1">Total (incl. tip)</p>
-            <p id="t-total" class="text-2xl font-semibold text-ink empty" style="letter-spacing:-0.04em;">—</p>
+            <p id="t-total" class="text-xl sm:text-2xl font-semibold text-ink empty" style="letter-spacing:-0.04em; word-break:break-all;">—</p>
           </div>
-          <div class="rounded-[8px] p-3" style="background:var(--color-ink); color:white;">
+          <div class="section-inverted rounded-[8px] p-3">
             <p class="mb-1" style="font-family:var(--font-mono); font-size:0.6875rem; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.5);">Tip per person</p>
-            <p id="t-tip-pp" class="text-2xl font-semibold" style="letter-spacing:-0.04em; color:white;">—</p>
+            <p id="t-tip-pp" class="text-xl sm:text-2xl font-semibold" style="letter-spacing:-0.04em; color:white; word-break:break-all;">—</p>
           </div>
-          <div class="rounded-[8px] p-3" style="background:var(--color-ink); color:white;">
+          <div class="section-inverted rounded-[8px] p-3">
             <p class="mb-1" style="font-family:var(--font-mono); font-size:0.6875rem; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.5);">Total per person</p>
-            <p id="t-total-pp" class="text-2xl font-semibold" style="letter-spacing:-0.04em; color:white;">—</p>
+            <p id="t-total-pp" class="text-xl sm:text-2xl font-semibold" style="letter-spacing:-0.04em; color:white; word-break:break-all;">—</p>
           </div>
         </div>
 
@@ -181,14 +181,14 @@ const related = [
     GBP: { code: "GBP", symbol: "£",    locale: "en-GB", decimals: 2, region: "uk" },
     INR: { code: "INR", symbol: "₹",    locale: "en-IN", decimals: 2, region: "in" },
     JPY: { code: "JPY", symbol: "¥",    locale: "ja-JP", decimals: 0, region: "jp" },
-    AUD: { code: "AUD", symbol: "A$",   locale: "en-AU", decimals: 2, region: "us" },
-    CAD: { code: "CAD", symbol: "C$",   locale: "en-CA", decimals: 2, region: "us" },
+    AUD: { code: "AUD", symbol: "A$",   locale: "en-AU", decimals: 2, region: "au" },
+    CAD: { code: "CAD", symbol: "C$",   locale: "en-CA", decimals: 2, region: "ca" },
     CHF: { code: "CHF", symbol: "Fr",   locale: "de-CH", decimals: 2, region: "eu" },
-    CNY: { code: "CNY", symbol: "¥",    locale: "zh-CN", decimals: 2, region: "jp" },
-    SGD: { code: "SGD", symbol: "S$",   locale: "en-SG", decimals: 2, region: "us" },
+    CNY: { code: "CNY", symbol: "¥",    locale: "zh-CN", decimals: 2, region: "cn" },
+    SGD: { code: "SGD", symbol: "S$",   locale: "en-SG", decimals: 2, region: "sg" },
     AED: { code: "AED", symbol: "AED",  locale: "en-AE", decimals: 2, region: "ae" },
-    MXN: { code: "MXN", symbol: "MX$",  locale: "es-MX", decimals: 2, region: "us" },
-    BRL: { code: "BRL", symbol: "R$",   locale: "pt-BR", decimals: 2, region: "eu" },
+    MXN: { code: "MXN", symbol: "MX$",  locale: "es-MX", decimals: 2, region: "mx" },
+    BRL: { code: "BRL", symbol: "R$",   locale: "pt-BR", decimals: 2, region: "br" },
   };
 
   // {sym} is replaced with the selected currency symbol at render time
@@ -246,13 +246,85 @@ const related = [
       ],
     },
     jp: {
-      title: "Tipping guide — Japan & China",
+      title: "Tipping guide — Japan",
       items: [
         ["Restaurant",            "Not customary"],
         ["Bar / café",            "Not customary"],
         ["Taxi",                  "Not customary"],
         ["Hotel",                 "Not customary"],
         ["Tour guide",            "Not customary"],
+      ],
+    },
+    cn: {
+      title: "Tipping guide — China",
+      items: [
+        ["Restaurant",            "Not customary"],
+        ["Bar / café",            "Not customary"],
+        ["Taxi",                  "Not customary"],
+        ["Hotel",                 "Not customary"],
+        ["Tour guide",            "Not customary"],
+      ],
+    },
+    au: {
+      title: "Standard Australia tipping guide",
+      items: [
+        ["Restaurant (upscale)",  "10–15%"],
+        ["Restaurant (casual)",   "Not expected"],
+        ["Café / bar",            "Not expected"],
+        ["Taxi",                  "Not expected"],
+        ["Hotel housekeeping",    "Not expected"],
+        ["Hair / beauty",         "0–10%"],
+        ["Food delivery",         "Not expected"],
+        ["Tour guide",            "10–15%"],
+      ],
+    },
+    ca: {
+      title: "Standard Canada tipping guide",
+      items: [
+        ["Restaurant — casual",   "15%"],
+        ["Restaurant — nice",     "15–20%"],
+        ["Bar / café",            "10–15%"],
+        ["Takeout / delivery",    "10–15%"],
+        ["Taxi / rideshare",      "10–15%"],
+        ["Hotel housekeeping",    "{sym}2–5 / night"],
+        ["Hair / beauty",         "15–20%"],
+        ["Tour guide",            "10–15%"],
+      ],
+    },
+    sg: {
+      title: "Tipping guide — Singapore",
+      items: [
+        ["Restaurant (service charge included)", "No extra needed"],
+        ["Restaurant (no service charge)",       "0–10%"],
+        ["Café / bar",            "Not customary"],
+        ["Taxi",                  "Not customary"],
+        ["Hotel housekeeping",    "Not customary"],
+        ["Hair / beauty",         "Not customary"],
+        ["Tour guide",            "5–10%"],
+      ],
+    },
+    br: {
+      title: "Standard Brazil tipping guide",
+      items: [
+        ["Restaurant (gorjeta included)", "No extra needed"],
+        ["Restaurant (no service charge)", "10%"],
+        ["Bar / café",            "5–10%"],
+        ["Taxi",                  "Not expected"],
+        ["Hotel housekeeping",    "{sym}5–10 / night"],
+        ["Hair / beauty",         "10%"],
+        ["Tour guide",            "10–15%"],
+      ],
+    },
+    mx: {
+      title: "Standard Mexico tipping guide",
+      items: [
+        ["Restaurant",            "10–15%"],
+        ["Café / bar",            "5–10%"],
+        ["Taxi",                  "10%"],
+        ["Hotel housekeeping",    "{sym}20–50 / night"],
+        ["Hair / beauty",         "10–15%"],
+        ["Food delivery",         "10–15%"],
+        ["Tour guide",            "10–20%"],
       ],
     },
     ae: {

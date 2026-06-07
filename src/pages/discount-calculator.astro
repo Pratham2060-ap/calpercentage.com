@@ -17,14 +17,14 @@ const related = [
   <!-- Page header -->
   <section class="relative overflow-hidden" style="background:var(--color-canvas-soft);">
     <div class="absolute inset-0 mesh-gradient pointer-events-none" aria-hidden="true"></div>
-    <div class="relative max-w-6xl mx-auto px-5 pt-12 pb-14">
-      <nav class="flex items-center gap-2 text-xs text-muted mb-6 font-mono">
+    <div class="relative max-w-6xl mx-auto px-5 pt-8 sm:pt-12 pb-10 sm:pb-14">
+      <nav class="flex items-center gap-2 text-xs text-muted mb-5 font-mono">
         <a href="/" class="hover:text-ink no-underline transition-colors">Home</a>
         <span>/</span>
         <span class="text-ink">Discount Calculator</span>
       </nav>
       <p class="form-label mb-2">Calculator</p>
-      <h1 class="text-4xl sm:text-5xl font-semibold text-ink" style="letter-spacing:-0.05em; line-height:1.05;">Discount Calculator</h1>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-ink" style="letter-spacing:-0.05em; line-height:1.05;">Discount Calculator</h1>
       <p class="mt-3 text-base text-secondary max-w-lg leading-6">
         Find the sale price, savings amount, and effective discount. Includes stacked discount support.
       </p>
@@ -32,12 +32,12 @@ const related = [
   </section>
 
   <!-- Calculators -->
-  <section class="max-w-6xl mx-auto px-5 py-12">
+  <section class="max-w-6xl mx-auto px-5 py-8 sm:py-12">
 
     <!-- Currency selector -->
-    <div class="flex items-center gap-3 mb-6">
-      <label class="form-label mb-0 shrink-0" for="currency-select">Currency</label>
-      <select id="currency-select" class="form-input" style="width:auto; min-width:220px; padding-top:0.4rem; padding-bottom:0.4rem;">
+    <div class="mb-6">
+      <label class="form-label mb-2" for="currency-select">Currency</label>
+      <select id="currency-select" class="form-input sm:w-auto sm:min-w-[220px]" style="padding-top:0.4rem; padding-bottom:0.4rem;">
         <option value="USD">USD – US Dollar ($)</option>
         <option value="EUR">EUR – Euro (€)</option>
         <option value="GBP">GBP – British Pound (£)</option>
