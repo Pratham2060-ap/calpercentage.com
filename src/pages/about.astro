@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="About Us"
+  description="Learn about calpercentage.com — a free, fast, and clean percentage calculator built for students, shoppers, and professionals. No signup required, just instant answers."
+>
+  <section class="max-w-3xl mx-auto px-5 py-16 sm:py-24">
+
+    <p class="form-label mb-4">About</p>
+    <h1 class="text-3xl sm:text-4xl font-semibold text-ink mb-6" style="letter-spacing:-0.05em; line-height:1.1;">
+      Built to make percentages<br class="hidden sm:block"/> easy for everyone.
+    </h1>
+    <p class="text-base sm:text-lg text-secondary leading-7 mb-12 max-w-xl">
+      calpercentage.com is a free collection of online percentage calculators designed to give you instant, accurate answers — no account, no friction, no clutter.
+    </p>
+
+    <div style="border-top:1px solid var(--color-line); padding-top:3rem;" class="space-y-12">
+
+      <div>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Why we built this</h2>
+        <p class="text-sm text-secondary leading-6 mb-3">
+          Most percentage calculators online are cluttered, slow, or only solve one type of problem. We built calpercentage.com to be the opposite: a clean, fast, multi-tool site that works on any device and gives you results the moment you start typing.
+        </p>
+        <p class="text-sm text-secondary leading-6">
+          Whether you're a student working out exam scores, a shopper comparing discounts, or a professional calculating percentage change in data — there's a tool here for you. All five calculators are purpose-built and run entirely in your browser.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">What we offer</h2>
+        <ul class="space-y-3">
+          {[
+            { title: "Percentage Calculator", desc: "Three modules in one — find P% of V, what % X is of Y, or recover the base.", href: "/percentage-calculator" },
+            { title: "What % is X of Y?", desc: "Compare any two numbers and get the percentage instantly with a visual bar.", href: "/percentage-of-number" },
+            { title: "Percentage Increase / Decrease", desc: "Find the % change between two values, or calculate a new value after a % shift.", href: "/percentage-increase" },
+            { title: "Discount Calculator", desc: "Find the final price after single or stacked discounts, or reverse-calculate the original price.", href: "/discount-calculator" },
+            { title: "Tip Calculator", desc: "Calculate tip, total, and per-person split for any restaurant bill.", href: "/tip-calculator" },
+          ].map(item => (
+            <li>
+              <a href={item.href} class="card flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 no-underline hover:shadow-[0_0_0_1.5px_var(--color-ink)]">
+                <span class="text-sm font-semibold text-ink" style="min-width:220px;">{item.title}</span>
+                <span class="text-sm text-secondary leading-5">{item.desc}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Our principles</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            { icon: "⚡", title: "Instant results", body: "No submit button. Results update live as you type." },
+            { icon: "🔒", title: "Privacy first", body: "All calculations happen in your browser. Nothing is stored or sent to any server." },
+            { icon: "🆓", title: "Always free", body: "No paywalls, no premium tiers, no signup required — ever." },
+            { icon: "📱", title: "Works everywhere", body: "Optimized for mobile, polished on desktop. No clutter, no sidebars." },
+          ].map(f => (
+            <div class="card flex gap-3">
+              <span class="text-xl mt-0.5">{f.icon}</span>
+              <div>
+                <p class="text-sm font-semibold text-ink mb-1">{f.title}</p>
+                <p class="text-sm text-secondary leading-5">{f.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Get in touch</h2>
+        <p class="text-sm text-secondary leading-6 mb-4">
+          Have a suggestion, found a bug, or want to see a new calculator added? We'd love to hear from you.
+        </p>
+        <a href="/contact" class="btn-primary">Contact us</a>
+      </div>
+
+    </div>
+  </section>
+</Layout>

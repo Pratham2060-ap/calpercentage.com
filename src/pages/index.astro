@@ -41,31 +41,38 @@ const tools = [
 ---
 
 <Layout
-  title="Home"
-  description="Five free, fast percentage calculators — percentage calculator, discount calculator, tip calculator, and more. Instant results as you type."
+  title="Percentage Calculator"
+  description="Calculate percentage instantly with 5 online tools: percent of a number, percentage change, discount, and tip calculator. Accurate results as you type."
 >
 
   <!-- Hero -->
   <section class="relative overflow-hidden" style="background-color:var(--color-canvas-soft);">
     <div class="absolute inset-0 mesh-gradient pointer-events-none" aria-hidden="true"></div>
 
-    <div class="relative max-w-4xl mx-auto px-5 py-24 sm:py-32 text-center">
-      <div class="badge mb-8">
+    <div class="relative max-w-4xl mx-auto px-5 py-16 sm:py-24 lg:py-32 text-center">
+      <div class="badge mb-6 sm:mb-8">
         <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:var(--color-accent);"></span>
-        5 calculators · No ads · Instant results
+        5 calculators · Instant results
       </div>
 
-      <h1 class="text-5xl sm:text-6xl font-semibold text-ink mb-5" style="letter-spacing:-0.06em; line-height:1;">
-        Percentage calculators<br/>that just work.
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold text-ink mb-4 sm:mb-5" style="letter-spacing:-0.06em; line-height:1.05;">
+        Percentage Calculator<br class="hidden sm:block"/>that just works.
       </h1>
 
-      <p class="text-lg text-secondary leading-7 mb-10 max-w-sm mx-auto">
-        Clean, ad-free tools for every percentage problem. Results update as you type — no submit button.
+      <p class="text-base sm:text-lg text-secondary leading-7 mb-8 sm:mb-10 max-w-sm mx-auto">
+        Clean tools for every percentage problem. Results update as you type — no submit button.
       </p>
 
       <div class="flex flex-wrap gap-3 justify-center">
         <a href="/percentage-calculator" class="btn-primary">Try the calculator</a>
         <a href="#tools" class="btn-secondary">See all 5 tools</a>
+      </div>
+
+      <div class="flex flex-wrap gap-x-6 gap-y-2 justify-center mt-8" style="font-size:0.8rem;">
+        <a href="/about" class="text-muted hover:text-ink transition-colors no-underline">About Us</a>
+        <a href="/contact" class="text-muted hover:text-ink transition-colors no-underline">Contact Us</a>
+        <a href="/privacy-policy" class="text-muted hover:text-ink transition-colors no-underline">Privacy Policy</a>
+        <a href="/terms" class="text-muted hover:text-ink transition-colors no-underline">Terms &amp; Conditions</a>
       </div>
     </div>
   </section>
@@ -76,10 +83,10 @@ const tools = [
   </div>
 
   <!-- Tool cards -->
-  <section id="tools" class="max-w-6xl mx-auto px-5 py-20">
-    <div class="mb-12">
+  <section id="tools" class="max-w-6xl mx-auto px-5 py-12 sm:py-20">
+    <div class="mb-8 sm:mb-12">
       <p class="form-label mb-2">All calculators</p>
-      <h2 class="text-3xl font-semibold text-ink" style="letter-spacing:-0.04em;">Five tools, every percentage problem.</h2>
+      <h2 class="text-2xl sm:text-3xl font-semibold text-ink" style="letter-spacing:-0.04em;">Five tools, every percentage problem.</h2>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -101,19 +108,178 @@ const tools = [
     </div>
   </section>
 
+  <!-- SEO Article -->
+  <section class="max-w-3xl mx-auto px-5 py-12 sm:py-20">
+    <div style="border-top:1px solid var(--color-line); padding-top:3rem;">
+
+      <p class="text-base sm:text-lg text-secondary leading-7 mb-10">
+        Whether you're a student checking your exam score, a shopper hunting for the best deal, or a professional working with data, this percentage calculator is built for you. It covers five common percentage problems — all in one place — with no account required and nothing to install. Enter your numbers and get an accurate answer instantly.
+      </p>
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">What Can You Calculate?</h2>
+      <p class="text-sm text-secondary leading-6 mb-4">This tool covers five types of percentage calculations, each designed for a specific real-world need. Every tool is on the same page, so you can switch between them without starting over:</p>
+      <ul class="text-sm text-secondary leading-7 mb-10 space-y-2 list-disc pl-5">
+        <li><strong class="text-ink">Percentage Calculator</strong> — Three modules in one:
+          <ul class="list-disc pl-5 mt-1 space-y-1">
+            <li>Module 1: What is P% of V? (e.g., What is 20% of 500?)</li>
+            <li>Module 2: X is what % of Y? (e.g., 40 is what % of 200?)</li>
+            <li>Module 3: X is P% of what? (e.g., 30 is 15% of what number?)</li>
+          </ul>
+        </li>
+        <li><strong class="text-ink">Percentage of Number</strong> — Answers: What % is X of Y?</li>
+        <li><strong class="text-ink">Percentage Change Calculator</strong> — Two modes:
+          <ul class="list-disc pl-5 mt-1 space-y-1">
+            <li>Mode A: Find the percentage change from Value A to Value B (increase or decrease)</li>
+            <li>Mode B: Find the new value after a percentage increase or decrease</li>
+          </ul>
+        </li>
+        <li><strong class="text-ink">Discount Calculator</strong> — Calculates the final price after applying a percentage discount</li>
+        <li><strong class="text-ink">Tip Calculator</strong> — Calculates tip amount and total bill based on a tip percentage</li>
+      </ul>
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How to Use the Percentage Calculator</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">Say you want to know what 20 percent of 500 is. Open Module 1 of the Percentage Calculator, type in 20 as the percentage and 500 as the value — the result appears instantly: 100. No formula needed, no app to download, no extra steps.</p>
+      <p class="text-sm text-secondary leading-6 mb-3">The Percentage Change Calculator is just as simple. Switch to Mode A, enter your starting value and ending value, and the tool calculates the percentage increase or percentage decrease automatically. For example, if a product dropped from $80 to $60, you'd see a 25% decrease in under a second.</p>
+      <p class="text-sm text-secondary leading-6 mb-10">Every tool on this page follows the same approach: fill in what you know, and the calculator finds what you're missing. Most calculations take less than five seconds.</p>
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">The Percentage Formula — Made Simple</h2>
+      <p class="text-sm text-secondary leading-6 mb-10">The core percentage formula is: <strong class="text-ink">Percentage = (Part ÷ Whole) × 100</strong>. This single equation drives all three modules inside the main Percentage Calculator — but each one applies it differently. Module 1 multiplies the whole by a percentage to find the part. Module 2 divides the part by the whole to return the percentage. Module 3 reverses the equation, dividing the part by the percentage to recover the original whole. The math is the same each time — only the unknown changes. You don't need to memorize any of this. Just pick the right module and enter your numbers.</p>
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Common Use Cases</h2>
+      <ul class="text-sm text-secondary leading-7 mb-10 space-y-2 list-disc pl-5">
+        <li><strong class="text-ink">Percentage Calculator:</strong> Check exam results, calculate homework grades, or measure how much of a budget has been used.</li>
+        <li><strong class="text-ink">Percentage of Number:</strong> Compare survey responses, analyze market share, or find what fraction one figure is of a larger total.</li>
+        <li><strong class="text-ink">Percentage Change Calculator:</strong> Track price changes over time, calculate salary hikes, or monitor weight loss and fitness progress.</li>
+        <li><strong class="text-ink">Discount Calculator:</strong> Find the final sale price on clothing, electronics, or any item with a percentage markdown before you buy.</li>
+        <li><strong class="text-ink">Tip Calculator:</strong> Calculate the right tip amount and split a restaurant bill easily, with no mental math required.</li>
+      </ul>
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Why Use an Online Percentage Calculator?</h2>
+      <p class="text-sm text-secondary leading-6">Doing percentage calculations by hand leaves too much room for error — especially when the numbers aren't round or simple. This tool gives you instant, accurate results with no effort and no formulas to look up. It works on any device, including mobile, so you can calculate percentage wherever you are. Whether you need to find percentage change, apply a discount, or figure out a fair tip, all five tools are here in one place and ready to use.</p>
+
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="max-w-3xl mx-auto px-5 py-12 sm:py-20">
+    <div style="border-top:1px solid var(--color-line); padding-top:3rem;">
+      <p class="form-label mb-2">FAQ</p>
+      <h2 class="text-2xl sm:text-3xl font-semibold text-ink mb-10 sm:mb-12" style="letter-spacing:-0.04em;">Frequently Asked Questions</h2>
+
+      <dl class="space-y-8">
+        {[
+          {
+            q: "What is a percentage calculator?",
+            a: "A percentage calculator is a free online tool that helps you solve any percentage-related math problem instantly — without doing the calculation by hand. It covers common questions like \"What is X% of Y?\", \"X is what percent of Y?\", and \"X is P% of what number?\". Whether you're a student, shopper, or professional, it saves time and eliminates errors."
+          },
+          {
+            q: "What is X% of Y — how do I calculate it?",
+            a: "To find X% of Y, multiply Y by X and divide the result by 100. For example, 20% of 500 = (500 × 20) ÷ 100 = 100. You can use Module 1 of this calculator to get the answer instantly — just enter the percentage and the value."
+          },
+          {
+            q: "How do I find what percentage one number is of another?",
+            a: "To find what percentage X is of Y, divide X by Y and multiply by 100. For example, 40 is what percent of 200? → (40 ÷ 200) × 100 = 20%. Use the \"X is what % of Y?\" module above to solve this in one click."
+          },
+          {
+            q: "How do I calculate a percentage increase or decrease?",
+            a: "Percentage change = [(New Value − Old Value) ÷ Old Value] × 100. If the result is positive, it's an increase; if negative, it's a decrease. For example, a price going from ₹400 to ₹500 is a 25% increase. Use the Percentage Change Calculator on this page to get the result instantly."
+          },
+          {
+            q: "How do I find the new value after a percentage increase or decrease?",
+            a: "Multiply the original value by (1 + percentage/100) for an increase, or (1 − percentage/100) for a decrease. For example, a 10% increase on 200 → 200 × 1.10 = 220. Use Mode B of the Percentage Change Calculator above — enter the original value and the percentage, and it does the rest."
+          },
+          {
+            q: "How does the discount calculator work?",
+            a: "The discount calculator finds the final price after applying a percentage off. Enter the original price and the discount percentage, and it instantly shows you the discounted price and how much you save. For example, 30% off ₹1,000 = final price of ₹700, saving you ₹300."
+          },
+          {
+            q: "How do I calculate a tip using the tip calculator?",
+            a: "Enter your total bill amount and the tip percentage you want to leave (e.g. 10%, 15%, or 20%). The tip calculator instantly shows the tip amount and the final total you need to pay. For example, a 15% tip on a ₹800 bill = ₹120 tip, making the total ₹920."
+          },
+          {
+            q: "What is the basic percentage formula?",
+            a: "The basic percentage formula is: Percentage = (Part ÷ Whole) × 100. This formula is the foundation for all percentage calculations — whether you're finding a discount, calculating exam scores, or comparing two values. All modules on this calculator are built on this formula."
+          },
+          {
+            q: "Can I use this calculator for exam marks and grades?",
+            a: "Yes — the percentage calculator is widely used by students to calculate their percentage of marks obtained. Simply enter your total marks scored as the \"Part\" and the maximum marks as the \"Whole\". For example, scoring 450 out of 500 → (450 ÷ 500) × 100 = 90%."
+          },
+          {
+            q: "Is this percentage calculator free and accurate?",
+            a: "Yes, this tool is completely free with no signup required. All calculations run directly in your browser — no data is sent to any server. The results are mathematically precise, making it reliable for academic, financial, and everyday use."
+          },
+        ].map((item, i) => (
+          <div class="card">
+            <dt class="text-base font-semibold text-ink mb-2" style="letter-spacing:-0.02em;">
+              <span class="form-label mr-2" style="display:inline;">Q{i + 1}</span>{item.q}
+            </dt>
+            <dd class="text-sm text-secondary leading-6">{item.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- Site pages -->
+  <section class="max-w-6xl mx-auto px-5 py-12 sm:py-20">
+    <div style="border-top:1px solid var(--color-line); padding-top:3rem;">
+      <p class="form-label mb-2">More from calpercentage.com</p>
+      <h2 class="text-2xl sm:text-3xl font-semibold text-ink mb-8" style="letter-spacing:-0.04em;">Learn more about us.</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {[
+          {
+            href: "/about",
+            icon: "👋",
+            title: "About Us",
+            desc: "Who we are and why we built calpercentage.com.",
+          },
+          {
+            href: "/contact",
+            icon: "✉️",
+            title: "Contact Us",
+            desc: "Report a bug, suggest a tool, or just say hello.",
+          },
+          {
+            href: "/privacy-policy",
+            icon: "🔒",
+            title: "Privacy Policy",
+            desc: "No tracking, no personal data. All calculations stay in your browser.",
+          },
+          {
+            href: "/terms",
+            icon: "📄",
+            title: "Terms & Conditions",
+            desc: "Simple terms for a free, no-signup utility site.",
+          },
+        ].map(p => (
+          <a
+            href={p.href}
+            class="card group no-underline flex flex-col transition-all duration-150 hover:shadow-[0_0_0_1.5px_var(--color-ink),0px_2px_2px_rgba(0,0,0,0.04),0px_4px_8px_rgba(0,0,0,0.04)]"
+          >
+            <span class="text-2xl mb-3">{p.icon}</span>
+            <h3 class="text-base font-semibold text-ink mb-1.5" style="letter-spacing:-0.02em;">{p.title}</h3>
+            <p class="text-sm text-secondary leading-5 flex-1">{p.desc}</p>
+            <span class="mt-4 text-sm text-accent font-medium group-hover:underline">Read more →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Why section -->
-  <section style="background:var(--color-ink); color:var(--color-canvas);">
-    <div class="max-w-6xl mx-auto px-5 py-20">
+  <section class="section-inverted">
+    <div class="max-w-6xl mx-auto px-5 py-12 sm:py-20">
       <p class="form-label mb-3" style="color:rgba(255,255,255,0.4);">Why calpercentage.com</p>
-      <h2 class="text-3xl font-semibold mb-12" style="letter-spacing:-0.04em;">Better than the alternatives.</h2>
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-8 sm:mb-12" style="letter-spacing:-0.04em;">Better than the alternatives.</h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {[
           { icon: "⚡", title: "Real-time results", body: "No submit button. Every keystroke updates the result instantly." },
           { icon: "🔗", title: "Shareable URLs", body: "Every calculation encodes into the URL — copy the link and share it." },
           { icon: "📋", title: "One-click copy", body: "Copy any result to your clipboard with a single click." },
-          { icon: "🧮", title: "Smarter calculators", body: "Stacked discounts, bill splitting, tax-aware tipping — features the competition skips." },
-          { icon: "📱", title: "Mobile-first", body: "Designed for phones. No clutter, no sidebars, no ads taking up half the screen." },
+          { icon: "🧮", title: "Smarter calculators", body: "Stacked discounts, bill splitting, and tax-aware tipping in one place." },
+          { icon: "📱", title: "Mobile-first & Desktop-ready", body: "Designed for phones and polished for desktop. No clutter, no sidebars, no ads taking up half the screen." },
           { icon: "🎯", title: "Formulas explained", body: "Every calculator shows the formula it uses so you understand the math, not just the answer." },
         ].map(f => (
           <div class="flex gap-3">
@@ -128,4 +294,79 @@ const tools = [
     </div>
   </section>
 
+  <Fragment slot="head">
+    <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Percentage Calculator",
+      "url": "https://calpercentage.com",
+      "description": "An online percentage calculator with five tools: percentage calculator, percentage of number, percentage change calculator, discount calculator, and tip calculator.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": [
+        "Percentage Calculator with 3 modules",
+        "Percentage of Number",
+        "Percentage Change Calculator",
+        "Discount Calculator",
+        "Tip Calculator"
+      ]
+    }</script>
+    <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a percentage calculator?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A percentage calculator is a free online tool that helps you solve any percentage-related math problem instantly — without doing the calculation by hand. It covers common questions like \"What is X% of Y?\", \"X is what percent of Y?\", and \"X is P% of what number?\". Whether you're a student, shopper, or professional, it saves time and eliminates errors." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is X% of Y — how do I calculate it?",
+          "acceptedAnswer": { "@type": "Answer", "text": "To find X% of Y, multiply Y by X and divide the result by 100. For example, 20% of 500 = (500 × 20) ÷ 100 = 100. You can use Module 1 of this calculator to get the answer instantly — just enter the percentage and the value." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find what percentage one number is of another?",
+          "acceptedAnswer": { "@type": "Answer", "text": "To find what percentage X is of Y, divide X by Y and multiply by 100. For example, 40 is what percent of 200? → (40 ÷ 200) × 100 = 20%. Use the \"X is what % of Y?\" module above to solve this in one click." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate a percentage increase or decrease?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Percentage change = [(New Value − Old Value) ÷ Old Value] × 100. If the result is positive, it's an increase; if negative, it's a decrease. For example, a price going from ₹400 to ₹500 is a 25% increase. Use the Percentage Change Calculator on this page to get the result instantly." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find the new value after a percentage increase or decrease?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Multiply the original value by (1 + percentage/100) for an increase, or (1 − percentage/100) for a decrease. For example, a 10% increase on 200 → 200 × 1.10 = 220. Use Mode B of the Percentage Change Calculator above — enter the original value and the percentage, and it does the rest." }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the discount calculator work?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The discount calculator finds the final price after applying a percentage off. Enter the original price and the discount percentage, and it instantly shows you the discounted price and how much you save. For example, 30% off ₹1,000 = final price of ₹700, saving you ₹300." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate a tip using the tip calculator?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Enter your total bill amount and the tip percentage you want to leave (e.g. 10%, 15%, or 20%). The tip calculator instantly shows the tip amount and the final total you need to pay. For example, a 15% tip on a ₹800 bill = ₹120 tip, making the total ₹920." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the basic percentage formula?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The basic percentage formula is: Percentage = (Part ÷ Whole) × 100. This formula is the foundation for all percentage calculations — whether you're finding a discount, calculating exam scores, or comparing two values. All modules on this calculator are built on this formula." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this calculator for exam marks and grades?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — the percentage calculator is widely used by students to calculate their percentage of marks obtained. Simply enter your total marks scored as the \"Part\" and the maximum marks as the \"Whole\". For example, scoring 450 out of 500 → (450 ÷ 500) × 100 = 90%." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this percentage calculator free and accurate?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, this tool is completely free with no signup required. All calculations run directly in your browser — no data is sent to any server. The results are mathematically precise, making it reliable for academic, financial, and everyday use." }
+        }
+      ]
+    }</script>
+  </Fragment>
 </Layout>
