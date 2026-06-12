@@ -1,0 +1,354 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const lastUpdated = "June 12, 2026";
+
+const offTable = [10, 15, 20, 25, 30, 40, 50, 75].map(pct => {
+  const off = 100 * (pct / 100);
+  const sale = 100 - off;
+  return { pct, off, sale };
+});
+
+const stackedTable = [
+  { combo: "10% + 10%", actual: "19%" },
+  { combo: "20% + 10%", actual: "28%" },
+  { combo: "30% + 10%", actual: "37%" },
+  { combo: "30% + 20%", actual: "44%" },
+  { combo: "50% + 20%", actual: "60%" },
+  { combo: "50% + 50%", actual: "75%" },
+];
+
+const cheatSheet = [10, 15, 20, 25, 30, 40, 50].map(pct => ({
+  pct,
+  v50: (50 * (1 - pct / 100)).toFixed(2),
+  v100: (100 * (1 - pct / 100)).toFixed(2),
+  v200: (200 * (1 - pct / 100)).toFixed(2),
+  v500: (500 * (1 - pct / 100)).toFixed(2),
+}));
+
+const faqs: { q: string; a: string }[] = [
+  {
+    q: "How do I calculate percentage off a price?",
+    a: "Multiply the original price by the discount percentage divided by 100. Subtract that from the original price to get the sale price. Example: 25% off $80 → $80 × 0.25 = $20 off → sale price is $60."
+  },
+  {
+    q: "What is the formula for discount percentage?",
+    a: "Discount % = [(Original Price − Sale Price) ÷ Original Price] × 100. This tells you the percentage you're saving compared to the full price."
+  },
+  {
+    q: "How do I find the original price before a discount?",
+    a: "Divide the sale price by (1 minus the discount percentage as a decimal). For example, if you paid $63 after a 30% discount: $63 ÷ 0.70 = $90 original price."
+  },
+  {
+    q: "Is 20% off plus 10% off the same as 30% off?",
+    a: "No. Stacked discounts are applied one after the other, not added together. 20% off then 10% off a $200 item = $144, which is 28% off total — not 30%."
+  },
+  {
+    q: "What percentage off is \"Buy 2 Get 1 Free\"?",
+    a: "You're paying for 2 items but receiving 3. The effective discount is 33.33% off the total, or one-third off."
+  },
+  {
+    q: "How do I calculate percentage off in Excel?",
+    a: "Use the formula =A1*(1-B1/100) where A1 is the original price and B1 is the discount percentage. The result is the sale price after discount."
+  },
+];
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calpercentage.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://calpercentage.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "How to Calculate Percentage Off", "item": "https://calpercentage.com/blog/how-to-calculate-percentage-off" }
+  ]
+});
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+});
+---
+
+<Layout
+  title="How to Calculate Percentage Off Any Price"
+  description="Learn how to calculate percentage off any price, find the original price before a discount, and avoid stacked discount mistakes. With formulas and examples."
+>
+
+  <Fragment slot="head">
+    <link rel="canonical" href="https://calpercentage.com/blog/how-to-calculate-percentage-off" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How to Calculate Percentage Off Any Price — Shopping Math Made Simple" />
+    <meta property="og:description" content="Learn how to calculate percentage off any price, find the original price before a discount, and avoid stacked discount mistakes. With formulas and examples." />
+    <meta property="og:url" content="https://calpercentage.com/blog/how-to-calculate-percentage-off" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="How to Calculate Percentage Off Any Price — Shopping Math Made Simple" />
+    <meta name="twitter:description" content="Learn how to calculate percentage off any price, find the original price before a discount, and avoid stacked discount mistakes." />
+
+    <script type="application/ld+json" set:html={breadcrumbSchema} />
+    <script type="application/ld+json" set:html={faqSchema} />
+  </Fragment>
+
+  <article class="max-w-3xl mx-auto px-5 py-10 sm:py-16">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-muted mb-5 font-mono">
+      <a href="/" class="hover:text-ink no-underline transition-colors">Home</a>
+      <span>/</span>
+      <a href="/blog" class="hover:text-ink no-underline transition-colors">Blog</a>
+      <span>/</span>
+      <span class="text-ink">How to Calculate Percentage Off</span>
+    </nav>
+
+    <p class="form-label mb-2">Guide</p>
+    <h1 class="text-3xl sm:text-4xl font-semibold text-ink mb-3" style="letter-spacing:-0.05em; line-height:1.1;">
+      How to Calculate Percentage Off Any Price — Shopping Math Made Simple
+    </h1>
+    <p class="text-xs text-muted font-mono mb-8">Last updated: {lastUpdated}</p>
+
+    <div class="space-y-3 mb-10">
+      <p class="text-base text-secondary leading-7">
+        You're staring at a "40% off" sign, doing math in your head, and trying to decide if it's actually worth it. We've all been there.
+      </p>
+      <p class="text-base text-secondary leading-7">
+        This guide covers the three calculations you'll use over and over: finding the sale price, working out what discount you actually got, and reverse-engineering the original price. Then we'll tackle the one mistake almost everyone makes — stacked discounts.
+      </p>
+      <p class="text-base text-secondary leading-7">
+        If you just want the answer right now, use the <a href="/discount-calculator" class="text-accent font-medium hover:underline">Discount Calculator</a> — it does all of this instantly, including stacked discounts. This article walks through the math behind it.
+      </p>
+    </div>
+
+    <!-- Core formula -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How to Calculate Percentage Off a Price (The Core Formula)</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        There are two ways to get to the same answer. Pick whichever feels more natural.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+        <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px]">Discount = Price × (Discount % ÷ 100)<br/>Sale Price = Price − Discount</code>
+        <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px]">Sale Price = Price × (1 − Discount % ÷ 100)</code>
+      </div>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Example 1:</strong> A $120 jacket is 25% off. $120 × 0.25 = $30 off. Sale price = $120 − $30 = <strong class="text-ink">$90</strong>.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-4">
+        <strong class="text-ink">Example 2:</strong> A pair of shoes is £65, marked 15% off. £65 × 0.15 = £9.75 off. Sale price = £55.25.
+      </p>
+
+      <p class="form-label mb-3">$100 item — common discount percentages</p>
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm">
+          <thead>
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <th class="text-left py-2 pr-4 form-label">Discount</th>
+              <th class="text-left py-2 pr-4 form-label">You Save</th>
+              <th class="text-left py-2 form-label">Sale Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {offTable.map(row => (
+              <tr style="border-bottom:1px solid var(--color-line);">
+                <td class="py-2.5 pr-4 text-secondary font-mono">{row.pct}%</td>
+                <td class="py-2.5 pr-4 text-secondary font-mono">${row.off.toFixed(2)}</td>
+                <td class="py-2.5 font-semibold text-ink font-mono">${row.sale.toFixed(2)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Mental math tip:</strong> for 10% off, move the decimal point one place left. $84.00 → $8.40 off. For 20% off, just double that number.
+      </p>
+      <p class="text-sm text-secondary leading-6">
+        Want to skip the arithmetic? The <a href="/discount-calculator" class="text-accent font-medium hover:underline">Discount Calculator</a> gives you the sale price and savings instantly for any price and percentage.
+      </p>
+    </section>
+
+    <!-- Find discount percentage -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How to Find the Discount Percentage Between Two Prices</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        Sometimes a store shows you the old price and the new price, but not the percentage off. Here's how to work it out.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">Discount % = [(Original − Sale) ÷ Original] × 100</code>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Example 1:</strong> An item drops from $80 to $60. ($80 − $60) ÷ $80 × 100 = <strong class="text-ink">25% off</strong>.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-4">
+        <strong class="text-ink">Example 2:</strong> A laptop was €999, now €749. (€999 − €749) ÷ €999 × 100 = <strong class="text-ink">25.03% off</strong>.
+      </p>
+      <p class="text-sm text-secondary leading-6">
+        This matters most when you're comparing deals across stores and only one of them advertises a percentage. Run the numbers and you'll know which deal is actually better. This is just a percentage change calculation — our <a href="/percentage-increase" class="text-accent font-medium hover:underline">Percentage Change Calculator</a> handles it, or use the <a href="/percentage-calculator" class="text-accent font-medium hover:underline">Percentage Calculator</a> for the raw numbers.
+      </p>
+    </section>
+
+    <!-- Find original price -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How to Find the Original Price Before a Discount</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        A friend tells you, "I got these headphones for $63 after 30% off." What was the original price? You can't just add 30% to $63 — that gives you the wrong number.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">Original Price = Sale Price ÷ (1 − Discount % ÷ 100)</code>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Example 1:</strong> $63 ÷ (1 − 0.30) = $63 ÷ 0.70 = <strong class="text-ink">$90</strong>.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-4">
+        <strong class="text-ink">Example 2:</strong> You paid £42 after a 40% discount. £42 ÷ 0.60 = <strong class="text-ink">£70</strong> original price.
+      </p>
+      <p class="text-sm text-secondary leading-6">
+        This is the formula to use when you want to check if a "sale" is a real discount or if the store just marked the price up first. Reverse-engineering the original price tells you the truth.
+      </p>
+    </section>
+
+    <!-- Stacked discount trap -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">The Stacked Discount Trap — Why 20% + 10% Off ≠ 30% Off</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        This is the part that trips up almost everyone. When a store offers "20% off, plus an extra 10% off," your brain wants to add those together and call it 30% off. That's not what happens.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        Stacked discounts are applied <strong class="text-ink">sequentially</strong> — each one is calculated on the price that's already been reduced, not the original price.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Example:</strong> A $200 item with "20% off + extra 10% off."
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3 whitespace-pre-wrap">Step 1: $200 × 0.80 = $160  (after 20%)
+Step 2: $160 × 0.90 = $144  (after extra 10%)
+Total discount: ($200 − $144) ÷ $200 × 100 = 28% off</code>
+      <p class="text-sm text-secondary leading-6 mb-4">
+        Not 30%. <strong class="text-ink">28%.</strong> The second discount applies to a smaller number, so it's worth less in real dollars.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        General formula for two stacked discounts D1 and D2 (as decimals):
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-4">Combined discount = 1 − (1 − D1) × (1 − D2)</code>
+
+      <p class="form-label mb-3">Common stacked combos — what they actually add up to</p>
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm">
+          <thead>
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <th class="text-left py-2 pr-4 form-label">Advertised combo</th>
+              <th class="text-left py-2 form-label">Real total discount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {stackedTable.map(row => (
+              <tr style="border-bottom:1px solid var(--color-line);">
+                <td class="py-2.5 pr-4 text-secondary font-mono">{row.combo}</td>
+                <td class="py-2.5 font-semibold text-ink font-mono">{row.actual}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-secondary leading-6">
+        The <a href="/discount-calculator" class="text-accent font-medium hover:underline">Discount Calculator</a> has a dedicated stacked discount mode — add as many discounts as you like and it'll calculate the real final price and effective percentage for you.
+      </p>
+    </section>
+
+    <!-- Buy 2 get 1 free -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">"Buy 2 Get 1 Free" — What Percentage Off Is That Really?</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        These promos don't come with a percentage label, but you can translate them.
+      </p>
+      <ul class="space-y-2 mb-3">
+        <li class="text-sm text-secondary leading-6">
+          <strong class="text-ink">Buy 2 Get 1 Free:</strong> you pay for 2 items, get 3. That's 1 free item out of 3, or <strong class="text-ink">33.33% off</strong> the total.
+        </li>
+        <li class="text-sm text-secondary leading-6">
+          <strong class="text-ink">Buy 1 Get 1 50% Off:</strong> you pay 1.5x the price for 2 items, which works out to <strong class="text-ink">25% off</strong> per item.
+        </li>
+      </ul>
+      <p class="text-sm text-secondary leading-6">
+        These are the conversions shoppers actually want to know but rarely see spelled out — useful for comparing a "buy more, save more" promo against a straight percentage discount.
+      </p>
+    </section>
+
+    <!-- Excel -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How to Calculate Percentage Off in Excel and Google Sheets</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        If you're working with a list of prices, these four formulas cover everything above. Assume A1 is the original price, A2 is the sale price, and B1 is the discount percentage.
+      </p>
+      <ul class="space-y-2">
+        <li class="text-sm text-secondary leading-6">
+          <strong class="text-ink">Sale price:</strong> <code class="text-xs font-mono bg-canvas-soft-2 px-1.5 py-0.5 rounded-[4px]">=A1*(1-B1/100)</code>
+        </li>
+        <li class="text-sm text-secondary leading-6">
+          <strong class="text-ink">Discount amount:</strong> <code class="text-xs font-mono bg-canvas-soft-2 px-1.5 py-0.5 rounded-[4px]">=A1*B1/100</code>
+        </li>
+        <li class="text-sm text-secondary leading-6">
+          <strong class="text-ink">Discount percentage:</strong> <code class="text-xs font-mono bg-canvas-soft-2 px-1.5 py-0.5 rounded-[4px]">=(A1-A2)/A1*100</code>
+        </li>
+        <li class="text-sm text-secondary leading-6">
+          <strong class="text-ink">Original price:</strong> <code class="text-xs font-mono bg-canvas-soft-2 px-1.5 py-0.5 rounded-[4px]">=A2/(1-B1/100)</code>
+        </li>
+      </ul>
+      <p class="text-sm text-secondary leading-6 mt-3">
+        Format the price cells as Currency and the percentage cells as Percentage — or just enter the percentage as a plain number (like 25) and divide by 100 in the formula, as shown above.
+      </p>
+    </section>
+
+    <!-- Cheat sheet -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Quick Reference — Percentage Off Cheat Sheet</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        Sale prices after common discounts, for a few common price points.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <th class="text-left py-2 pr-4 form-label">Off</th>
+              <th class="text-left py-2 pr-4 form-label">$50</th>
+              <th class="text-left py-2 pr-4 form-label">$100</th>
+              <th class="text-left py-2 pr-4 form-label">$200</th>
+              <th class="text-left py-2 form-label">$500</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cheatSheet.map(row => (
+              <tr style="border-bottom:1px solid var(--color-line);">
+                <td class="py-2.5 pr-4 text-secondary font-mono">{row.pct}%</td>
+                <td class="py-2.5 pr-4 font-semibold text-ink font-mono">${row.v50}</td>
+                <td class="py-2.5 pr-4 font-semibold text-ink font-mono">${row.v100}</td>
+                <td class="py-2.5 pr-4 font-semibold text-ink font-mono">${row.v200}</td>
+                <td class="py-2.5 font-semibold text-ink font-mono">${row.v500}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-4" style="letter-spacing:-0.03em;">Frequently Asked Questions</h2>
+      <div class="space-y-5">
+        {faqs.map(f => (
+          <div>
+            <h3 class="text-sm font-semibold text-ink mb-1.5">{f.q}</h3>
+            <p class="text-sm text-secondary leading-6">{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <div class="card-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <p class="text-sm font-semibold text-ink mb-1">Skip the math next time.</p>
+        <p class="text-sm text-secondary leading-5">Enter any price and discount — including stacked discounts — and get the real sale price instantly.</p>
+      </div>
+      <a href="/discount-calculator" class="btn-primary flex-shrink-0">Open Discount Calculator →</a>
+    </div>
+
+  </article>
+</Layout>

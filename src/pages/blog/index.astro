@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const posts = [
+  {
+    href: "/blog/how-to-calculate-percentage-off",
+    title: "How to Calculate Percentage Off Any Price",
+    desc: "The core discount formulas, how to find the original price before a sale, and the stacked discount trap that costs shoppers money.",
+    date: "June 12, 2026",
+  },
+];
+---
+
+<Layout
+  title="Blog"
+  description="Guides and explainers on percentages, discounts, and everyday math — from calpercentage.com."
+>
+  <section class="max-w-3xl mx-auto px-5 py-10 sm:py-16">
+
+    <nav class="flex items-center gap-2 text-xs text-muted mb-5 font-mono">
+      <a href="/" class="hover:text-ink no-underline transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-ink">Blog</span>
+    </nav>
+
+    <p class="form-label mb-2">Blog</p>
+    <h1 class="text-3xl sm:text-4xl font-semibold text-ink mb-3" style="letter-spacing:-0.05em; line-height:1.1;">
+      Guides &amp; explainers
+    </h1>
+    <p class="text-base text-secondary leading-7 mb-10 max-w-xl">
+      Plain-English breakdowns of percentage math — discounts, sale prices, and the calculations behind everyday numbers.
+    </p>
+
+    <div class="space-y-3" style="border-top:1px solid var(--color-line); padding-top:2rem;">
+      {posts.map(post => (
+        <a href={post.href} class="card flex flex-col gap-1 no-underline hover:shadow-[0_0_0_1.5px_var(--color-ink)]">
+          <p class="text-xs text-muted font-mono">{post.date}</p>
+          <h2 class="text-base font-semibold text-ink" style="letter-spacing:-0.02em;">{post.title}</h2>
+          <p class="text-sm text-secondary leading-5">{post.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>
