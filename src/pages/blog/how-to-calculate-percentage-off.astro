@@ -72,6 +72,26 @@ const faqSchema = JSON.stringify({
     "acceptedAnswer": { "@type": "Answer", "text": f.a }
   }))
 });
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Calculate Percentage Off Any Price — Shopping Math Made Simple",
+  "description": "Learn how to calculate percentage off any price, find the original price before a discount, and avoid stacked discount mistakes. With formulas and examples.",
+  "datePublished": "2026-06-12",
+  "dateModified": "2026-06-12",
+  "author": {
+    "@type": "Organization",
+    "name": "Calpercentage.com Team",
+    "url": "https://calpercentage.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Calpercentage.com",
+    "url": "https://calpercentage.com/"
+  },
+  "mainEntityOfPage": "https://calpercentage.com/blog/how-to-calculate-percentage-off"
+});
 ---
 
 <Layout
@@ -91,6 +111,7 @@ const faqSchema = JSON.stringify({
 
     <script type="application/ld+json" set:html={breadcrumbSchema} />
     <script type="application/ld+json" set:html={faqSchema} />
+    <script type="application/ld+json" set:html={articleSchema} />
   </Fragment>
 
   <article class="max-w-3xl mx-auto px-5 py-10 sm:py-16">
@@ -108,7 +129,7 @@ const faqSchema = JSON.stringify({
     <h1 class="text-3xl sm:text-4xl font-semibold text-ink mb-3" style="letter-spacing:-0.05em; line-height:1.1;">
       How to Calculate Percentage Off Any Price — Shopping Math Made Simple
     </h1>
-    <p class="text-xs text-muted font-mono mb-8">Last updated: {lastUpdated}</p>
+    <p class="text-xs text-muted font-mono mb-8">Written by Calpercentage.com Team · Last updated: {lastUpdated}</p>
 
     <div class="space-y-3 mb-10">
       <p class="text-base text-secondary leading-7">
