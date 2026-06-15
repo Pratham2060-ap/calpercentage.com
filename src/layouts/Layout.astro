@@ -21,6 +21,7 @@ const nav = [
 ];
 
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const canonicalURL = new URL(Astro.url.pathname, "https://calpercentage.com");
 ---
 
 <!doctype html>
@@ -36,6 +37,7 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="PercentCalc" />
   <link rel="manifest" href="/site.webmanifest" />
+  <link rel="canonical" href={canonicalURL} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
