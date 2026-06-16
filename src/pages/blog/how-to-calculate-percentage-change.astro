@@ -1,0 +1,368 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const lastUpdated = "June 16, 2026";
+
+const salaries = [40000, 60000, 80000, 100000];
+const raisePcts = [3, 5, 7, 10];
+
+const raiseTable = salaries.map(salary => ({
+  salary,
+  gains: raisePcts.map(pct => ({
+    pct,
+    amount: Math.round(salary * pct / 100),
+  }))
+}));
+
+const cheatSheet = [
+  { old: "$100",   newVal: "$125",   change: "+$25",  pct: "+25%"  },
+  { old: "$100",   newVal: "$90",    change: "−$10",  pct: "−10%"  },
+  { old: "$100",   newVal: "$150",   change: "+$50",  pct: "+50%"  },
+  { old: "$100",   newVal: "$75",    change: "−$25",  pct: "−25%"  },
+  { old: "$100",   newVal: "$200",   change: "+$100", pct: "+100%" },
+  { old: "$100",   newVal: "$50",    change: "−$50",  pct: "−50%"  },
+  { old: "$1,000", newVal: "$1,080", change: "+$80",  pct: "+8%"   },
+  { old: "$50",    newVal: "$62",    change: "+$12",  pct: "+24%"  },
+];
+
+const faqs: { q: string; a: string }[] = [
+  {
+    q: "How do you calculate percentage change between two numbers?",
+    a: "Use the formula: Percentage Change = [(New Value − Old Value) ÷ Old Value] × 100. A positive result means an increase, a negative result means a decrease. For example, going from 80 to 100 is a 25% increase."
+  },
+  {
+    q: "How do I calculate the percentage increase in my rent?",
+    a: "Subtract your old rent from your new rent, divide by your old rent, and multiply by 100. If rent went from $1,400 to $1,500, that's ($1,500 − $1,400) ÷ $1,400 × 100 = 7.14% increase."
+  },
+  {
+    q: "What percentage raise did I get?",
+    a: "Subtract your old salary from your new salary, divide by your old salary, and multiply by 100. Going from $52,000 to $55,000 is a 5.77% raise. Compare this to the current inflation rate to see your real purchasing power gain."
+  },
+  {
+    q: "What is the difference between percentage change and percentage difference?",
+    a: "Percentage change measures how much a single value increased or decreased over time — it has a direction (old → new). Percentage difference compares two separate values using their average as the base. Use percentage change when time is involved; use percentage difference when comparing two parallel things."
+  },
+  {
+    q: "How do I calculate percentage change in Excel?",
+    a: "Use the formula =(B1-A1)/A1 where A1 is the old value and B1 is the new value. Format the cell as Percentage to display the result with a % symbol. Multiply by 100 instead if you want a plain number."
+  },
+  {
+    q: "Can percentage change be more than 100%?",
+    a: "Yes. If a value more than doubles, the percentage change exceeds 100%. For example, going from $50 to $150 is a 200% increase. There's no upper limit — a value going from 10 to 100 is a 900% increase."
+  },
+];
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calpercentage.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://calpercentage.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "How to Calculate Percentage Change", "item": "https://calpercentage.com/blog/how-to-calculate-percentage-change" }
+  ]
+});
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+});
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Calculate Percentage Change — For Rent, Salary, Prices & Investments",
+  "description": "Learn how to calculate percentage change for rent hikes, salary raises, price drops, and investment returns. Step-by-step formulas with real examples.",
+  "datePublished": "2026-06-16",
+  "dateModified": "2026-06-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Calpercentage.com Team",
+    "url": "https://calpercentage.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Calpercentage.com",
+    "url": "https://calpercentage.com/"
+  },
+  "mainEntityOfPage": "https://calpercentage.com/blog/how-to-calculate-percentage-change",
+  "image": "https://calpercentage.com/blog/how-to-calculate-percentage-change/og-image.png"
+});
+---
+
+<Layout
+  title="How to Calculate Percentage Change"
+  description="Learn how to calculate percentage change for rent hikes, salary raises, price drops, and investment returns. Step-by-step formulas with real examples."
+>
+
+  <Fragment slot="head">
+    <link rel="canonical" href="https://calpercentage.com/blog/how-to-calculate-percentage-change" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How to Calculate Percentage Change — For Rent, Salary, Prices & Investments" />
+    <meta property="og:description" content="Learn how to calculate percentage change for rent hikes, salary raises, price drops, and investment returns. Step-by-step formulas with real examples." />
+    <meta property="og:url" content="https://calpercentage.com/blog/how-to-calculate-percentage-change" />
+    <meta property="og:image" content="/blog/how-to-calculate-percentage-change/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How to Calculate Percentage Change — For Rent, Salary, Prices & Investments" />
+    <meta name="twitter:description" content="Learn how to calculate percentage change for rent hikes, salary raises, price drops, and investment returns. Step-by-step formulas with real examples." />
+
+    <script type="application/ld+json" set:html={breadcrumbSchema} />
+    <script type="application/ld+json" set:html={faqSchema} />
+    <script type="application/ld+json" set:html={articleSchema} />
+  </Fragment>
+
+  <article class="max-w-3xl mx-auto px-5 py-10 sm:py-16">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-muted mb-5 font-mono">
+      <a href="/" class="hover:text-ink no-underline transition-colors">Home</a>
+      <span>/</span>
+      <a href="/blog" class="hover:text-ink no-underline transition-colors">Blog</a>
+      <span>/</span>
+      <span class="text-ink">How to Calculate Percentage Change</span>
+    </nav>
+
+    <p class="form-label mb-2">Guide</p>
+    <h1 class="text-3xl sm:text-4xl font-semibold text-ink mb-3" style="letter-spacing:-0.05em; line-height:1.1;">
+      How to Calculate Percentage Change — For Rent, Salary, Prices &amp; Investments
+    </h1>
+    <p class="text-xs text-muted font-mono mb-8">Written by Calpercentage.com Team · Last updated: {lastUpdated}</p>
+
+    <!-- Intro -->
+    <div class="space-y-3 mb-10">
+      <p class="text-base text-secondary leading-7">
+        Your landlord says rent is going from $1,400 to $1,500. Your boss offers a "competitive raise." Gas was $3.20 last month, now it's $3.60. What's the actual percentage change in each case?
+      </p>
+      <p class="text-base text-secondary leading-7">
+        One formula answers all of them. This guide walks through that formula applied to rent, salary, prices, and investments — so you always know what the number actually means.
+      </p>
+      <p class="text-base text-secondary leading-7">
+        If you want the answer without the math, the <a href="/percentage-increase" class="text-accent font-medium hover:underline">Percentage Change Calculator</a> gives you instant results for any two values. This article covers the why and how.
+      </p>
+    </div>
+
+    <!-- Core formula -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">The Percentage Change Formula (One Formula, Endless Uses)</h2>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">Percentage Change = [(New Value − Old Value) ÷ Old Value] × 100</code>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        If the result is positive, it's a percentage increase. If it's negative, it's a percentage decrease. The old value is always your denominator — that's what you're measuring change <em>from</em>.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Example 1:</strong> Old value = $200, new value = $250.
+        ($250 − $200) ÷ $200 × 100 = <strong class="text-ink">25% increase</strong>.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-4">
+        <strong class="text-ink">Example 2:</strong> Old value = £80, new value = £68.
+        (£68 − £80) ÷ £80 × 100 = <strong class="text-ink">−15% (a 15% decrease)</strong>.
+      </p>
+      <p class="text-sm text-secondary leading-6">
+        Use the <a href="/percentage-increase" class="text-accent font-medium hover:underline">Percentage Change Calculator</a> when you need a quick answer for any two values.
+      </p>
+    </section>
+
+    <!-- Rent -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How to Calculate Percentage Increase in Rent</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        This is one of the most common real-life uses of percentage change. Your landlord sends a notice — here's how to calculate exactly what you're being asked to absorb.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Example 1:</strong> Rent goes from $1,400/month to $1,500/month.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">($1,500 − $1,400) ÷ $1,400 × 100 = 7.14% increase</code>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Example 2:</strong> Rent was ₹18,000/month, now ₹20,500.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">(₹20,500 − ₹18,000) ÷ ₹18,000 × 100 = 13.89% increase</code>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        In many cities, annual rent increases above 3–5% may exceed local tenant protection guidelines. Knowing the exact percentage gives you a number you can use in a negotiation — or a complaint to a housing authority.
+      </p>
+      <p class="text-sm text-secondary leading-6">
+        Run these numbers instantly with the <a href="/percentage-increase" class="text-accent font-medium hover:underline">Percentage Change Calculator</a>.
+      </p>
+    </section>
+
+    <!-- Salary -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">What Percentage Raise Did You Actually Get?</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        Companies often announce raises in dollar amounts because they sound larger. The percentage is what tells you whether you're keeping up.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Example:</strong> Salary goes from $52,000 to $55,000.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">($55,000 − $52,000) ÷ $52,000 × 100 = 5.77% raise</code>
+      <p class="text-sm text-secondary leading-6 mb-4">
+        If inflation that year was 4%, your real gain in purchasing power is only ~1.77%. A 5.77% raise sounds solid until you run that comparison.
+      </p>
+
+      <p class="form-label mb-3">How much your salary grows — raise amount by base salary</p>
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm">
+          <thead>
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <th class="text-left py-2 pr-4 form-label">Salary</th>
+              {raisePcts.map(pct => (
+                <th class="text-left py-2 pr-4 form-label">{pct}% raise</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {raiseTable.map(row => (
+              <tr style="border-bottom:1px solid var(--color-line);">
+                <td class="py-2.5 pr-4 text-secondary font-mono">${row.salary.toLocaleString()}</td>
+                {row.gains.map(g => (
+                  <td class="py-2.5 pr-4 font-semibold text-ink font-mono">+${g.amount.toLocaleString()}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-secondary leading-6">
+        Whether a 5% raise is "good" depends entirely on what inflation is doing that year. Always compare your raise percentage to the current inflation rate — that's your real purchasing power change.
+      </p>
+    </section>
+
+    <!-- Prices -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How to Calculate Percentage Change in Prices</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        Same formula, whether a price dropped or climbed.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Example 1 — price dropped:</strong> A product was $45 last month, now $39.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">($39 − $45) ÷ $45 × 100 = −13.33% (a 13.33% decrease)</code>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Example 2 — price went up:</strong> Gas was $3.20/gallon, now $3.60.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">($3.60 − $3.20) ÷ $3.20 × 100 = 12.5% increase</code>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        This works for groceries, subscriptions, stocks, crypto — anything with two price points. The formula doesn't care about the category.
+      </p>
+      <p class="text-sm text-secondary leading-6">
+        Use the <a href="/percentage-calculator" class="text-accent font-medium hover:underline">Percentage Calculator</a> for general percentage math. If you want to apply a specific discount to a price, the <a href="/discount-calculator" class="text-accent font-medium hover:underline">Discount Calculator</a> is the faster tool.
+      </p>
+    </section>
+
+    <!-- Investments -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Percentage Change for Investment Returns</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        No special formula needed here — it's the same percentage change calculation. Old value is what you paid, new value is what it's worth now.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Example — gain:</strong> You bought a stock at $140/share, it's now $182.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">($182 − $140) ÷ $140 × 100 = 30% return</code>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Example — loss:</strong> You bought at $95/share, now worth $72.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">($72 − $95) ÷ $95 × 100 = −24.21% loss</code>
+      <p class="text-sm text-secondary leading-6">
+        For single-period comparisons ("what did I gain or lose?"), percentage change is exactly right. For returns spanning multiple years, compound annual growth rate (CAGR) is more meaningful — but that's a different calculation.
+      </p>
+    </section>
+
+    <!-- Change vs difference -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Percentage Change vs. Percentage Difference — Don't Mix These Up</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        These two terms get used interchangeably but they mean different things and use different formulas.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Percentage change</strong> has a clear "before" and "after." Direction matters — the old value is always the denominator. Use it whenever time is involved: last month vs. this month, last year's price vs. this year's.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-2">
+        <strong class="text-ink">Percentage difference</strong> compares two values where neither is the "original." It uses the average of both as the denominator. Use it when comparing two parallel things — City A's population vs. City B's, Store A's price vs. Store B's.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        Rule of thumb: if you're asking "how much did this change over time?" it's percentage change. If you're asking "how different are these two things?" it's percentage difference.
+      </p>
+      <p class="text-sm text-secondary leading-6">
+        For discount-specific math — where the "change" is a markdown from a retail price — see our guide on <a href="/blog/how-to-calculate-percentage-off" class="text-accent font-medium hover:underline">how to calculate percentage off</a>. For general percentage math, the <a href="/percentage-calculator" class="text-accent font-medium hover:underline">Percentage Calculator</a> covers it.
+      </p>
+    </section>
+
+    <!-- Excel -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How to Calculate Percentage Change in Excel and Google Sheets</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        Assume A1 holds the old value and B1 holds the new value.
+      </p>
+      <ul class="space-y-2 mb-4">
+        <li class="text-sm text-secondary leading-6">
+          <strong class="text-ink">Result as a plain number:</strong> <code class="text-xs font-mono bg-canvas-soft-2 px-1.5 py-0.5 rounded-[4px]">=(B1-A1)/A1*100</code>
+        </li>
+        <li class="text-sm text-secondary leading-6">
+          <strong class="text-ink">Result formatted as %:</strong> <code class="text-xs font-mono bg-canvas-soft-2 px-1.5 py-0.5 rounded-[4px]">=(B1-A1)/A1</code> then format the cell as Percentage
+        </li>
+        <li class="text-sm text-secondary leading-6">
+          <strong class="text-ink">Magnitude only (no sign):</strong> <code class="text-xs font-mono bg-canvas-soft-2 px-1.5 py-0.5 rounded-[4px]">=ABS((B1-A1)/A1)*100</code>
+        </li>
+      </ul>
+      <p class="text-sm text-secondary leading-6">
+        In Google Sheets, go to Format → Number → Percent to get the % symbol added automatically. Use the first formula if you need a raw number for further calculations in other cells.
+      </p>
+    </section>
+
+    <!-- Cheat sheet -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Quick Reference — Percentage Change Cheat Sheet</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        Common examples to scan or bookmark.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <th class="text-left py-2 pr-4 form-label">Old Value</th>
+              <th class="text-left py-2 pr-4 form-label">New Value</th>
+              <th class="text-left py-2 pr-4 form-label">Change</th>
+              <th class="text-left py-2 form-label">% Change</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cheatSheet.map(row => (
+              <tr style="border-bottom:1px solid var(--color-line);">
+                <td class="py-2.5 pr-4 text-secondary font-mono">{row.old}</td>
+                <td class="py-2.5 pr-4 text-secondary font-mono">{row.newVal}</td>
+                <td class="py-2.5 pr-4 text-secondary font-mono">{row.change}</td>
+                <td class="py-2.5 font-semibold text-ink font-mono">{row.pct}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-4" style="letter-spacing:-0.03em;">Frequently Asked Questions</h2>
+      <div class="space-y-5">
+        {faqs.map(f => (
+          <div>
+            <h3 class="text-sm font-semibold text-ink mb-1.5">{f.q}</h3>
+            <p class="text-sm text-secondary leading-6">{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <div class="card-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <p class="text-sm font-semibold text-ink mb-1">One formula. Rent, salary, prices, returns.</p>
+        <p class="text-sm text-secondary leading-5">Bookmark the calculator for when you don't want to do the math yourself — enter any two numbers and get the percentage change instantly.</p>
+      </div>
+      <a href="/percentage-increase" class="btn-primary flex-shrink-0">Open Calculator →</a>
+    </div>
+
+  </article>
+</Layout>
