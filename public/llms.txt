@@ -1,0 +1,27 @@
+# calpercentage.com
+
+> Free online percentage calculators — no signup, no ads, instant results as you type. Five tools covering every common percentage problem: percentage of a number, percentage change, discount, and tip calculation.
+
+calpercentage.com is a free utility site for percentage math. All calculations run in the browser. No data is collected or sent to any server.
+
+## Calculators
+
+- [Percentage Calculator](https://calpercentage.com/percentage-calculator): Three-module tool — find P% of a value, find what % X is of Y, or find the base when given a part and a percentage.
+- [What % is X of Y?](https://calpercentage.com/percentage-of-number): Enter two numbers and instantly find what percentage the first is of the second.
+- [Percentage Increase / Decrease](https://calpercentage.com/percentage-increase): Find the percentage change between two values, or calculate a new value after any % increase or decrease.
+- [Discount Calculator](https://calpercentage.com/discount-calculator): Find the sale price after a discount. Supports single discounts, stacked discounts, and reverse lookups.
+- [Tip Calculator](https://calpercentage.com/tip-calculator): Calculate the tip and total for any bill. Includes 15/18/20/25% presets, tax handling, and bill splitting.
+
+## Blog
+
+- [Blog](https://calpercentage.com/blog): Guides and tips on percentages, discounts, and everyday math.
+- [How to Calculate Percentage Off](https://calpercentage.com/blog/how-to-calculate-percentage-off): Step-by-step guide to calculating a percentage discount and finding the final sale price.
+- [How to Calculate Percentage Change](https://calpercentage.com/blog/how-to-calculate-percentage-change): Guide to finding the percentage increase or decrease between two values.
+
+## Site
+
+- [Homepage](https://calpercentage.com/): Overview of all five percentage calculators.
+- [About Us](https://calpercentage.com/about): Who we are and why we built calpercentage.com.
+- [Contact](https://calpercentage.com/contact): Report a bug, suggest a tool, or get in touch.
+- [Privacy Policy](https://calpercentage.com/privacy-policy): No tracking, no personal data — all calculations stay in your browser.
+- [Terms & Conditions](https://calpercentage.com/terms): Simple terms for a free, no-signup utility site.
