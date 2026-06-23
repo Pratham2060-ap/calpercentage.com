@@ -6,8 +6,8 @@ const posts = blogPosts;
 ---
 
 <Layout
-  title="Blog"
-  description="Guides and explainers on percentages, discounts, and everyday math — from calpercentage.com."
+  title="Percentage Math Blog — Guides & Explainers | CalPercentage"
+  description="Plain-English guides on percentage calculations, discounts, percentage change, tip math, and everyday numbers — from CalPercentage.com."
 >
   <section class="max-w-3xl mx-auto px-5 py-10 sm:py-16">
 
@@ -21,11 +21,12 @@ const posts = blogPosts;
     <h1 class="text-3xl sm:text-4xl font-semibold text-ink mb-3" style="letter-spacing:-0.05em; line-height:1.1;">
       Guides &amp; explainers
     </h1>
-    <p class="text-base text-secondary leading-7 mb-10 max-w-xl">
-      Plain-English breakdowns of percentage math — discounts, sale prices, and the calculations behind everyday numbers.
+    <p class="text-base text-secondary leading-7 mb-8 max-w-xl">
+      Plain-English breakdowns of percentage math — discounts, sale prices, percentage change, and the calculations behind everyday numbers.
     </p>
 
-    <div class="space-y-3" style="border-top:1px solid var(--color-line); padding-top:2rem;">
+    <!-- Articles -->
+    <div class="space-y-3 mb-14" style="border-top:1px solid var(--color-line); padding-top:2rem;">
       {posts.map(post => (
         <a href={post.href} class="card flex flex-col gap-1 no-underline hover:shadow-[0_0_0_1.5px_var(--color-ink)]">
           <p class="text-xs text-muted font-mono">{post.date}</p>
@@ -33,6 +34,85 @@ const posts = blogPosts;
           <p class="text-sm text-secondary leading-5">{post.desc}</p>
         </a>
       ))}
+    </div>
+
+    <!-- Editorial content for SEO/GEO -->
+    <div class="prose-section space-y-10" style="border-top:1px solid var(--color-line); padding-top:2.5rem;">
+
+      <div>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">What this blog covers</h2>
+        <p class="text-sm text-secondary leading-7 mb-4">
+          Percentage math shows up everywhere — a landlord raising your rent by 8%, a store advertising 30% off, a stock that dropped 12% last week, or a restaurant bill where you want to leave a fair tip. The calculations are simple once you know the formula, but most people were never taught them clearly in school.
+        </p>
+        <p class="text-sm text-secondary leading-7">
+          This blog fills that gap. Each guide here focuses on one real-world percentage problem, explains the formula in plain English, walks through worked examples with actual numbers, and points you to the right <a href="/" class="text-ink underline underline-offset-2">free calculator</a> to check your work. No textbook jargon, no unnecessary theory — just the math you actually need.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Why percentage calculations matter in daily life</h2>
+        <p class="text-sm text-secondary leading-7 mb-4">
+          Percentages are the language of change and comparison. When you see a price tag that says "20% off," you need to know what dollar amount that means before you can decide if the deal is worth it. When your salary goes from $55,000 to $58,000, you want to know whether that's a 5% raise or a 5.5% raise — especially if you're negotiating. When you're comparing two savings accounts at 4.1% and 4.35% APY, that seemingly small difference compounds into real money over time.
+        </p>
+        <p class="text-sm text-secondary leading-7 mb-4">
+          Beyond personal finance, percentages appear in health data (a medication that's 94% effective), statistics (a poll with a 3-point margin of error), nutrition labels (25% of your daily sodium), and business metrics (a 7% quarter-over-quarter revenue increase). Being comfortable with percentage math makes you a sharper reader of news, a smarter shopper, and a more confident decision-maker.
+        </p>
+        <p class="text-sm text-secondary leading-7">
+          The guides on this blog are designed to give you that fluency quickly — without making you sit through a math class to get there.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Topics we cover</h2>
+        <ul class="space-y-3">
+          <li class="flex gap-3 text-sm text-secondary leading-6">
+            <span class="text-ink font-semibold min-w-max">Percentage off &amp; discounts</span>
+            <span>— How to calculate how much you save at a sale, find the original price before a discount, and avoid the stacked-discount trap that makes "30% off, then an extra 20% off" sound better than it is.</span>
+          </li>
+          <li class="flex gap-3 text-sm text-secondary leading-6">
+            <span class="text-ink font-semibold min-w-max">Percentage change</span>
+            <span>— The universal formula for measuring increases and decreases: rent hikes, salary raises, investment returns, price inflation, and weight loss goals all use the same equation.</span>
+          </li>
+          <li class="flex gap-3 text-sm text-secondary leading-6">
+            <span class="text-ink font-semibold min-w-max">Percentage of a number</span>
+            <span>— Finding X% of Y, working backwards to find the whole from a part, and understanding how tip calculations and tax estimates are done in your head.</span>
+          </li>
+          <li class="flex gap-3 text-sm text-secondary leading-6">
+            <span class="text-ink font-semibold min-w-max">Tip &amp; service charge math</span>
+            <span>— Quick methods for calculating restaurant tips at 15%, 18%, and 20%, splitting bills, and understanding when service charges are already included.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">The core percentage formula — a quick refresher</h2>
+        <p class="text-sm text-secondary leading-7 mb-4">
+          Almost every percentage problem is a variation of one formula: <strong class="text-ink">Percentage = (Part ÷ Whole) × 100</strong>. From this single equation, three questions can be answered:
+        </p>
+        <ol class="space-y-2 list-decimal list-inside text-sm text-secondary leading-7 mb-4">
+          <li><strong class="text-ink">What is X% of Y?</strong> Multiply Y by (X ÷ 100). Example: 15% of $80 = $80 × 0.15 = $12.</li>
+          <li><strong class="text-ink">X is what percent of Y?</strong> Divide X by Y and multiply by 100. Example: $12 is what percent of $80? → (12 ÷ 80) × 100 = 15%.</li>
+          <li><strong class="text-ink">X is Y% of what?</strong> Divide X by (Y ÷ 100). Example: $12 is 15% of what? → 12 ÷ 0.15 = $80.</li>
+        </ol>
+        <p class="text-sm text-secondary leading-7">
+          Percentage <em>change</em> adds one more layer: <strong class="text-ink">% Change = ((New − Old) ÷ Old) × 100</strong>. A positive result is an increase; a negative result is a decrease. Each article on this blog walks through one of these formulas with real examples so the pattern sticks.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Free calculators to go with these guides</h2>
+        <p class="text-sm text-secondary leading-7 mb-4">
+          Every guide links to a matching calculator so you can apply the formula instantly without doing the arithmetic by hand. Here's what's available on CalPercentage:
+        </p>
+        <ul class="space-y-2 text-sm text-secondary leading-6">
+          <li><a href="/percentage-calculator" class="text-ink underline underline-offset-2">Percentage Calculator</a> — solve all three types of percentage questions in one tool.</li>
+          <li><a href="/percentage-of-number" class="text-ink underline underline-offset-2">Percentage of a Number</a> — find X% of any amount instantly.</li>
+          <li><a href="/percentage-increase" class="text-ink underline underline-offset-2">Percentage Increase &amp; Decrease Calculator</a> — calculate the exact % change between two values.</li>
+          <li><a href="/discount-calculator" class="text-ink underline underline-offset-2">Discount Calculator</a> — see the sale price and exact savings for any % off.</li>
+          <li><a href="/tip-calculator" class="text-ink underline underline-offset-2">Tip Calculator</a> — split a bill and calculate tips at any percentage.</li>
+        </ul>
+      </div>
+
     </div>
   </section>
 </Layout>
