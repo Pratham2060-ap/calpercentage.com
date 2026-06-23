@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Contact Us"
-  description="Get in touch with calpercentage.com. Report a bug, suggest a new calculator, or send us any feedback."
+  description="Get in touch with calpercentage.com. Report a bug, suggest a new calculator, ask a question, or send general feedback. We read and respond to every message."
 >
   <section class="max-w-3xl mx-auto px-5 py-16 sm:py-24">
 
@@ -12,18 +12,18 @@ import Layout from '../layouts/Layout.astro';
     <h1 class="text-3xl sm:text-4xl font-semibold text-ink mb-4" style="letter-spacing:-0.05em; line-height:1.1;">
       Get in touch.
     </h1>
-    <p class="text-base sm:text-lg text-secondary leading-7 mb-12 max-w-md">
-      Found a bug? Have a suggestion for a new calculator? We're happy to hear from you.
+    <p class="text-base sm:text-lg text-secondary leading-7 mb-8 max-w-xl">
+      We're a small, independent team behind calpercentage.com and we genuinely read every message we receive. Whether you've spotted an error, have an idea for a new tool, or simply want to share feedback — we'd love to hear from you.
     </p>
 
     <div style="border-top:1px solid var(--color-line); padding-top:3rem;">
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
         {[
-          { icon: "🐛", title: "Report a bug", body: "Something calculating incorrectly or a broken UI? Let us know the page and the inputs you used." },
-          { icon: "💡", title: "Suggest a tool", body: "Have a percentage problem we don't cover yet? Tell us and we'll consider adding it." },
-          { icon: "📝", title: "General feedback", body: "Anything else — design suggestions, usability improvements, or just to say hi." },
-          { icon: "🤝", title: "Business enquiries", body: "For partnerships, content collaborations, or other business matters." },
+          { icon: "🐛", title: "Report a bug", body: "Something calculating incorrectly or a broken UI element? Please let us know the page, the exact inputs you used, and what result you expected. Screenshots are always helpful." },
+          { icon: "💡", title: "Suggest a tool", body: "Have a percentage problem we don't cover yet? Describe it in detail and we'll consider building a dedicated calculator for it in a future update." },
+          { icon: "📝", title: "General feedback", body: "Design suggestions, wording improvements, usability ideas, or anything else you think would make the site better. Positive feedback is equally welcome." },
+          { icon: "🤝", title: "Business enquiries", body: "For partnerships, content collaborations, or other business-related matters, use the form below and select 'Business enquiry' as the subject." },
         ].map(item => (
           <div class="card flex gap-3">
             <span class="text-xl mt-0.5">{item.icon}</span>
@@ -35,9 +35,26 @@ import Layout from '../layouts/Layout.astro';
         ))}
       </div>
 
+      <div class="mb-12">
+        <h2 class="text-lg font-semibold text-ink mb-4" style="letter-spacing:-0.02em;">Before you write</h2>
+        <p class="text-sm text-secondary leading-6 mb-3">
+          We aim to respond to all messages within <strong class="text-ink">2–3 business days</strong>. To help us reply faster and more accurately, please include:
+        </p>
+        <ul class="text-sm text-secondary leading-6 space-y-2 list-disc pl-5">
+          <li>The specific page or calculator you're referring to (for example, "Discount Calculator" or "Tip Calculator").</li>
+          <li>The exact input values you entered and the result you received, if you're reporting a calculation error.</li>
+          <li>The device type (phone, tablet, desktop) and browser you're using, if you're reporting a display or functionality issue.</li>
+          <li>A clear description of what you'd like to see, if you're suggesting a new feature or calculator.</li>
+        </ul>
+        <p class="text-sm text-secondary leading-6 mt-3">
+          The more detail you provide, the faster we can investigate and respond. We take every report seriously — if you found a calculation error, we want to fix it as quickly as possible.
+        </p>
+      </div>
+
       <!-- Contact form -->
-      <div class="card">
-        <h2 class="text-lg font-semibold text-ink mb-6" style="letter-spacing:-0.02em;">Send a message</h2>
+      <div class="card mb-12">
+        <h2 class="text-lg font-semibold text-ink mb-1" style="letter-spacing:-0.02em;">Send a message</h2>
+        <p class="text-sm text-secondary leading-6 mb-6">Fill out the form below and we'll get back to you by email, usually within 2–3 business days.</p>
 
         <form
           id="contact-form"
@@ -86,7 +103,7 @@ import Layout from '../layouts/Layout.astro';
               id="message"
               name="message"
               rows="5"
-              placeholder="Describe your question or feedback..."
+              placeholder="Describe your question or feedback in as much detail as you can..."
               required
               class="form-input w-full resize-none"
             ></textarea>
@@ -97,6 +114,43 @@ import Layout from '../layouts/Layout.astro';
             <p id="form-status" class="text-sm text-secondary hidden"></p>
           </div>
         </form>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-semibold text-ink mb-4" style="letter-spacing:-0.02em;">Frequently asked questions</h2>
+        <div class="space-y-6">
+          {[
+            {
+              q: "Do you respond to every message?",
+              a: "Yes. We read every message and aim to respond to all inquiries within 2–3 business days. High-volume periods may occasionally cause brief delays, but we do not leave messages unanswered."
+            },
+            {
+              q: "Is there a phone number or live chat available?",
+              a: "We don't offer phone support or live chat at this time. The contact form above is the fastest way to reach us, and we find it handles most questions effectively and with the detail needed to actually help."
+            },
+            {
+              q: "I found a calculation error — what information should I include?",
+              a: "Please select 'Report a bug' in the Subject dropdown, then describe the calculator you used, the exact numbers you entered, and the result you received versus the result you expected. The more specific you are, the faster we can pinpoint and fix the issue."
+            },
+            {
+              q: "Can I request a specific type of percentage calculator?",
+              a: "Absolutely. We actively look for common percentage problems that aren't well served by our current tools. Select 'Suggest a tool' and describe the calculation you need — what inputs you'd have, and what result you're looking for. If it solves a widespread problem, we'll prioritize building it."
+            },
+            {
+              q: "I'm a teacher — can I use these calculators in the classroom?",
+              a: "Yes, and we'd love that. All tools on calpercentage.com are completely free and require no accounts or installations. Feel free to share any page URL directly with students. If you have suggestions for features that would make the tools more useful in an educational context, let us know."
+            },
+            {
+              q: "What if I don't get a reply within the expected time?",
+              a: "If you haven't heard back within 3 business days, please check your spam folder first. If there's still no reply, feel free to submit the form again with a note that it's a follow-up. We don't want any message to slip through."
+            },
+          ].map(item => (
+            <div>
+              <p class="text-sm font-semibold text-ink mb-1">{item.q}</p>
+              <p class="text-sm text-secondary leading-6">{item.a}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
     </div>

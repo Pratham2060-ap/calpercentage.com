@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="About Us"
-  description="Learn about calpercentage.com — a free, fast, and clean percentage calculator built for students, shoppers, and professionals. No signup required, just instant answers."
+  description="calpercentage.com is a free online percentage calculator built for students, shoppers, teachers, and professionals. Instant results, no signup, no ads — just clean, accurate math."
 >
   <section class="max-w-3xl mx-auto px-5 py-16 sm:py-24">
 
@@ -23,39 +23,27 @@ import Layout from '../layouts/Layout.astro';
         <p class="text-sm text-secondary leading-6 mb-3">
           Most percentage calculators online are cluttered, slow, or only solve one type of problem. We built calpercentage.com to be the opposite: a clean, fast, multi-tool site that works on any device and gives you results the moment you start typing.
         </p>
+        <p class="text-sm text-secondary leading-6 mb-3">
+          Percentage calculations appear in nearly every area of daily life — comparing sale prices, understanding tax rates, interpreting test results, analyzing business metrics, calculating tips, and much more. Yet most people either reach for a generic calculator and work through the formula manually, or wade through ad-heavy websites to get a single answer. We set out to fix that.
+        </p>
         <p class="text-sm text-secondary leading-6">
-          Whether you're a student working out exam scores, a shopper comparing discounts, or a professional calculating percentage change in data — there's a tool here for you. All five calculators are purpose-built and run entirely in your browser.
+          Whether you're a student working out exam scores, a shopper comparing discounts, or a professional calculating percentage change in data — there is a dedicated tool here for you. All five calculators are purpose-built, run entirely in your browser, and update results as you type so you never have to hit a submit button.
         </p>
       </div>
 
       <div>
-        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">What we offer</h2>
-        <ul class="space-y-3">
-          {[
-            { title: "Percentage Calculator", desc: "Three modules in one — find P% of V, what % X is of Y, or recover the base.", href: "/percentage-calculator" },
-            { title: "What % is X of Y?", desc: "Compare any two numbers and get the percentage instantly with a visual bar.", href: "/percentage-of-number" },
-            { title: "Percentage Increase / Decrease", desc: "Find the % change between two values, or calculate a new value after a % shift.", href: "/percentage-increase" },
-            { title: "Discount Calculator", desc: "Find the final price after single or stacked discounts, or reverse-calculate the original price.", href: "/discount-calculator" },
-            { title: "Tip Calculator", desc: "Calculate tip, total, and per-person split for any restaurant bill.", href: "/tip-calculator" },
-          ].map(item => (
-            <li>
-              <a href={item.href} class="card flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 no-underline hover:shadow-[0_0_0_1.5px_var(--color-ink)]">
-                <span class="text-sm font-semibold text-ink" style="min-width:220px;">{item.title}</span>
-                <span class="text-sm text-secondary leading-5">{item.desc}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div>
-        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Our principles</h2>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Who uses calpercentage.com</h2>
+        <p class="text-sm text-secondary leading-6 mb-4">
+          Our tools are designed for anyone who needs quick, reliable percentage math. Here are some of the most common use cases:
+        </p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
-            { icon: "⚡", title: "Instant results", body: "No submit button. Results update live as you type." },
-            { icon: "🔒", title: "Privacy first", body: "All calculations happen in your browser. Nothing is stored or sent to any server." },
-            { icon: "🆓", title: "Always free", body: "No paywalls, no premium tiers, no signup required — ever." },
-            { icon: "📱", title: "Works everywhere", body: "Optimized for mobile, polished on desktop. No clutter, no sidebars." },
+            { icon: "🎓", title: "Students & teachers", body: "Calculate exam scores, grade boundaries, and test results. Convert raw marks to percentages or figure out what score you need to pass a class." },
+            { icon: "🛍️", title: "Shoppers & deal hunters", body: "Find the final price after a discount, compare percentage savings across stores, or verify whether a 'sale' price is actually a good deal." },
+            { icon: "💼", title: "Business professionals", body: "Track percentage growth in revenue, calculate profit margins, monitor KPIs, and report quarter-over-quarter changes clearly and accurately." },
+            { icon: "🍽️", title: "Diners & travelers", body: "Split restaurant bills, calculate the right tip percentage for any service level, and divide totals fairly among groups of any size." },
+            { icon: "🏠", title: "Personal finance", body: "Work out interest rate comparisons, tax percentages, savings growth rates, and household budget breakdowns without needing a spreadsheet." },
+            { icon: "📊", title: "Data analysts", body: "Quickly verify percentage change calculations, check relative differences, and sanity-check figures without switching between applications." },
           ].map(f => (
             <div class="card flex gap-3">
               <span class="text-xl mt-0.5">{f.icon}</span>
@@ -69,9 +57,102 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">What we offer</h2>
+        <p class="text-sm text-secondary leading-6 mb-4">
+          Five specialized calculators, each built to solve a specific family of percentage problems instantly:
+        </p>
+        <ul class="space-y-3">
+          {[
+            { title: "Percentage Calculator", desc: "Three modules in one — find P% of V, what % X is of Y, or recover the base value when you already know the percentage and the result.", href: "/percentage-calculator" },
+            { title: "What % is X of Y?", desc: "Compare any two numbers and instantly see the percentage relationship between them, with a visual progress bar to make the ratio intuitive.", href: "/percentage-of-number" },
+            { title: "Percentage Increase / Decrease", desc: "Calculate the exact percentage change between any two values — up or down — or find the new value after applying a percentage shift.", href: "/percentage-increase" },
+            { title: "Discount Calculator", desc: "Find the final price after single or stacked discounts, see exactly how much you save in dollars and percent, or reverse-calculate the original price from a marked-down sale price.", href: "/discount-calculator" },
+            { title: "Tip Calculator", desc: "Calculate tip amount, total bill, and per-person share for any restaurant table — with adjustable tip percentages and split counts.", href: "/tip-calculator" },
+          ].map(item => (
+            <li>
+              <a href={item.href} class="card flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 no-underline hover:shadow-[0_0_0_1.5px_var(--color-ink)]">
+                <span class="text-sm font-semibold text-ink" style="min-width:220px;">{item.title}</span>
+                <span class="text-sm text-secondary leading-5">{item.desc}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How our calculators work</h2>
+        <p class="text-sm text-secondary leading-6 mb-3">
+          Every calculator on calpercentage.com runs entirely in your browser using JavaScript. When you type a number, the result updates instantly — there is no server round-trip, no form submission, and no loading indicator. This means the tools respond immediately, work offline once the page has loaded, and your input data never leaves your device.
+        </p>
+        <p class="text-sm text-secondary leading-6 mb-3">
+          We use standard, universally accepted mathematical formulas for all calculations. For example, the percentage change formula is <strong class="text-ink">((New Value − Old Value) ÷ Old Value) × 100</strong>, and the discount formula is <strong class="text-ink">Final Price = Original Price × (1 − Discount% ÷ 100)</strong>. Results are rounded to two decimal places by default, which matches how percentages are displayed in most academic, financial, and professional contexts.
+        </p>
+        <p class="text-sm text-secondary leading-6">
+          Each calculator also explains the formula it uses below the result, so you can learn the math — not just get the answer. We believe a good calculator tool should make you more confident with numbers, not more dependent on a calculator.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Our principles</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            { icon: "⚡", title: "Instant results", body: "No submit button. Results update live as you type, making it fast to test multiple values and find the answer you need without any friction." },
+            { icon: "🔒", title: "Privacy first", body: "All calculations happen in your browser. Nothing is stored or sent to any server — your numbers stay entirely on your device." },
+            { icon: "🆓", title: "Always free", body: "No paywalls, no premium tiers, no signup required — ever. Every tool on this site is and will always remain completely free to use." },
+            { icon: "📱", title: "Works everywhere", body: "Fully optimized for mobile, polished on desktop. No clutter, no sidebars, no pop-ups. Just the tool you came for, on any screen size." },
+          ].map(f => (
+            <div class="card flex gap-3">
+              <span class="text-xl mt-0.5">{f.icon}</span>
+              <div>
+                <p class="text-sm font-semibold text-ink mb-1">{f.title}</p>
+                <p class="text-sm text-secondary leading-5">{f.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Frequently asked questions</h2>
+        <div class="space-y-6">
+          {[
+            {
+              q: "Is calpercentage.com completely free to use?",
+              a: "Yes — permanently and unconditionally free. There are no subscriptions, no premium features, and no hidden paywalls. All five calculators are available to every visitor at no cost, with no signup required."
+            },
+            {
+              q: "Do I need to create an account or log in?",
+              a: "No account is required, and there is no login. You can use every calculator on the site immediately, without registering or providing any personal information."
+            },
+            {
+              q: "Are the calculation results mathematically accurate?",
+              a: "All calculators use standard, verified mathematical formulas and are regularly tested. Results are displayed to two decimal places. For critical financial, academic, or professional decisions, we recommend verifying results independently or consulting a qualified expert."
+            },
+            {
+              q: "Does calpercentage.com work on smartphones and tablets?",
+              a: "Yes. The site is fully responsive and tested on iOS and Android. Every calculator is designed to be thumb-friendly and easy to use on small screens without zooming or horizontal scrolling."
+            },
+            {
+              q: "Does the site work without an internet connection?",
+              a: "Once the page has loaded in your browser, all calculations run locally with no need for an active internet connection. If you lose connectivity mid-session, the calculators will continue to work normally."
+            },
+            {
+              q: "How can I suggest a new calculator or report an error?",
+              a: "Use our contact form to describe the tool you'd like us to add, or report the calculation that doesn't seem right along with your input values. We read every message and respond within 2–3 business days."
+            },
+          ].map(item => (
+            <div>
+              <p class="text-sm font-semibold text-ink mb-1">{item.q}</p>
+              <p class="text-sm text-secondary leading-6">{item.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
         <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Get in touch</h2>
         <p class="text-sm text-secondary leading-6 mb-4">
-          Have a suggestion, found a bug, or want to see a new calculator added? We'd love to hear from you.
+          Have a suggestion, found a bug, or want to see a new calculator added? We'd love to hear from you. Use our contact form to send a message and we'll get back to you within 2–3 business days.
         </p>
         <a href="/contact" class="btn-primary">Contact us</a>
       </div>
