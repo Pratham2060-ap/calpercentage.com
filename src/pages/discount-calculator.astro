@@ -7,6 +7,39 @@ const related = [
   { href: "/percentage-increase",   label: "Percentage Change" },
   { href: "/tip-calculator",        label: "Tip" },
 ];
+
+const faqItems = [
+  {
+    q: "What is the formula to calculate a discount?",
+    a: "The standard discount formula is: Sale Price = Original Price × (1 − Discount% ÷ 100). For example, a $150 item at 30% off costs $150 × 0.70 = $105. Your savings are $45, or 30% of the original price."
+  },
+  {
+    q: "Is a 20% discount followed by a 10% discount the same as a 30% discount?",
+    a: "No — stacked discounts are not additive. A 20% discount followed by a 10% discount gives an effective combined discount of 28%, not 30%. On a $100 item: 20% off = $80, then 10% off that = $72. A flat 30% off would give $70. Stacked discounts always yield a lower effective rate than their sum."
+  },
+  {
+    q: "How do I find the original price from a sale price?",
+    a: "Use the reverse discount formula: Original Price = Sale Price ÷ (1 − Discount% ÷ 100). If an item is on sale for $75 after a 25% discount, the original price was $75 ÷ 0.75 = $100. This is useful when a store shows only the discounted price."
+  },
+  {
+    q: "What does 'effective discount' mean for stacked discounts?",
+    a: "The effective discount is the single equivalent percentage that represents the total reduction from the original price after all stacked discounts are applied. If a $200 item is reduced to $144 after two sequential discounts, the effective discount is (200 − 144) ÷ 200 = 28%, even if the two individual discounts were 20% and 10%."
+  },
+  {
+    q: "Can this discount calculator handle multiple coupon codes?",
+    a: "Yes. Use the Stacked Discounts section to model multiple sequential coupons or promo codes. Enter each discount percentage in its own row and the calculator applies them one after another, just as most checkout systems do. The result shows your final price, total savings, and the effective combined discount rate."
+  },
+];
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+  }))
+});
 ---
 
 <Layout
@@ -263,6 +296,69 @@ $90 ÷ 0.75 = $120</pre>
     </div>
   </section>
 
+  <!-- When to use -->
+  <section class="max-w-6xl mx-auto px-5 pb-16">
+    <div class="card-lg max-w-3xl">
+      <p class="form-label mb-3">Use cases</p>
+      <h2 class="text-xl font-semibold text-ink mb-4" style="letter-spacing:-0.03em;">When to use a discount calculator</h2>
+      <div class="space-y-4 text-sm text-secondary leading-6">
+        <p>
+          <strong class="text-ink">Retail shopping and seasonal sales.</strong> Black Friday, end-of-season clearances, and flash sales often stack multiple markdowns. A jacket originally priced at $180 might be 40% off for a clearance event, with an additional 15% off for loyalty members. Entering both percentages in the stacked discount section instantly shows your final price — $91.80 — and confirms you're saving $88.20 (49% effective discount), not the misleading "40% + 15% = 55%" figure stores sometimes imply.
+        </p>
+        <p>
+          <strong class="text-ink">Online orders with multiple coupon codes.</strong> Many e-commerce checkouts apply promo codes sequentially, not simultaneously. If you have a 10% site-wide code and a 20% category code, the order they're applied in changes nothing mathematically (the effective rate is always 28%), but understanding the real savings prevents checkout surprises.
+        </p>
+        <p>
+          <strong class="text-ink">Business and wholesale buying.</strong> Suppliers often publish a trade discount chain — for example, 25% off list price, then 10% off for bulk quantity, then 5% off for early payment. Businesses use the stacked discount model to evaluate true cost before placing purchase orders or comparing supplier quotes.
+        </p>
+        <p>
+          <strong class="text-ink">Reverse-engineering a sale price.</strong> If you saw a coat on sale for $68 tagged "was X% off" and want to know what it cost before the markdown, the reverse lookup does the work. Enter the sale price and the discount percentage, and the original price appears immediately — no mental math needed.
+        </p>
+        <p>
+          <strong class="text-ink">Comparing deals across currencies.</strong> The built-in currency selector lets you switch between USD, EUR, GBP, INR, JPY, CAD, and AUD so all displayed amounts match the currency you're actually spending, making cross-border price comparisons straightforward.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart shopping tips -->
+  <section class="max-w-6xl mx-auto px-5 pb-16">
+    <div class="card-lg max-w-3xl">
+      <p class="form-label mb-3">Tips</p>
+      <h2 class="text-xl font-semibold text-ink mb-4" style="letter-spacing:-0.03em;">How to get the most from any discount</h2>
+      <div class="space-y-4 text-sm text-secondary leading-6">
+        <p>
+          <strong class="text-ink">Always check the effective rate, not the advertised one.</strong> Two discounts of 25% off each sound like 50% off, but they compound to an effective rate of only 43.75%. Use the stacked discount calculator whenever you see multiple percentages advertised together so you know exactly what you're saving.
+        </p>
+        <p>
+          <strong class="text-ink">Sequence matters for taxes and fees — not for the final product price.</strong> Whether the store applies Coupon A first or Coupon B first, the final product price is identical because multiplication is commutative. However, if your order also includes a fixed shipping fee or a percentage-based service charge applied at a specific step, the order can affect the total bill. Model the full checkout flow in the stacked discount section if fees are involved.
+        </p>
+        <p>
+          <strong class="text-ink">Use reverse lookup to validate "was" prices.</strong> Retailers are legally required in many jurisdictions to base discounts on a genuine prior price. If a label says "$60 — now 40% off," the implied original is $100. Plug those numbers into reverse lookup to verify the arithmetic matches. If it doesn't, the stated discount percentage is misleading.
+        </p>
+        <p>
+          <strong class="text-ink">Track savings over a shopping trip.</strong> Run each item through the single discount calculator and note the "you save" figure. Summing those amounts gives you your real total savings, which is useful for budgeting and for evaluating whether a store membership or loyalty card pays for itself.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-6xl mx-auto px-5 pb-16">
+    <div class="card-lg max-w-3xl">
+      <p class="form-label mb-3">FAQ</p>
+      <h2 class="text-xl font-semibold text-ink mb-6" style="letter-spacing:-0.03em;">Frequently asked questions</h2>
+      <div class="space-y-5">
+        {faqItems.map((item) => (
+          <div>
+            <h3 class="text-sm font-semibold text-ink mb-1">{item.q}</h3>
+            <p class="text-sm text-secondary leading-6">{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Related -->
   <section class="max-w-6xl mx-auto px-5 pb-20">
     <p class="form-label mb-4">Related calculators</p>
@@ -272,6 +368,10 @@ $90 ÷ 0.75 = $120</pre>
       ))}
     </div>
   </section>
+
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={faqSchema} />
+  </Fragment>
 
 </Layout>
 
