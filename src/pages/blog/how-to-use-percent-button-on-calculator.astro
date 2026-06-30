@@ -356,14 +356,28 @@ const howToSchema = JSON.stringify({
     <!-- FAQ -->
     <section class="mb-10">
       <h2 class="text-xl font-semibold text-ink mb-4" style="letter-spacing:-0.03em;">Frequently Asked Questions</h2>
-      <div class="space-y-5">
-        {faqs.map(f => (
-          <div>
-            <h3 class="text-sm font-semibold text-ink mb-1.5">{f.q}</h3>
-            <p class="text-sm text-secondary leading-6">{f.a}</p>
-          </div>
+      <div class="space-y-3">
+        {faqs.map((f, i) => (
+          <details class="card faq-item">
+            <summary class="flex items-center justify-between cursor-pointer list-none gap-3">
+              <span class="text-base font-semibold text-ink" style="letter-spacing:-0.02em;">
+                <span class="form-label mr-2" style="display:inline;">Q{i + 1}</span>{f.q}
+              </span>
+              <svg class="faq-chevron flex-shrink-0 text-muted" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <p class="text-sm text-secondary leading-6 mt-3 pt-3" style="border-top:1px solid var(--color-line);">{f.a}</p>
+          </details>
         ))}
       </div>
+
+      <style>
+        .faq-item > summary { list-style: none; }
+        .faq-item > summary::-webkit-details-marker { display: none; }
+        .faq-item .faq-chevron { transition: transform 0.2s ease; }
+        .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+      </style>
     </section>
 
     <!-- Related articles -->
