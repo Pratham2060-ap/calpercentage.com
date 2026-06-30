@@ -23,6 +23,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# wrangler build cache
+.wrangler/
+
 # local dev logs and screenshots
 *.log
 *-dev.log
