@@ -10,8 +10,8 @@ const related = [
 ---
 
 <Layout
-  title="Percentage Calculator"
-  description="Solve any percentage problem — find what P% of V is, find what percent X is of Y, or find the base value. Instant results as you type."
+  title="Percentage Calculator — 3 Modes, Instant Results"
+  description="Free percentage calculator with 3 modes: find P% of a number, find what percent X is of Y, and find the base value when you know the part and percent. Instant results — no submit needed."
 >
 
   <!-- Page header -->
@@ -155,10 +155,70 @@ const related = [
     </div>
   </section>
 
-  <!-- Related guides -->
-  <section class="max-w-6xl mx-auto px-5 pb-16">
-    <div class="card-lg">
-      <p class="form-label mb-3">Related guides</p>
+  <!-- SEO Article -->
+  <section class="max-w-3xl mx-auto px-5 pb-16">
+    <div style="border-top:1px solid var(--color-line); padding-top:3rem;">
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">What Does This Percentage Calculator Do?</h2>
+      <p class="text-sm text-secondary leading-6 mb-4">This percentage calculator solves three distinct problems using a single formula. Whether you need to find a percentage of a number, reverse-engineer a base value, or figure out what percent one number represents of another — all three are here in one place.</p>
+      <p class="text-sm text-secondary leading-6 mb-3">Most percentage questions in everyday life fall into one of these three patterns:</p>
+      <ul class="text-sm text-secondary leading-7 mb-8 space-y-1 list-disc pl-5">
+        <li>You know the percentage and the total, and want the part → <strong class="text-ink">Module 1</strong></li>
+        <li>You know the part and the total, and want the percentage → <strong class="text-ink">Module 2</strong></li>
+        <li>You know the part and the percentage, and want the total → <strong class="text-ink">Module 3</strong></li>
+      </ul>
+      <p class="text-sm text-secondary leading-6 mb-10">Just pick the module that matches what you already know, fill in the two fields, and the result appears before you finish typing.</p>
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-5" style="letter-spacing:-0.03em;">How Each Module Works</h2>
+
+      <h3 class="text-base font-semibold text-ink mb-1.5" style="letter-spacing:-0.02em;">Module 1 — What is P% of V?</h3>
+      <p class="text-sm text-secondary leading-6 mb-2">This is the most common percentage question. You have a total and a percentage, and you want the actual amount. Formula: <strong class="text-ink">Result = (P ÷ 100) × V</strong>.</p>
+      <p class="text-sm text-secondary leading-6 mb-6">Example: What is 18% of 2,500? → (18 ÷ 100) × 2,500 = <strong class="text-ink">450</strong>. This is how GST on a product, commission on a sale, or interest on a loan is calculated.</p>
+
+      <h3 class="text-base font-semibold text-ink mb-1.5" style="letter-spacing:-0.02em;">Module 2 — X is what % of Y?</h3>
+      <p class="text-sm text-secondary leading-6 mb-2">Use this when you have two numbers and want to express one as a percentage of the other. Formula: <strong class="text-ink">Percentage = (X ÷ Y) × 100</strong>.</p>
+      <p class="text-sm text-secondary leading-6 mb-6">Example: You scored 72 out of 90 on a test. What percent did you get? → (72 ÷ 90) × 100 = <strong class="text-ink">80%</strong>. Useful for exam marks, survey results, market share, and budget usage.</p>
+
+      <h3 class="text-base font-semibold text-ink mb-1.5" style="letter-spacing:-0.02em;">Module 3 — X is P% of what?</h3>
+      <p class="text-sm text-secondary leading-6 mb-2">This module reverses the equation. You know the part and the percentage it represents, but not the original whole. Formula: <strong class="text-ink">Base = X ÷ (P ÷ 100)</strong>.</p>
+      <p class="text-sm text-secondary leading-6 mb-10">Example: 45 is 15% of what number? → 45 ÷ 0.15 = <strong class="text-ink">300</strong>. Handy when you know a sale price and the discount percent but want the original price.</p>
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4" style="letter-spacing:-0.03em;">Real-World Uses for Each Module</h2>
+      <div class="overflow-x-auto mb-10">
+        <table class="w-full text-sm text-secondary border-collapse">
+          <thead>
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <th class="text-left text-ink font-semibold py-2 pr-6" style="letter-spacing:-0.01em;">Module</th>
+              <th class="text-left text-ink font-semibold py-2">Common Situations</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y" style="border-color:var(--color-line);">
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <td class="py-2.5 pr-6 font-medium text-ink whitespace-nowrap">Module 1 (P% of V)</td>
+              <td class="py-2.5 leading-5">Tax on a bill, salary deduction, scholarship value, commission on sales</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <td class="py-2.5 pr-6 font-medium text-ink whitespace-nowrap">Module 2 (X is what % of Y)</td>
+              <td class="py-2.5 leading-5">Exam scores, attendance percentage, budget vs. actuals, market share</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 pr-6 font-medium text-ink whitespace-nowrap">Module 3 (X is P% of what)</td>
+              <td class="py-2.5 leading-5">Original price before discount, pre-tax amount, base salary before deduction</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">The Core Formula Behind All Three</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">All three modules are built from one equation: <strong class="text-ink">Percentage = (Part ÷ Whole) × 100</strong>. Each module rearranges it to solve for a different unknown:</p>
+      <ul class="text-sm text-secondary leading-7 mb-3 space-y-1 list-disc pl-5">
+        <li>Module 1 solves for the <strong class="text-ink">Part</strong>: Part = (Percentage ÷ 100) × Whole</li>
+        <li>Module 2 solves for the <strong class="text-ink">Percentage</strong>: Percentage = (Part ÷ Whole) × 100</li>
+        <li>Module 3 solves for the <strong class="text-ink">Whole</strong>: Whole = Part ÷ (Percentage ÷ 100)</li>
+      </ul>
+      <p class="text-sm text-secondary leading-6 mb-10">You don't need to memorize any of this. The calculator handles the math — but knowing which module maps to which unknown helps you pick the right one fast.</p>
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Related guides</h2>
       <div class="space-y-3 text-sm text-secondary leading-6">
         <p>
           For shopping math — finding the sale price after a "30% off" sign — use the <a href="/discount-calculator" class="text-accent font-medium hover:underline">Discount Calculator</a>. It handles stacked discounts and lets you reverse-engineer the original price from a sale price. Our guide on <a href="/blog/how-to-calculate-percentage-off" class="text-accent font-medium hover:underline">how to calculate percentage off</a> explains the formulas in detail.
@@ -173,6 +233,62 @@ const related = [
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section id="faq" class="max-w-3xl mx-auto px-5 pb-16">
+    <div style="border-top:1px solid var(--color-line); padding-top:3rem;">
+      <p class="form-label mb-2">FAQ</p>
+      <h2 class="text-2xl sm:text-3xl font-semibold text-ink mb-10" style="letter-spacing:-0.04em;">Frequently Asked Questions</h2>
+
+      <div class="space-y-3">
+        {[
+          {
+            q: "What is P% of a number — how does Module 1 work?",
+            a: "Module 1 finds a percentage of any number. Enter the percentage (P) and the value (V) — the calculator multiplies V by P/100 to give you the result. For example, 20% of 350 = 70. It's the go-to tool for finding tax amounts, discounts, commissions, or interest on a loan."
+          },
+          {
+            q: "How do I find what percent X is of Y?",
+            a: "Divide X by Y and multiply by 100 — Module 2 does this instantly. Enter your two numbers (the part X and the total Y) and the result is the percentage X represents of Y. For example, 45 out of 180 = 25%. Used for exam results, budget tracking, and market share analysis."
+          },
+          {
+            q: "What does \"X is P% of what?\" mean, and when do I use Module 3?",
+            a: "Module 3 finds the base (original whole) when you only know the part and its percentage. If you know that 60 is 30% of something, Module 3 tells you the \"something\" is 200. Common uses: recovering original price before a discount, finding pre-tax salary, or reversing a deduction."
+          },
+          {
+            q: "What is the basic percentage formula?",
+            a: "The core formula is: Percentage = (Part ÷ Whole) × 100. From this you can derive all three variants used here. Module 1 solves for the Part, Module 2 solves for the Percentage, and Module 3 solves for the Whole. All percentage problems reduce to solving one of these three unknowns."
+          },
+          {
+            q: "How do I calculate percentage of marks obtained?",
+            a: "Use Module 2: enter your marks scored as X and the maximum marks as Y. The result is your percentage. For example, 450 out of 600 → (450 ÷ 600) × 100 = 75%. This works for school exams, competitive tests, and grade reports of any kind."
+          },
+          {
+            q: "Is this percentage calculator free and accurate?",
+            a: "Yes — fully free, no login or signup required. All calculations run directly in your browser; nothing is sent to any server. Results are mathematically precise to up to 6 decimal places for small numbers, making it reliable for academic, financial, and everyday use."
+          },
+        ].map((item, i) => (
+          <details class="card faq-item">
+            <summary class="flex items-center justify-between cursor-pointer list-none gap-3">
+              <span class="text-base font-semibold text-ink" style="letter-spacing:-0.02em;">
+                <span class="form-label mr-2" style="display:inline;">Q{i + 1}</span>{item.q}
+              </span>
+              <svg class="faq-chevron flex-shrink-0 text-muted" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <p class="text-sm text-secondary leading-6 mt-3 pt-3" style="border-top:1px solid var(--color-line);">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <style>
+        .faq-item > summary { list-style: none; }
+        .faq-item > summary::-webkit-details-marker { display: none; }
+        .faq-item .faq-chevron { transition: transform 0.2s ease; }
+        .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+      </style>
+    </div>
+  </section>
+
   <!-- Related -->
   <section class="max-w-6xl mx-auto px-5 pb-20">
     <p class="form-label mb-4">Related calculators</p>
@@ -184,15 +300,56 @@ const related = [
   </section>
 
   <Fragment slot="head">
-    <script type="application\ld+json" is:inline>{
+    <script type="application/ld+json" is:inline>{
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Percentage Calculator",
       "url": "https://calpercentage.com/percentage-calculator",
-      "description": "Solve any percentage problem — find what P% of V is, find what percent X is of Y, or find the base value. Instant results as you type.",
+      "description": "Free percentage calculator with 3 modes: find P% of a number, find what percent X is of Y, and find the base value when you know the part and percent. Instant results — no submit needed.",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": [
+        "Module 1: Find P% of a number",
+        "Module 2: Find what percent X is of Y",
+        "Module 3: Find the base value from part and percent"
+      ]
+    }</script>
+    <script type="application/ld+json" is:inline>{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is P% of a number — how does Module 1 work?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Module 1 finds a percentage of any number. Enter the percentage (P) and the value (V) — the calculator multiplies V by P/100 to give you the result. For example, 20% of 350 = 70. It's the go-to tool for finding tax amounts, discounts, commissions, or interest on a loan." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find what percent X is of Y?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Divide X by Y and multiply by 100 — Module 2 does this instantly. Enter your two numbers (the part X and the total Y) and the result is the percentage X represents of Y. For example, 45 out of 180 = 25%. Used for exam results, budget tracking, and market share analysis." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does \"X is P% of what?\" mean, and when do I use Module 3?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Module 3 finds the base (original whole) when you only know the part and its percentage. If you know that 60 is 30% of something, Module 3 tells you the \"something\" is 200. Common uses: recovering original price before a discount, finding pre-tax salary, or reversing a deduction." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the basic percentage formula?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The core formula is: Percentage = (Part ÷ Whole) × 100. From this you can derive all three variants used here. Module 1 solves for the Part, Module 2 solves for the Percentage, and Module 3 solves for the Whole. All percentage problems reduce to solving one of these three unknowns." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate percentage of marks obtained?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Use Module 2: enter your marks scored as X and the maximum marks as Y. The result is your percentage. For example, 450 out of 600 → (450 ÷ 600) × 100 = 75%. This works for school exams, competitive tests, and grade reports of any kind." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this percentage calculator free and accurate?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — fully free, no login or signup required. All calculations run directly in your browser; nothing is sent to any server. Results are mathematically precise to up to 6 decimal places for small numbers, making it reliable for academic, financial, and everyday use." }
+        }
+      ]
     }</script>
   </Fragment>
 

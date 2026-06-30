@@ -10,8 +10,8 @@ const related = [
 ---
 
 <Layout
-  title="What Percent is X of Y"
-  description="Find what percent one number is of another. Enter X and Y and instantly see what percentage X is of Y, with a visual bar and formula."
+  title="What Percent is X of Y — Percentage of Number Calculator"
+  description="Free calculator: find what percentage one number is of another. Enter X and Y to instantly get the result with a visual progress bar, worked example, and the formula explained."
 >
 
   <!-- Page header -->
@@ -128,10 +128,63 @@ const related = [
     </div>
   </section>
 
-  <!-- Related guides -->
-  <section class="max-w-6xl mx-auto px-5 pb-16">
-    <div class="card-lg max-w-2xl">
-      <p class="form-label mb-3">Related guides</p>
+  <!-- SEO Article -->
+  <section class="max-w-3xl mx-auto px-5 pb-16">
+    <div style="border-top:1px solid var(--color-line); padding-top:3rem;">
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">What Does This Calculator Do?</h2>
+      <p class="text-sm text-secondary leading-6 mb-4">This calculator answers one of the most common everyday math questions: <strong class="text-ink">what percentage is X of Y?</strong> You enter two numbers — the part (X) and the whole (Y) — and it instantly tells you what fraction the part is when expressed as a percentage. A visual progress bar updates as you type so you can see the proportion at a glance, and a worked formula shows exactly how the result was calculated.</p>
+      <p class="text-sm text-secondary leading-6 mb-10">Unlike a general-purpose percentage calculator, this tool is built specifically for this one question. It handles decimals, numbers greater than 100%, and negative values — and it copies the result to your clipboard in one click.</p>
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How to Find What Percent X is of Y</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">The formula is straightforward: divide X by Y, then multiply by 100. Written out: <strong class="text-ink">Percentage = (X ÷ Y) × 100</strong>.</p>
+      <p class="text-sm text-secondary leading-6 mb-3">Here are three worked examples across different contexts:</p>
+      <ul class="text-sm text-secondary leading-7 mb-3 space-y-2 list-disc pl-5">
+        <li><strong class="text-ink">Exam score:</strong> You scored 72 out of 90. → (72 ÷ 90) × 100 = <strong class="text-ink">80%</strong></li>
+        <li><strong class="text-ink">Sales target:</strong> Your team closed 340 deals out of a 500-deal target. → (340 ÷ 500) × 100 = <strong class="text-ink">68%</strong></li>
+        <li><strong class="text-ink">Budget usage:</strong> You've spent ₹12,000 out of a ₹50,000 budget. → (12,000 ÷ 50,000) × 100 = <strong class="text-ink">24%</strong></li>
+      </ul>
+      <p class="text-sm text-secondary leading-6 mb-10">In each case the calculation is identical — only the context changes. The formula always divides the part by the whole and scales to 100.</p>
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">When to Use "What Percent is X of Y?"</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">This is the right tool when you already have both numbers and want to express the relationship as a percentage. Common situations include:</p>
+      <ul class="text-sm text-secondary leading-7 mb-3 space-y-2 list-disc pl-5">
+        <li><strong class="text-ink">Academic results</strong> — converting marks obtained out of total marks into a percentage score (e.g., 450 out of 500 = 90%)</li>
+        <li><strong class="text-ink">Progress tracking</strong> — seeing how far along a project, fitness goal, or savings target you are</li>
+        <li><strong class="text-ink">Market and survey analysis</strong> — expressing how many respondents chose an option out of total responses</li>
+        <li><strong class="text-ink">Financial reporting</strong> — showing what portion of revenue comes from one product category</li>
+        <li><strong class="text-ink">Attendance and compliance</strong> — calculating what percentage of days were present, or tasks completed</li>
+      </ul>
+      <p class="text-sm text-secondary leading-6 mb-10">If the result comes out above 100%, that simply means X is larger than Y — the calculator handles that correctly and the progress bar turns red to flag it visually.</p>
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How This Differs From Other Percentage Calculations</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">It's easy to confuse this with two other common percentage questions — here's a quick comparison:</p>
+      <div class="overflow-x-auto mb-10">
+        <table class="w-full text-sm text-secondary border-collapse">
+          <thead>
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <th class="text-left text-ink font-semibold py-2 pr-6" style="letter-spacing:-0.01em;">Question</th>
+              <th class="text-left text-ink font-semibold py-2">Tool to use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <td class="py-2.5 pr-6 leading-5">What % is X of Y? (this page)</td>
+              <td class="py-2.5 leading-5">Percentage of Number</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <td class="py-2.5 pr-6 leading-5">What is P% of a number?</td>
+              <td class="py-2.5 leading-5"><a href="/percentage-calculator" class="text-accent font-medium hover:underline">Percentage Calculator — Module 1</a></td>
+            </tr>
+            <tr>
+              <td class="py-2.5 pr-6 leading-5">How much did a value change in %?</td>
+              <td class="py-2.5 leading-5"><a href="/percentage-increase" class="text-accent font-medium hover:underline">Percentage Change Calculator</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Related guides</h2>
       <div class="space-y-3 text-sm text-secondary leading-6">
         <p>
           If you need to find P% of a value (rather than what percent X is of Y), use <a href="/percentage-calculator" class="text-accent font-medium hover:underline">Module 1 of the Percentage Calculator</a>. It also handles reverse problems like "X is P% of what number?" in the same place.
@@ -140,6 +193,62 @@ const related = [
           Tracking how a value changed over time? The <a href="/percentage-increase" class="text-accent font-medium hover:underline">Percentage Change Calculator</a> gives you the exact percentage increase or decrease between two numbers. For discounts, use the <a href="/discount-calculator" class="text-accent font-medium hover:underline">Discount Calculator</a> — it finds the sale price, savings, and supports stacked discounts. Our guide on <a href="/blog/how-to-calculate-percentage-off" class="text-accent font-medium hover:underline">how to calculate percentage off</a> walks through the math behind discount calculations.
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="max-w-3xl mx-auto px-5 pb-16">
+    <div style="border-top:1px solid var(--color-line); padding-top:3rem;">
+      <p class="form-label mb-2">FAQ</p>
+      <h2 class="text-2xl sm:text-3xl font-semibold text-ink mb-10" style="letter-spacing:-0.04em;">Frequently Asked Questions</h2>
+
+      <div class="space-y-3">
+        {[
+          {
+            q: "What is the formula for finding what percent X is of Y?",
+            a: "The formula is: Percentage = (X ÷ Y) × 100. Divide the part (X) by the whole (Y), then multiply by 100 to convert the decimal to a percentage. For example, 45 out of 180 → (45 ÷ 180) × 100 = 25%. This calculator applies this formula instantly as you type."
+          },
+          {
+            q: "What is 20 out of 25 as a percentage?",
+            a: "(20 ÷ 25) × 100 = 80%. You scored 80 percent. You can verify this using the calculator above — enter 20 as X and 25 as Y and the result and progress bar update immediately."
+          },
+          {
+            q: "How do I calculate percentage of marks obtained?",
+            a: "Enter your marks scored as X and the total maximum marks as Y. The calculator returns your percentage. For example, 378 out of 500 → (378 ÷ 500) × 100 = 75.6%. This works for any board exam, competitive test, or internal assessment."
+          },
+          {
+            q: "What is 15 out of 20 as a percentage?",
+            a: "(15 ÷ 20) × 100 = 75%. Enter 15 as X and 20 as Y in the calculator above. The progress bar will show 75% and the worked formula will display the exact calculation step."
+          },
+          {
+            q: "Can the result be more than 100%?",
+            a: "Yes. If X is larger than Y — for example, you exceeded your target — the result will be greater than 100%. This is mathematically correct. The progress bar on this calculator turns red in that case to visually flag that X has surpassed Y."
+          },
+          {
+            q: "What is the difference between percentage of and percentage change?",
+            a: "\"What percent is X of Y\" measures a proportion at a single point in time — how large X is relative to Y. Percentage change measures how much a value shifted between two points in time, using the formula [(New − Old) ÷ Old] × 100. Use this page for proportions; use the Percentage Change Calculator for growth or decline over time."
+          },
+        ].map((item, i) => (
+          <details class="card faq-item">
+            <summary class="flex items-center justify-between cursor-pointer list-none gap-3">
+              <span class="text-base font-semibold text-ink" style="letter-spacing:-0.02em;">
+                <span class="form-label mr-2" style="display:inline;">Q{i + 1}</span>{item.q}
+              </span>
+              <svg class="faq-chevron flex-shrink-0 text-muted" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <p class="text-sm text-secondary leading-6 mt-3 pt-3" style="border-top:1px solid var(--color-line);">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <style>
+        .faq-item > summary { list-style: none; }
+        .faq-item > summary::-webkit-details-marker { display: none; }
+        .faq-item .faq-chevron { transition: transform 0.2s ease; }
+        .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+      </style>
     </div>
   </section>
 
@@ -154,15 +263,58 @@ const related = [
   </section>
 
   <Fragment slot="head">
-    <script type="application\ld+json" is:inline>{
+    <script type="application/ld+json" is:inline>{
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Percentage of Number Calculator",
       "url": "https://calpercentage.com/percentage-of-number",
-      "description": "Find what percent one number is of another. Enter X and Y and instantly see what percentage X is of Y, with a visual bar and formula.",
+      "description": "Free calculator: find what percentage one number is of another. Enter X and Y to instantly get the result with a visual progress bar, worked example, and the formula explained.",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": [
+        "Instant percentage result as you type",
+        "Visual progress bar",
+        "Worked formula shown for every calculation",
+        "One-click copy",
+        "Shareable URL with values encoded"
+      ]
+    }</script>
+    <script type="application/ld+json" is:inline>{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the formula for finding what percent X is of Y?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The formula is: Percentage = (X ÷ Y) × 100. Divide the part (X) by the whole (Y), then multiply by 100 to convert the decimal to a percentage. For example, 45 out of 180 → (45 ÷ 180) × 100 = 25%." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is 20 out of 25 as a percentage?",
+          "acceptedAnswer": { "@type": "Answer", "text": "(20 ÷ 25) × 100 = 80%. You scored 80 percent. Enter 20 as X and 25 as Y in the calculator to verify instantly." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate percentage of marks obtained?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Enter your marks scored as X and the total maximum marks as Y. The calculator returns your percentage. For example, 378 out of 500 → (378 ÷ 500) × 100 = 75.6%. This works for any board exam, competitive test, or internal assessment." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is 15 out of 20 as a percentage?",
+          "acceptedAnswer": { "@type": "Answer", "text": "(15 ÷ 20) × 100 = 75%. Enter 15 as X and 20 as Y in the calculator. The progress bar will show 75% and the worked formula will display the exact calculation step." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the result be more than 100%?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. If X is larger than Y — for example, you exceeded your target — the result will be greater than 100%. This is mathematically correct. The progress bar on this calculator turns red in that case to visually flag that X has surpassed Y." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between percentage of and percentage change?",
+          "acceptedAnswer": { "@type": "Answer", "text": "\"What percent is X of Y\" measures a proportion at a single point in time — how large X is relative to Y. Percentage change measures how much a value shifted between two points in time, using the formula [(New − Old) ÷ Old] × 100. Use this page for proportions; use the Percentage Change Calculator for growth or decline over time." }
+        }
+      ]
     }</script>
   </Fragment>
 
