@@ -1,0 +1,395 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const lastUpdated = "June 30, 2026";
+
+const compareTable = [
+  {
+    type: "Standard / desk calculator",
+    reads: "20% of 200, then added",
+    result: "240",
+  },
+  {
+    type: "Scientific calculator (e.g. Casio fx-series)",
+    reads: "0.2 added literally",
+    result: "200.2",
+  },
+  {
+    type: "Phone calculator (iPhone / Android)",
+    reads: "20% of 200, then added",
+    result: "240",
+  },
+];
+
+const operations = [
+  { job: "Discount", keys: "80 − 25 %", result: "60", note: "25% off an $80 item" },
+  { job: "Markup", keys: "50 + 40 %", result: "70", note: "40% markup on a $50 cost" },
+  { job: "Sales tax", keys: "120 + 7 %", result: "128.40", note: "7% tax on a $120 purchase" },
+  { job: "Tip", keys: "45 × 18 %", result: "8.10", note: "18% tip on a $45 bill" },
+];
+
+const faqs: { q: string; a: string }[] = [
+  {
+    q: "How to use the percent button on a calculator",
+    a: "Enter your base number, press an operator, type the percentage, then press the % key. For example, 200 × 20 % gives 40. The button divides the percentage by 100 and applies it to the number you entered first. Use + or − instead of × to add or subtract that percentage in one step."
+  },
+  {
+    q: "How do I use the percentage button on a calculator",
+    a: "Type the first number, an operation, the second number, then %. On 150 × 10 % you get 15. The percent key only works as part of an operation — pressing it on its own does nothing useful. Use × for “percent of,” and + or − for percentage increases and decreases."
+  },
+  {
+    q: "How do you use the percent button on a calculator",
+    a: "Press % after an operator to apply a percentage to the number you started with. 400 − 25 % returns 300, subtracting 25% (which is 100) from 400. With ×, it finds a flat percentage instead: 400 × 25 % equals 100. The button always references the first number in the operation. If pressing % on its own returns 0, that confirms the key needs a pending operation to act on."
+  },
+  {
+    q: "How to use percentage key on calculator",
+    a: "Enter the base value, choose ×, +, or −, type the percentage, then tap the % key. 60 × 50 % shows 30. For an increase use +, for a decrease use −. On some scientific models the same keys behave differently, so sanity-check with a round case like 100 + 10 %, which should give 110. When unsure, multiply by the decimal instead — 60 × 1.5 for a 50% increase always works."
+  },
+  {
+    q: "Can you explain how to calculate percentage on a mobile calculator",
+    a: "Yes. On a phone, type the number, tap an operator, type the percent, then tap %. On iPhone, 200 × 20 % shows 40; on many Android calculators, 200 + 20 % shows 240. Some phones apply % instantly while others wait for =. Rotate to landscape for a scientific layout if you need more functions."
+  },
+  {
+    q: "How do you use the percentage button on a calculator",
+    a: "The percent button converts a number to a percentage of whatever you entered before the operator. 90 × 30 % equals 27. Pair it with + for markups and tax (90 + 30 % = 117) or − for discounts (90 − 30 % = 63). It saves you from converting percentages to decimals by hand."
+  },
+];
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calpercentage.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://calpercentage.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "How to Use the Percent Button on a Calculator", "item": "https://calpercentage.com/blog/how-to-use-percent-button-on-calculator" }
+  ]
+});
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+});
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Use the Percent (%) Button on a Calculator",
+  "description": "Learn exactly how the percent button works on standard, scientific, and phone calculators — with worked keystroke examples for discounts, markup, tax, and tips.",
+  "datePublished": "2026-06-30",
+  "dateModified": "2026-06-30",
+  "author": {
+    "@type": "Organization",
+    "name": "Calpercentage.com Team",
+    "url": "https://calpercentage.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Calpercentage.com",
+    "url": "https://calpercentage.com/"
+  },
+  "mainEntityOfPage": "https://calpercentage.com/blog/how-to-use-percent-button-on-calculator",
+  "image": "https://calpercentage.com/blog/how-to-use-percent-button-on-calculator/og-image.png"
+});
+
+const howToSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Use the Percent (%) Button on a Calculator",
+  "description": "Step-by-step keystroke instructions for using the percent button on standard, scientific, and mobile calculators.",
+  "datePublished": "2026-06-30",
+  "dateModified": "2026-06-30",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "How do I use the percentage button on a calculator?",
+      "text": "Press the number, an operator, the second number, then the % key. The calculator turns the second number into a percentage of the first. Example: 80 × 25 % returns 20.",
+      "url": "https://calpercentage.com/blog/how-to-use-percent-button-on-calculator#use-the-percentage-button"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "How to use the percentage key on a calculator",
+      "text": "Enter the base number, choose the operation, type the percentage value, and finish with the % key. Example: 90 × 15 % shows 13.5 instantly.",
+      "url": "https://calpercentage.com/blog/how-to-use-percent-button-on-calculator#use-the-percentage-key"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "How do you use the percent button on a calculator?",
+      "text": "Use + or − before the percent value to add or subtract a percentage in one step. Example: 250 − 30 % returns 175.",
+      "url": "https://calpercentage.com/blog/how-to-use-percent-button-on-calculator#add-or-subtract-a-percent"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Can you explain how to calculate percentage on a mobile calculator?",
+      "text": "On a phone, type the base number, tap the operator, type the percent value, then tap %. Example: on iPhone, 200 × 20 % shows 40.",
+      "url": "https://calpercentage.com/blog/how-to-use-percent-button-on-calculator#mobile-calculator"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "What is the best way to use the percentage button on different calculators?",
+      "text": "Skip the % key and multiply by the decimal form of the percentage. Example: 60 × 1.15 for a 15% increase works on any device.",
+      "url": "https://calpercentage.com/blog/how-to-use-percent-button-on-calculator#best-way"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Standard calculator vs scientific calculator vs phone calculator",
+      "text": "Standard calculators treat % as an add-on to the previous operation, scientific calculators often read % as a literal divide-by-100, and phone calculators usually match standard behavior.",
+      "url": "https://calpercentage.com/blog/how-to-use-percent-button-on-calculator#calculator-differences"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Common percentage button operations: discount, markup, tax, tip",
+      "text": "Discounts and markups use − and +, tax uses +, and tips use ×. Example: 45 × 18 % returns 8.10 for an 18% tip.",
+      "url": "https://calpercentage.com/blog/how-to-use-percent-button-on-calculator#common-operations"
+    }
+  ]
+});
+---
+
+<Layout
+  title="How to Use the Percent (%) Button on a Calculator"
+  description="Learn exactly how the percent button works on standard, scientific, and phone calculators — with worked keystroke examples for discounts, markup, tax, and tips."
+>
+
+  <Fragment slot="head">
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How to Use the Percent (%) Button on a Calculator" />
+    <meta property="og:description" content="Learn exactly how the percent button works on standard, scientific, and phone calculators — with worked keystroke examples for discounts, markup, tax, and tips." />
+    <meta property="og:url" content="https://calpercentage.com/blog/how-to-use-percent-button-on-calculator" />
+    <meta property="og:image" content="/blog/how-to-use-percent-button-on-calculator/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How to Use the Percent (%) Button on a Calculator" />
+    <meta name="twitter:description" content="Learn exactly how the percent button works on standard, scientific, and phone calculators — with worked keystroke examples for discounts, markup, tax, and tips." />
+
+    <script type="application/ld+json" is:inline set:html={breadcrumbSchema} />
+    <script type="application/ld+json" is:inline set:html={articleSchema} />
+    <script type="application/ld+json" is:inline set:html={howToSchema} />
+    <script type="application/ld+json" is:inline set:html={faqSchema} />
+  </Fragment>
+
+  <article class="max-w-3xl mx-auto px-5 py-10 sm:py-16">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-muted mb-5 font-mono">
+      <a href="/" class="hover:text-ink no-underline transition-colors">Home</a>
+      <span>/</span>
+      <a href="/blog" class="hover:text-ink no-underline transition-colors">Blog</a>
+      <span>/</span>
+      <span class="text-ink">How to Use the Percent Button on a Calculator</span>
+    </nav>
+
+    <p class="form-label mb-2">Guide</p>
+    <h1 class="text-3xl sm:text-4xl font-semibold text-ink mb-3" style="letter-spacing:-0.05em; line-height:1.1;">
+      How to Use the Percent (%) Button on a Calculator
+    </h1>
+    <p class="text-xs text-muted font-mono mb-6">Written by Calpercentage.com Team · Last updated: {lastUpdated}</p>
+
+    <!-- Quick Answer -->
+    <div class="quick-answer card mb-10" style="border-left:3px solid var(--color-accent);">
+      <p class="form-label mb-2">Quick Answer</p>
+      <p class="text-base text-secondary leading-7">
+        The percent button divides a number by 100, then applies it to the number already entered. Type <code class="text-sm font-mono bg-canvas-soft-2 px-1.5 py-0.5 rounded-[4px]">200 × 20 %</code> and you get <strong class="text-ink">40</strong> — that's 20% of 200. Type <code class="text-sm font-mono bg-canvas-soft-2 px-1.5 py-0.5 rounded-[4px]">200 + 20 %</code> and you get <strong class="text-ink">240</strong> — a 20% markup. Behavior varies across standard, scientific, and phone calculators — this guide covers all three.
+      </p>
+    </div>
+
+    <!-- Intro -->
+    <div class="space-y-3 mb-10">
+      <p class="text-base text-secondary leading-7">
+        The % key is the most misunderstood button on any calculator — largely because no two calculator types treat it the same way. A standard desk calculator, a Casio scientific model, and the calculator app on your phone can each return a different answer from the identical key sequence.
+      </p>
+      <p class="text-base text-secondary leading-7">
+        This guide shows the exact keystrokes for each device, with real numbers you can reproduce yourself, plus a fail-safe method that gives the right answer on every calculator. Every example below is one you can punch into your own calculator right now to see how it responds.
+      </p>
+    </div>
+
+    <!-- H2 1 -->
+    <section class="mb-10" id="use-the-percentage-button">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How do I use the percentage button on a calculator?</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        Press a number, an operator (×, +, or −), the second number, then the % key — the calculator converts that second number into a percentage of the first.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">80 × 25 % = 20  (the % key turns 25 into 0.25, then 80 × 0.25 = 20)</code>
+      <p class="text-sm text-secondary leading-6">
+        The percent key never works alone. It always acts on the operation you just entered, which is why pressing % by itself usually shows 0 or simply repeats your last number.
+      </p>
+      <p class="text-sm text-secondary leading-6 mt-3">
+        The same pattern scales to any percentage. Press <code class="text-xs font-mono bg-canvas-soft-2 px-1 py-0.5 rounded-[4px]">1500 × 4 %</code> and you get 60 — handy for working out 4% interest on a $1,500 balance or a 4% processing fee on a payment. For one-off calculations without keystroke guesswork, the <a href="/percentage-calculator" class="text-accent font-medium hover:underline">percentage calculator</a> handles all three percentage question types for you.
+      </p>
+    </section>
+
+    <!-- H2 2 -->
+    <section class="mb-10" id="use-the-percentage-key">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How to use the percentage key on a calculator</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        Enter your base number first, choose the operation, type the percentage value, and finish with the % key instead of the equals key.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">90 × 15 % = 13.5  (15% of a $90 bill, shown the moment you press %)</code>
+      <p class="text-sm text-secondary leading-6">
+        On most models the % key completes the calculation, so you don't need to press equals. If yours instead shows the raw percentage value after %, just press = afterward — <code class="text-xs font-mono bg-canvas-soft-2 px-1 py-0.5 rounded-[4px]">90 × 15 % =</code> also returns 13.5. Both key orders land on the same answer.
+      </p>
+      <p class="text-sm text-secondary leading-6 mt-3">
+        Many calculators also reverse the question. Press <code class="text-xs font-mono bg-canvas-soft-2 px-1 py-0.5 rounded-[4px]">45 ÷ 60 %</code> and you get 75, telling you that 45 is 75% of 60. Not every model supports this division shortcut, so test yours with a known pair like <code class="text-xs font-mono bg-canvas-soft-2 px-1 py-0.5 rounded-[4px]">25 ÷ 50 %</code>, which should return 50.
+      </p>
+    </section>
+
+    <!-- H2 3 -->
+    <section class="mb-10" id="add-or-subtract-a-percent">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">How do you use the percent button on a calculator?</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        Put + or − before the percent value to add or subtract a percentage in a single step, rather than just finding a flat percentage.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-2">250 − 30 % = 175  (takes 30% of 250, which is 75, and subtracts it)</code>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">250 + 8 % = 270  (adds an 8% increase of 20)</code>
+      <p class="text-sm text-secondary leading-6">
+        This add/subtract behavior is what makes the percent button genuinely useful for discounts and tax. The calculator silently computes the percentage of the first number, then applies it back to that same number — two operations from three key presses.
+      </p>
+      <p class="text-sm text-secondary leading-6 mt-3">
+        Be careful when chaining discounts, because each percentage applies to the running total, not the original price. Press <code class="text-xs font-mono bg-canvas-soft-2 px-1 py-0.5 rounded-[4px]">100 − 20 %</code> to get 80, then <code class="text-xs font-mono bg-canvas-soft-2 px-1 py-0.5 rounded-[4px]">− 10 %</code> and you get 72 — not 70. Two stacked discounts of 20% and 10% never equal a single 30% off.
+      </p>
+    </section>
+
+    <!-- H2 4 -->
+    <section class="mb-10" id="mobile-calculator">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Can you explain how to calculate percentage on a mobile calculator?</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        On a phone, type the base number, tap the operator, type the percent value, then tap % — the same logic as a physical calculator, with one quirk to watch.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-2">iPhone:  200 × 20 % = 40   ·   Android:  200 + 20 % = 240</code>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        Tapping % converts the value instantly on iPhone, so the next digit you type replaces it rather than chaining onto it. Some phone calculators apply % the moment you tap it, while others wait for =.
+      </p>
+      <p class="text-sm text-secondary leading-6">
+        If a result looks wrong, rotate the phone to landscape to reveal the scientific layout, or confirm the figure with the <a href="/percentage-calculator" class="text-accent font-medium hover:underline">percentage calculator</a>.
+      </p>
+    </section>
+
+    <!-- H2 5 -->
+    <section class="mb-10" id="best-way">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">What is the best way to use the percentage button on different calculators?</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        The most reliable method across every calculator is to skip the % key entirely and multiply by the decimal form of the percentage.
+      </p>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-2">60 × 1.15 = 69   (a 15% increase, predictable on any device)</code>
+      <code class="block text-xs font-mono text-muted bg-canvas-soft-2 px-3 py-2 rounded-[6px] mb-3">60 × 0.85 = 51   (a 15% decrease)</code>
+      <p class="text-sm text-secondary leading-6">
+        Converting a percent to a decimal — move the decimal point two places left, so 15% becomes 0.15 — removes all guesswork about whether your specific calculator adds, subtracts, or just multiplies. When precision matters, this is the safest habit to build.
+      </p>
+      <p class="text-sm text-secondary leading-6 mt-3">
+        Keep a few conversions in mind: 5% = 0.05, 10% = 0.10, 25% = 0.25, and 50% = 0.50. For an increase, add 1 to the decimal (1.05 for a 5% rise); for a decrease, subtract it from 1 (0.95 for a 5% drop). With those, the % key becomes optional.
+      </p>
+    </section>
+
+    <!-- H2 6 -->
+    <section class="mb-10" id="calculator-differences">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Standard calculator vs scientific calculator vs phone calculator — the differences</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        Standard calculators treat % as an add-on to the previous operation, many scientific calculators read % as a literal "divide by 100," and phone calculators usually behave like a standard desk model.
+      </p>
+      <p class="text-sm text-secondary leading-6 mb-4">
+        Type <code class="text-xs font-mono bg-canvas-soft-2 px-1 py-0.5 rounded-[4px]">200 + 20 %</code> on a basic desk calculator and you get 240. Type the same sequence on many scientific calculators and you may get 200.2, because the calculator reads 20% as 0.2 and adds it literally. Here's how the same keystrokes resolve:
+      </p>
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm">
+          <thead>
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <th class="text-left py-2 pr-4 form-label">Calculator type</th>
+              <th class="text-left py-2 pr-4 form-label">How it reads 200 + 20 %</th>
+              <th class="text-left py-2 form-label">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            {compareTable.map(row => (
+              <tr style="border-bottom:1px solid var(--color-line);">
+                <td class="py-2.5 pr-4 text-secondary">{row.type}</td>
+                <td class="py-2.5 pr-4 text-secondary">{row.reads}</td>
+                <td class="py-2.5 font-semibold text-ink font-mono">{row.result}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-secondary leading-6">
+        Because the result depends on the device, multiplying by the decimal (200 × 1.2 for a 20% increase) is the one method that gives 240 on every calculator. When in doubt, test your model with a known case like 100 + 10 %, which should return 110.
+      </p>
+    </section>
+
+    <!-- H2 7 -->
+    <section class="mb-10" id="common-operations">
+      <h2 class="text-xl font-semibold text-ink mb-3" style="letter-spacing:-0.03em;">Common percentage button operations: discount, markup, tax, tip</h2>
+      <p class="text-sm text-secondary leading-6 mb-3">
+        The four everyday jobs for the percent button — discounts, markups, sales tax, and tips — all follow the same add-or-subtract pattern.
+      </p>
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm">
+          <thead>
+            <tr style="border-bottom:1px solid var(--color-line);">
+              <th class="text-left py-2 pr-4 form-label">Task</th>
+              <th class="text-left py-2 pr-4 form-label">Keys</th>
+              <th class="text-left py-2 pr-4 form-label">Result</th>
+              <th class="text-left py-2 form-label">Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            {operations.map(op => (
+              <tr style="border-bottom:1px solid var(--color-line);">
+                <td class="py-2.5 pr-4 font-semibold text-ink">{op.job}</td>
+                <td class="py-2.5 pr-4 text-secondary font-mono">{op.keys}</td>
+                <td class="py-2.5 pr-4 font-semibold text-ink font-mono">{op.result}</td>
+                <td class="py-2.5 text-secondary">{op.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-secondary leading-6">
+        Discounts and markups use − and +, sales tax uses +, and a tip is usually a flat percentage found with ×. For shopping math without the keystrokes, the <a href="/discount-calculator" class="text-accent font-medium hover:underline">discount calculator</a> shows the sale price and exact savings, and the <a href="/tip-calculator" class="text-accent font-medium hover:underline">tip calculator</a> splits a bill and figures the tip at any percentage.
+      </p>
+      <p class="text-sm text-secondary leading-6 mt-3">
+        To combine operations — say, tax then tip on a meal — apply them one at a time to the running total. On a $120 bill, <code class="text-xs font-mono bg-canvas-soft-2 px-1 py-0.5 rounded-[4px]">120 + 7 %</code> gives 128.40 after tax, then <code class="text-xs font-mono bg-canvas-soft-2 px-1 py-0.5 rounded-[4px]">× 18 %</code> shows the tip on that post-tax total. Working step by step prevents the rounding mistakes that catch people at the register.
+      </p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-4" style="letter-spacing:-0.03em;">Frequently Asked Questions</h2>
+      <div class="space-y-5">
+        {faqs.map(f => (
+          <div>
+            <h3 class="text-sm font-semibold text-ink mb-1.5">{f.q}</h3>
+            <p class="text-sm text-secondary leading-6">{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Related articles -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold text-ink mb-4" style="letter-spacing:-0.03em;">Related Guides</h2>
+      <div class="space-y-3">
+        <div class="card">
+          <h3 class="text-sm font-semibold text-ink mb-1"><a href="/blog/how-to-calculate-percentage-change" class="text-accent hover:underline">How to Calculate Percentage Change — For Rent, Salary, Prices &amp; Investments</a></h3>
+          <p class="text-sm text-secondary leading-5">One formula for rent hikes, raises, price moves, and investment returns — with worked examples and a cheat sheet.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-sm font-semibold text-ink mb-1"><a href="/blog/how-to-calculate-percentage-off" class="text-accent hover:underline">How to Calculate Percentage Off Any Price</a></h3>
+          <p class="text-sm text-secondary leading-5">Discount formulas, stacked discounts, and how to find the original price before a markdown.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <div class="card-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <p class="text-sm font-semibold text-ink mb-1">Skip the keystroke guesswork.</p>
+        <p class="text-sm text-secondary leading-5">Enter any numbers and get a clean percentage result — no wondering whether your calculator adds, subtracts, or just multiplies.</p>
+      </div>
+      <a href="/percentage-calculator" class="btn-primary flex-shrink-0">Open Calculator →</a>
+    </div>
+    <p class="text-xs text-muted mt-4">Also see: <a href="/discount-calculator" class="text-accent hover:underline">Discount Calculator</a> · <a href="/tip-calculator" class="text-accent hover:underline">Tip Calculator</a> · <a href="/percentage-of-number" class="text-accent hover:underline">Percentage of Number</a></p>
+
+  </article>
+</Layout>
