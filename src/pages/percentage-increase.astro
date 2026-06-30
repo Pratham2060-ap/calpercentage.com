@@ -202,6 +202,19 @@ const related = [
     </div>
   </section>
 
+  <Fragment slot="head">
+    <script type="application\ld+json" is:inline>{
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Percentage Increase / Decrease Calculator",
+      "url": "https://calpercentage.com/percentage-increase",
+      "description": "Calculate the percentage change between two numbers, or find the new value after any percentage increase or decrease. Real-time results.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }</script>
+  </Fragment>
+
 </Layout>
 
 <script>

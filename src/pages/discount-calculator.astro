@@ -370,6 +370,16 @@ $90 ÷ 0.75 = $120</pre>
   </section>
 
   <Fragment slot="head">
+    <script type="application\ld+json" is:inline>{
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Discount Calculator",
+      "url": "https://calpercentage.com/discount-calculator",
+      "description": "Calculate the sale price and savings for any discount. Supports single discounts, stacked/multiple discounts, and reverse lookup.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }</script>
     <script type="application/ld+json" set:html={faqSchema} />
   </Fragment>
 
