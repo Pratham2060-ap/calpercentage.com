@@ -134,7 +134,7 @@ const tools = calculators;
       <p class="form-label mb-2">FAQ</p>
       <h2 class="text-2xl sm:text-3xl font-semibold text-ink mb-10 sm:mb-12" style="letter-spacing:-0.04em;">Frequently Asked Questions</h2>
 
-      <dl class="space-y-8">
+      <div class="space-y-3">
         {[
           {
             q: "What is a percentage calculator?",
@@ -177,14 +177,26 @@ const tools = calculators;
             a: "Yes, this tool is completely free with no signup required. All calculations run directly in your browser — no data is sent to any server. The results are mathematically precise, making it reliable for academic, financial, and everyday use."
           },
         ].map((item, i) => (
-          <div class="card">
-            <dt class="text-base font-semibold text-ink mb-2" style="letter-spacing:-0.02em;">
-              <span class="form-label mr-2" style="display:inline;">Q{i + 1}</span>{item.q}
-            </dt>
-            <dd class="text-sm text-secondary leading-6">{item.a}</dd>
-          </div>
+          <details class="card faq-item">
+            <summary class="flex items-center justify-between cursor-pointer list-none gap-3">
+              <span class="text-base font-semibold text-ink" style="letter-spacing:-0.02em;">
+                <span class="form-label mr-2" style="display:inline;">Q{i + 1}</span>{item.q}
+              </span>
+              <svg class="faq-chevron flex-shrink-0 text-muted" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <p class="text-sm text-secondary leading-6 mt-3 pt-3" style="border-top:1px solid var(--color-line);">{item.a}</p>
+          </details>
         ))}
-      </dl>
+      </div>
+
+      <style>
+        .faq-item > summary { list-style: none; }
+        .faq-item > summary::-webkit-details-marker { display: none; }
+        .faq-item .faq-chevron { transition: transform 0.2s ease; }
+        .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+      </style>
     </div>
   </section>
 
