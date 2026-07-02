@@ -15,7 +15,7 @@ export const GET: APIRoute = () => {
 
   const body = `# calpercentage.com
 
-> Free online percentage calculators — no signup, no ads, instant results as you type. Five tools covering every common percentage problem: percentage of a number, percentage change, discount, and tip calculation.
+> Free online percentage calculators — no signup, instant results as you type. Five tools covering every common percentage problem: percentage of a number, percentage change, discount, and tip calculation.
 
 calpercentage.com is a free utility site for percentage math. All calculations run in the browser. No data is collected or sent to any server.
 
